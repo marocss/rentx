@@ -1,9 +1,14 @@
-import React from 'react';
+import { StatusBar } from 'react-native'
+import React from 'react'
+
+import Logo from '../../assets/logo.svg'
 
 import {
+  CarQuantity,
   Container,
-  Title
+  Header
 } from './styles';
+
 
 // interface HomeProps {
 // }
@@ -11,7 +16,15 @@ import {
 export const Home = () => {
   return (
     <Container>
-      <Title>Home</Title>
+      <StatusBar 
+        barStyle="light-content"
+        translucent
+        backgroundColor="transparent"
+      />
+      <Header>
+        <Logo />
+        <CarQuantity>12 cars available</CarQuantity>
+      </Header>
     </Container>
   );
 };
