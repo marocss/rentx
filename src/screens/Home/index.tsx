@@ -4,6 +4,7 @@ import React from 'react'
 import Logo from '../../assets/logo.svg'
 
 import {
+  CarList,
   CarQuantity,
   Container,
   Header
@@ -44,21 +45,20 @@ export const Home = () => {
         <CarQuantity>12 cars available</CarQuantity>
       </Header>
 
-      <CarCard
-         brand={carData.brand}
-         name={carData.name}
-         period={carData.period}
-         price={carData.price}
-         thumbnail={carData.thumbnail}
+      <CarList
+        data={[0, 1, 2, 3, 4, 5, 6, 7, 8]}
+        keyExtractor={ item => String(item)}
+        renderItem={({ item }) => 
+          <CarCard
+            brand={carData.brand}
+            name={carData.name}
+            period={carData.period}
+            price={carData.price}
+            thumbnail={carData.thumbnail}
+          />
+        }
       />
-      <CarCard
-         brand={carData.brand}
-         name={carData.name}
-         period={carData.period}
-         price={carData.price}
-         thumbnail={carData.thumbnail}
-      />
-
+        
     </Container>
   );
 };
