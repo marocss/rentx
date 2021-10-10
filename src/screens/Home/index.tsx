@@ -19,7 +19,7 @@ export const Home = () => {
 
   const carData = {
     brand: 'audi', 
-    name: 'RS 5 Coupé', 
+    name: 'RS 5 Coupe', 
     period: 'daily', 
     price: 35, 
     thumbnail: 'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png', 
@@ -27,7 +27,7 @@ export const Home = () => {
 
   const carData2 = {
     brand: 'audi', 
-    name: 'RS 5 Coupé', 
+    name: 'RS 5 Coupe', 
     period: 'daily', 
     price: 35, 
     thumbnail: 'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png', 

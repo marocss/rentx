@@ -23,8 +23,10 @@ import {
   Period,
   Price,
   SpecificationSection,
-  Description
+  Description,
+  Footer
 } from './styles';
+import { Button } from '../../components/Button';
 
 // interface CarProps {
 // }
@@ -52,7 +54,7 @@ export const Car = () => {
         <FirstSection>
           <CarInfoSection>
             <Brand>audi</Brand>
-            <Name>RS 5 Coupé</Name>
+            <Name>RS 5 Coupe</Name>
           </CarInfoSection>
 
           <RentInfoSection>
@@ -64,15 +66,15 @@ export const Car = () => {
 
         <SpecificationSection>
           <SpecificationCard 
-            name="236 mph"
+            name="155 mph"
             icon={speedSvg}
           />
           <SpecificationCard 
-            name="3.2s"
+            name="3.7s"
             icon={accelerateSvg}
           />
           <SpecificationCard 
-            name="800 HP"
+            name="444 HP"
             icon={forceSvf}
           />
           <SpecificationCard 
@@ -90,11 +92,17 @@ export const Car = () => {
         </SpecificationSection>
 
         <Description>
-          Este é automóvel desportivo. Surgiu do lendário touro de lide 
-          indultado na praça Real Maestranza de Sevilla. É um belíssimo carro 
-          para quem gosta de acelerar.
+          Delivering the performance you seek with uncompromised styling, the Audi 
+          RS 5 Coupe delivers an exhilarating performance.
+          Every aspect and angle of the Audi RS 5 Coupe has been meticulously 
+          designed to captivate.
         </Description>
+
       </Main>
+      <Footer>
+        <Button title="Select" color="" />
+      </Footer>
+
     </Container>
   )
 }

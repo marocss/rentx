@@ -93,4 +93,11 @@ export const Description = styled.Text`
   /* text-align: justify; */
   margin-top: ${RFValue(18)}px;
   line-height: ${RFValue(22)}px;
+  margin-bottom: ${RFValue(22)}px;
+`;
+
+export const Footer = styled.View`
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.background_one};
+  padding: ${RFValue(21)}px ${RFValue(21)}px ${RFValue(8 + 21)}px;
 `;
