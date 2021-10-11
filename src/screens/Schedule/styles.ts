@@ -12,7 +12,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   width: 100%;
-  height: ${RFValue(299)}px;
+  min-height: ${RFValue(299)}px;
   background-color: ${({ theme }) => theme.colors.header};
   /* flex-direction: row; */
   /* justify-content: space-between; */
@@ -39,6 +39,7 @@ export const PeriodSection = styled.View`
   margin-top: ${RFValue(28)}px;
   padding-left: ${RFValue(12)}px;
   padding-right: ${RFValue(21)}px;
+  padding-bottom: ${RFValue(28)}px;
 `;
 
 export const StartDateSection = styled.View<DateSectionProps>`

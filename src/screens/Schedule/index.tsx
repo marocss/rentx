@@ -18,6 +18,7 @@ import {
 } from './styles';
 import { StatusBar } from 'react-native';
 import { Button } from '../../components/Button';
+import { Calendar } from '../../components/Calendar';
 
 // interface ScheduleProps {
 // }
@@ -62,7 +63,7 @@ export const Schedule = () => {
       </Header>
 
       <Main>
-
+        <Calendar />
       </Main>
 
       <Footer>
