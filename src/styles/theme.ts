@@ -17,6 +17,9 @@ export default {
 
     shape: '#e1e1e8',
     shape_dark: '#29292e',
+
+    white: '#ffffff',
+    black: '#000000'
   },
   fonts: {
     primary_regular: 'Inter_400Regular',
