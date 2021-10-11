@@ -50,7 +50,7 @@ export const Schedule = () => {
         <PeriodSection>
           <StartDateSection selected={true}>
             <DateTitle>FROM</DateTitle>
-            <DateValue>18/10/2021</DateValue>
+            <DateValue>10/18/2021</DateValue>
           </StartDateSection>
 
           <ArrowSvg />

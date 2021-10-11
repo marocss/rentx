@@ -12,7 +12,7 @@ export const Container = styled.Pressable<ButtonProps>`
   /* padding: 19px; */
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.colors.white};
   background-color: ${({ color, theme }) => color ? color : theme.colors.main};
   height: 56px;
   border-radius: 2px;
@@ -21,6 +21,6 @@ export const Container = styled.Pressable<ButtonProps>`
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_medium};
   font-size: ${RFValue(13)}px;
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.colors.white};
 
 `;

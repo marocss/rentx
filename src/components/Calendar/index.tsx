@@ -41,8 +41,8 @@ export const Calendar = () => {
         renderArrow={( direction ) => <CustomArrow direction={direction} />}
         headerStyle={{
           backgroundColor: theme.colors.background_two,
-          borderBottomWidth: 0.3,
-          borderBottomColor: theme.colors.text_light,
+          borderBottomWidth: 1,
+          borderBottomColor: theme.colors.line,
           paddingBottom: 10,
           marginBottom: 19
         }}
