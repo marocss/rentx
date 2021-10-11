@@ -25,6 +25,7 @@ export const Main = styled.ScrollView.attrs({
   contentContainerStyle: {
     paddingLeft: 24,
     paddingRight: 24,
+    paddingBottom: 14,
     alignItems: 'center'
   },
   showsVerticalScrollIndicator: false
@@ -39,6 +40,7 @@ export const FirstSection = styled.View`
   align-items: center;
   justify-content: space-between;
   margin-top: ${RFValue(19)}px;
+  padding: 0 ${RFValue(7)}px;
 `;
 
 export const CarInfoSection = styled.View`

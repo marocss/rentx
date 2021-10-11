@@ -9,7 +9,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   width: 100%;
-  height: ${RFValue(100)}px;
+  height: ${RFValue(103)}px;
   background-color: ${({ theme }) => theme.colors.header};
   padding-left: ${RFValue(14)}px;
   padding-top: ${RFValue(35)}px;
@@ -28,7 +28,8 @@ export const CarQuantity = styled.Text`
 
 export const CarList = styled(FlatList).attrs({
   contentContainerStyle: {
-    padding: 24
+    padding: 24,
+    paddingTop: 16
   },
   showsVerticalScrollIndicator: false
 })`

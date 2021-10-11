@@ -39,6 +39,7 @@ export const FirstSection = styled.View`
   align-items: center;
   justify-content: space-between;
   margin-top: ${RFValue(19)}px;
+  padding: 0 ${RFValue(7)}px;
 `;
 
 export const CarInfoSection = styled.View`
@@ -90,10 +91,9 @@ export const SpecificationSection = styled.View`
 export const Description = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_regular};
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${RFValue(14)}px;
-  /* text-align: justify; */
-  margin-top: ${RFValue(18)}px;
-  line-height: ${RFValue(22)}px;
+  font-size: ${RFValue(13)}px;
+  margin-top: ${RFValue(17)}px;
+  line-height: ${RFValue(23)}px;
   margin-bottom: ${RFValue(22)}px;
 `;
 

@@ -12,7 +12,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   width: 100%;
-  min-height: ${RFValue(299)}px;
+  min-height: ${RFValue(300)}px;
   background-color: ${({ theme }) => theme.colors.header};
   /* flex-direction: row; */
   /* justify-content: space-between; */
