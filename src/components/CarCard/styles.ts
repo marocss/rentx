@@ -5,17 +5,20 @@ import Energy from '../../assets/energy.svg'
 
 export const Container = styled.View`
   width: 100%;
-  height: ${RFValue(115)}px;
+  min-height: ${RFValue(115)}px;
   background-color: ${({ theme }) => theme.colors.background_two};
   flex-direction: row;
   justify-content: space-between;
   padding-left: ${RFValue(21)}px;
   padding-right: ${RFValue(21)}px;
+  /* padding-bottom: ${RFValue(21)}px; */
   margin-bottom: ${RFValue(14)}px;
+  align-items: center;
 `;
 
 export const InfoSection = styled.View`
   padding-top: ${RFValue(21)}px;
+  padding-bottom: ${RFValue(21)}px;
   width: 30%;
 `;
 
@@ -75,6 +78,7 @@ export const ElectricIcon = styled(Energy)`
 
 export const Thumbnail = styled.View`
   height: ${RFValue(115)}px;
+  /* width: 100%; */
   width: 60%;
 `;
 

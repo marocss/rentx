@@ -46,8 +46,6 @@ export const CarCard = ({brand, name, period, price, thumbnail}: CarCardProps) =
       <Thumbnail>
         <Picture source={{ uri: thumbnail }} resizeMode="contain" />
       </Thumbnail>
-
-
     </Container>
   )
 }

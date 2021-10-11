@@ -27,6 +27,7 @@ import {
   Footer
 } from './styles';
 import { Button } from '../../components/Button';
+import { StatusBar } from 'react-native';
 
 // interface CarProps {
 // }
@@ -42,6 +43,11 @@ export const Car = () => {
 
   return (
     <Container>
+      <StatusBar 
+        barStyle="dark-content"
+        translucent
+        backgroundColor="transparent"
+      />
       <Header>
         <BackButton onPress={() => console.log('hi')} />
       </Header>
