@@ -10,12 +10,13 @@ import {
   Header
 } from './styles';
 import { CarCard } from '../../components/CarCard';
-
+import { useNavigation } from '@react-navigation/native';
 
 // interface HomeProps {
 // }
 
 export const Home = () => {
+  const { navigate } = useNavigation()
 
   const carData = {
     brand: 'audi', 
@@ -31,6 +32,10 @@ export const Home = () => {
     period: 'daily', 
     price: 35, 
     thumbnail: 'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png', 
+  }
+
+  const handleCarCard = () => {
+    navigate('Car')
   }
 
   return (
@@ -55,6 +60,7 @@ export const Home = () => {
             period={carData.period}
             price={carData.price}
             thumbnail={carData.thumbnail}
+            onPress={handleCarCard}
           />
         }
       />

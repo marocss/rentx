@@ -19,12 +19,18 @@ import {
 import { StatusBar } from 'react-native';
 import { Button } from '../../components/Button';
 import { Calendar } from '../../components/Calendar';
+import { useNavigation } from '@react-navigation/native';
 
 // interface ScheduleProps {
 // }
 
 export const Schedule = () => {
   const theme = useTheme()
+  const { navigate } = useNavigation()
+
+  const handleConfirmation = () => {
+    navigate('ConfirmSchedule')
+  }
 
   return (
     <Container>
@@ -35,8 +41,7 @@ export const Schedule = () => {
       />
       <Header>
         <BackButton 
-          color={theme.colors.white} 
-          onPress={() => {}} 
+          color={theme.colors.white}
         />
 
         <Title>
@@ -67,7 +72,7 @@ export const Schedule = () => {
       </Main>
 
       <Footer>
-        <Button title="Confirm" />
+        <Button title="Confirm" onPress={handleConfirmation} />
       </Footer>
     </Container>
   )

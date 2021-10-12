@@ -9,7 +9,6 @@ interface ButtonProps extends PressableProps {
 
 export const Container = styled.Pressable<ButtonProps>`
   width: 100%;
-  /* padding: 19px; */
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.colors.white};

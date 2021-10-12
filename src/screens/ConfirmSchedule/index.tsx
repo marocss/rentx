@@ -39,12 +39,19 @@ import { Button } from '../../components/Button';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
 
 // interface ConfirmScheduleProps {
 // }
 
 export const ConfirmSchedule = () => {
   const theme = useTheme()
+  const { navigate } = useNavigation()
+
+  const handleRentRequest = () => {
+    navigate('CompletedSchedule')
+  }
+
 
   const images = [
     'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
@@ -61,7 +68,7 @@ export const ConfirmSchedule = () => {
         backgroundColor="transparent"
       />
       <Header>
-        <BackButton onPress={() => console.log('hi')} />
+        <BackButton />
       </Header>
 
       <CarouselSection>
@@ -145,7 +152,7 @@ export const ConfirmSchedule = () => {
       </Main>
 
       <Footer>
-        <Button title="Rent now" color={theme.colors.correct} />
+        <Button title="Rent now" color={theme.colors.correct} onPress={handleRentRequest} />
       </Footer>
     </Container>
   )

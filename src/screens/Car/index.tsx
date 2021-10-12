@@ -28,11 +28,17 @@ import {
 } from './styles';
 import { Button } from '../../components/Button';
 import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 // interface CarProps {
 // }
 
 export const Car = () => {
+  const { navigate } = useNavigation()
+
+  const handleSelectCar = () => {
+    navigate('Schedule')
+  }
 
   const images = [
     'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
@@ -49,7 +55,7 @@ export const Car = () => {
         backgroundColor="transparent"
       />
       <Header>
-        <BackButton onPress={() => console.log('hi')} />
+        <BackButton />
       </Header>
 
       <CarouselSection>
@@ -106,7 +112,7 @@ export const Car = () => {
 
       </Main>
       <Footer>
-        <Button title="Select" color="" />
+        <Button title="Select" color="" onPress={handleSelectCar} />
       </Footer>
 
     </Container>

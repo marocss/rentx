@@ -12,12 +12,20 @@ import {
 import { StatusBar, useWindowDimensions } from 'react-native';
 import { SmallButton } from '../../components/SmallButton';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
 
 // interface CompletedScheduleProps {
 // }
 
 export const CompletedSchedule = () => {
   const { width } = useWindowDimensions()
+  const { navigate } = useNavigation()
+
+  const handleOkButton = () => {
+    navigate('Home')
+  }
+
+
 
 
   return (
@@ -39,7 +47,7 @@ export const CompletedSchedule = () => {
           get your vehicle.
         </Body>
 
-        <SmallButton text="Ok" />
+        <SmallButton text="Ok" onPress={handleOkButton} />
       </Main>
     </Container>
   )

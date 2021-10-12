@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import Gasoline from '../../assets/gasoline.svg'
 import Energy from '../../assets/energy.svg'
 
-export const Container = styled.View`
+export const Container = styled.Pressable`
   width: 100%;
   min-height: ${RFValue(115)}px;
   background-color: ${({ theme }) => theme.colors.background_two};

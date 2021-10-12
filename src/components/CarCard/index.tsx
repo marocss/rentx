@@ -1,4 +1,5 @@
 import React from 'react';
+import { PressableProps } from 'react-native';
 
 import {
   Container,
@@ -16,7 +17,7 @@ import {
   Picture
 } from './styles';
 
-interface CarCardProps {
+interface CarCardProps extends PressableProps {
   brand: string;
   name: string;
   period: string;
@@ -24,10 +25,10 @@ interface CarCardProps {
   thumbnail: string;
 }
 
-export const CarCard = ({brand, name, period, price, thumbnail}: CarCardProps) => {
+export const CarCard = ({brand, name, period, price, thumbnail, ...rest}: CarCardProps) => {
 
   return (
-    <Container>
+    <Container {...rest} >
       <InfoSection>
         <Brand>{brand}</Brand>
         <Name>{name}</Name>

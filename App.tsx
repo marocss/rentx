@@ -19,6 +19,7 @@ import { ConfirmSchedule } from './src/screens/ConfirmSchedule';
 
 import theme from './src/styles/theme';
 import { CompletedSchedule } from './src/screens/CompletedSchedule';
+import { Routes } from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -35,7 +36,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CompletedSchedule />
+      <Routes />
     </ThemeProvider>
   );
 }
