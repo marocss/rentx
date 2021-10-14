@@ -35,7 +35,7 @@ export const CarCard = ({brand, name, period, price, thumbnail, ...rest}: CarCar
         <About>
           <RentInfo>
             <Period>{period}</Period>
-            <Price>$ {price}</Price>
+            <Price>R$ {price}</Price>
           </RentInfo>
 
           <FuelType>

@@ -1,5 +1,5 @@
 import { StatusBar } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Logo from '../../assets/logo.svg'
 
@@ -11,31 +11,42 @@ import {
 } from './styles';
 import { CarCard } from '../../components/CarCard';
 import { useNavigation } from '@react-navigation/native';
+import { api } from '../../services/api';
+import { CarDTO } from '../../dtos/CarDTO';
+import { Loading } from '../../components/Loading';
 
 // interface HomeProps {
 // }
 
 export const Home = () => {
+  const [cars, setCars] = useState<CarDTO[]>([]);
+  const [isLoading, setIsLoading] = useState(true)
+
   const { navigate } = useNavigation()
 
-  const carData = {
-    brand: 'audi', 
-    name: 'RS 5 Coupe', 
-    period: 'daily', 
-    price: 35, 
-    thumbnail: 'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png', 
-  }
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await api.get<CarDTO[]>('cars')
+        
+        setCars(response.data)
+        setIsLoading(false)
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false)
+      }
+    })()
 
-  const carData2 = {
-    brand: 'audi', 
-    name: 'RS 5 Coupe', 
-    period: 'daily', 
-    price: 35, 
-    thumbnail: 'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png', 
-  }
+    // return () => {
+    // }
+  }, [])
 
   const handleCarCard = () => {
     navigate('Car')
+  }
+
+  if (isLoading) {
+    <Loading />
   }
 
   return (
@@ -50,21 +61,22 @@ export const Home = () => {
         <CarQuantity>12 cars available</CarQuantity>
       </Header>
 
-      <CarList
-        data={[0, 1, 2, 3, 4, 5, 6, 7, 8]}
-        keyExtractor={ item => String(item)}
-        renderItem={({ item }) => 
-          <CarCard
-            brand={carData.brand}
-            name={carData.name}
-            period={carData.period}
-            price={carData.price}
-            thumbnail={carData.thumbnail}
-            onPress={handleCarCard}
-          />
-        }
-      />
-        
+      { isLoading ? (<Loading />) : (
+        <CarList
+          data={cars}
+          keyExtractor={ item => item.id}
+          renderItem={({ item }) => 
+            <CarCard
+              brand={item.brand}
+              name={item.name}
+              period={item.rent.period}
+              price={item.rent.price}
+              thumbnail={item.thumbnail}
+              onPress={handleCarCard}
+            />
+          }
+        />
+      )}
     </Container>
   );
 };
