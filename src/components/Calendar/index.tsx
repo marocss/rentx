@@ -1,23 +1,18 @@
 import React from 'react';
-import { Feather } from '@expo/vector-icons'
-
 import{ 
   Calendar as RNCalendar,
   LocaleConfig
 } from 'react-native-calendars';
+import { Feather } from '@expo/vector-icons'
+import { useTheme } from 'styled-components';
 
 import {
   Container,
 } from './styles';
-import { useTheme } from 'styled-components';
-
-// interface CalendarProps {
-// }
 
 interface CalendarArrowProps {
   direction: string;
 }
-
 
 // LocaleConfig.locales['pt-br'] = {
 //   monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
@@ -30,6 +25,7 @@ interface CalendarArrowProps {
 //   dayNamesShort: ['SUN', 'MON', 'TUE', 'WEN', 'THU', 'FRI', 'SAT'],
 //   today: 'today',
 // }
+
 // LocaleConfig.defaultLocale = 'pt-br'
 
 export const Calendar = () => {
@@ -57,7 +53,6 @@ export const Calendar = () => {
           arrowStyle: {
             marginHorizontal: -15
           },
-          
         }}
         firstDay={1}
         minDate={new Date()}
@@ -69,7 +64,6 @@ export const Calendar = () => {
 
 const CustomArrow = ({ direction }: CalendarArrowProps) => {
   const theme = useTheme()
-
   const arrowColor = theme.colors.text
 
   return (

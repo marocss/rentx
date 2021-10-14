@@ -13,7 +13,6 @@ interface CarouselProps {
 }
 
 export const Carousel = ({ imagesUrls }: CarouselProps) => {
-
   return (
     <Container>
       <Indexes>

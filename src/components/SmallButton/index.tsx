@@ -11,7 +11,6 @@ interface SmallButtonProps extends PressableProps {
 }
 
 export const SmallButton = ({ text, ...rest }: SmallButtonProps) => {
-
   return (
     <Container {...rest} >
       <Title>{text}</Title>

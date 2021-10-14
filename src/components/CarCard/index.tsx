@@ -1,5 +1,7 @@
 import React from 'react';
 import { PressableProps } from 'react-native';
+import { useTheme } from 'styled-components';
+import { getRelatedSvgIcon } from '../../utils/getRelatedSvgIcon';
 
 import {
   Container,
@@ -23,9 +25,20 @@ interface CarCardProps extends PressableProps {
   period: string;
   price: number;
   thumbnail: string;
+  icon: string;
 }
 
-export const CarCard = ({brand, name, period, price, thumbnail, ...rest}: CarCardProps) => {
+export const CarCard = ({ 
+  brand, 
+  name, 
+  period, 
+  price, 
+  thumbnail, 
+  icon, 
+  ...rest }: CarCardProps) => {
+  const theme = useTheme()
+
+  const Icon = getRelatedSvgIcon(icon)
 
   return (
     <Container {...rest} >
@@ -39,7 +52,9 @@ export const CarCard = ({brand, name, period, price, thumbnail, ...rest}: CarCar
           </RentInfo>
 
           <FuelType>
-            <GasIcon />
+            <Icon 
+              color={theme.colors.text_light}
+            />
           </FuelType>
         </About>
       </InfoSection>

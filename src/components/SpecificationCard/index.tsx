@@ -13,12 +13,11 @@ interface SpecificationCardProps {
 
 export const SpecificationCard = ({
   name,
-  icon: Icon
-}: SpecificationCardProps) => {
-
+  icon: Icon }: SpecificationCardProps) => {
+    
   return (
     <Container>
-      <Icon color="#47474D" width={32} height={32} />
+      <Icon color="#47474D" width={36} height={38} />
       <Name>{name}</Name>
     </Container>
   )

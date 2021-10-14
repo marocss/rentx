@@ -1,8 +1,12 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
-import { BackButton } from '../../components/BackButton';
 
 import ArrowSvg from '../../assets/arrow.svg'
+import { BackButton } from '../../components/BackButton';
+import { Button } from '../../components/Button';
+import { Calendar } from '../../components/Calendar';
 
 import {
   Container,
@@ -16,16 +20,11 @@ import {
   Main,
   Footer,
 } from './styles';
-import { StatusBar } from 'react-native';
-import { Button } from '../../components/Button';
-import { Calendar } from '../../components/Calendar';
-import { useNavigation } from '@react-navigation/native';
 
-// interface ScheduleProps {
-// }
 
 export const Schedule = () => {
   const theme = useTheme()
+  
   const { navigate } = useNavigation()
 
   const handleConfirmation = () => {

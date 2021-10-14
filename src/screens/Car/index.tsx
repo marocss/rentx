@@ -1,14 +1,13 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
 import { BackButton } from '../../components/BackButton';
+import { Button } from '../../components/Button';
 import { Carousel } from '../../components/Carousel';
 import { SpecificationCard } from '../../components/SpecificationCard';
-
-import speedSvg from '../../assets/speed.svg'
-import accelerateSvg from '../../assets/acceleration.svg'
-import forceSvf from '../../assets/force.svg'
-import gasSvg from '../../assets/gasoline.svg'
-import exchangeSvg from '../../assets/exchange.svg'
-import peopleSvg from '../../assets/people.svg'
+import { CarDTO } from '../../dtos/CarDTO';
+import { getRelatedSvgIcon } from '../../utils/getRelatedSvgIcon';
 
 import {
   Container,
@@ -26,26 +25,21 @@ import {
   Description,
   Footer
 } from './styles';
-import { Button } from '../../components/Button';
-import { StatusBar } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
-// interface CarProps {
-// }
+interface RouteParams {
+  car: CarDTO;
+}
+
 
 export const Car = () => {
   const { navigate } = useNavigation()
+  
+  const route = useRoute()
+  const { car } = route.params as RouteParams
 
   const handleSelectCar = () => {
     navigate('Schedule')
   }
-
-  const images = [
-    'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
-    'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
-    'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
-  ]
-
 
   return (
     <Container>
@@ -59,62 +53,38 @@ export const Car = () => {
       </Header>
 
       <CarouselSection>
-        <Carousel imagesUrls={images} />
+        <Carousel imagesUrls={car.photos} />
       </CarouselSection>
 
       <Main>
         <FirstSection>
           <CarInfoSection>
-            <Brand>audi</Brand>
-            <Name>RS 5 Coupe</Name>
+            <Brand>{car.brand}</Brand>
+            <Name>{car.name}</Name>
           </CarInfoSection>
 
           <RentInfoSection>
-            <Period>Daily</Period>
-            <Price>$ 35</Price>
-
+            <Period>{car.rent.period}</Period>
+            <Price>R$ {car.rent.price}</Price>
           </RentInfoSection>
         </FirstSection>
 
         <SpecificationSection>
-          <SpecificationCard 
-            name="155 mph"
-            icon={speedSvg}
-          />
-          <SpecificationCard 
-            name="3.7s"
-            icon={accelerateSvg}
-          />
-          <SpecificationCard 
-            name="444 HP"
-            icon={forceSvf}
-          />
-          <SpecificationCard 
-            name="Gas"
-            icon={gasSvg}
-          />
-          <SpecificationCard 
-            name="Automatic"
-            icon={exchangeSvg}
-          />
-          <SpecificationCard 
-            name="2 people"
-            icon={peopleSvg}
-          />
+          {car.accessories.map(accessory => (
+            <SpecificationCard 
+              key={accessory.type}
+              name={accessory.name}
+              icon={getRelatedSvgIcon(accessory.type)}
+            />  
+          ))}
         </SpecificationSection>
 
-        <Description>
-          Delivering the performance you seek with uncompromised styling, the Audi 
-          RS 5 Coupe delivers an exhilarating performance.
-          Every aspect and angle of the Audi RS 5 Coupe has been meticulously 
-          designed to captivate.
-        </Description>
-
+        <Description>{car.about}</Description >
       </Main>
+
       <Footer>
         <Button title="Select" color="" onPress={handleSelectCar} />
       </Footer>
-
     </Container>
   )
 }

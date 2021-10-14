@@ -1,7 +1,12 @@
-import { StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { StatusBar } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 
 import Logo from '../../assets/logo.svg'
+import { CarCard } from '../../components/CarCard';
+import { Loading } from '../../components/Loading';
+import { CarDTO } from '../../dtos/CarDTO';
+import { api } from '../../services/api';
 
 import {
   CarList,
@@ -9,20 +14,17 @@ import {
   Container,
   Header
 } from './styles';
-import { CarCard } from '../../components/CarCard';
-import { useNavigation } from '@react-navigation/native';
-import { api } from '../../services/api';
-import { CarDTO } from '../../dtos/CarDTO';
-import { Loading } from '../../components/Loading';
 
-// interface HomeProps {
-// }
 
 export const Home = () => {
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [isLoading, setIsLoading] = useState(true)
 
   const { navigate } = useNavigation()
+
+  const handleCarCard = (car: CarDTO) => {
+    navigate('Car', { car })
+  }
 
   useEffect(() => {
     (async () => {
@@ -36,18 +38,7 @@ export const Home = () => {
         setIsLoading(false)
       }
     })()
-
-    // return () => {
-    // }
   }, [])
-
-  const handleCarCard = () => {
-    navigate('Car')
-  }
-
-  if (isLoading) {
-    <Loading />
-  }
 
   return (
     <Container>
@@ -58,7 +49,7 @@ export const Home = () => {
       />
       <Header>
         <Logo />
-        <CarQuantity>12 cars available</CarQuantity>
+        <CarQuantity>{cars.length} cars available</CarQuantity>
       </Header>
 
       { isLoading ? (<Loading />) : (
@@ -72,7 +63,8 @@ export const Home = () => {
               period={item.rent.period}
               price={item.rent.price}
               thumbnail={item.thumbnail}
-              onPress={handleCarCard}
+              icon={item.fuel_type}
+              onPress={() => handleCarCard(item)}
             />
           }
         />

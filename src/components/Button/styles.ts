@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import { PressableProps } from 'react-native';
-
+import { RFValue } from 'react-native-responsive-fontsize';
 
 interface ButtonProps extends PressableProps {
   color?: string;
@@ -21,5 +20,4 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_medium};
   font-size: ${RFValue(13)}px;
   color: ${({ theme }) => theme.colors.white};
-
 `;

@@ -3,9 +3,6 @@ import { ActivityIndicator } from 'react-native';
 import { useTheme } from 'styled-components';
 
 
-// interface LoadingProps {
-// }
-
 export const Loading = () => {
   const theme = useTheme()
 

@@ -1,14 +1,20 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Feather } from "@expo/vector-icons";
+import { RFValue } from 'react-native-responsive-fontsize';
+import { useTheme } from 'styled-components';
+
 import { BackButton } from '../../components/BackButton';
 import { Carousel } from '../../components/Carousel';
 import { SpecificationCard } from '../../components/SpecificationCard';
-import { Feather } from "@expo/vector-icons";
 import speedSvg from '../../assets/speed.svg'
 import accelerateSvg from '../../assets/acceleration.svg'
 import forceSvf from '../../assets/force.svg'
 import gasSvg from '../../assets/gasoline.svg'
 import exchangeSvg from '../../assets/exchange.svg'
 import peopleSvg from '../../assets/people.svg'
+import { Button } from '../../components/Button';
 
 import {
   Container,
@@ -35,14 +41,7 @@ import {
   Instalments,
   Cost,
 } from './styles';
-import { Button } from '../../components/Button';
-import { StatusBar } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
-import { useTheme } from 'styled-components';
-import { useNavigation } from '@react-navigation/native';
 
-// interface ConfirmScheduleProps {
-// }
 
 export const ConfirmSchedule = () => {
   const theme = useTheme()
@@ -52,13 +51,11 @@ export const ConfirmSchedule = () => {
     navigate('CompletedSchedule')
   }
 
-
   const images = [
     'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
     'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
     'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
   ]
-
 
   return (
     <Container>
@@ -85,7 +82,6 @@ export const ConfirmSchedule = () => {
           <RentInfoSection>
             <Period>Daily</Period>
             <Price>$ 35</Price>
-
           </RentInfoSection>
         </FirstSection>
 

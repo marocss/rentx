@@ -11,7 +11,6 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
   margin-top: ${RFValue(44)}px;
   margin-left: ${RFValue(11)}px;
 `;
@@ -23,8 +22,8 @@ export const CarouselSection = styled.View`
 
 export const Main = styled.ScrollView.attrs({
   contentContainerStyle: {
-    paddingLeft: 24,
-    paddingRight: 24,
+    paddingLeft: 16,
+    paddingRight: 16,
     paddingBottom: 14,
     alignItems: 'center'
   },
@@ -35,7 +34,6 @@ export const Main = styled.ScrollView.attrs({
 
 export const FirstSection = styled.View`
   width: 100%;
-
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -44,14 +42,12 @@ export const FirstSection = styled.View`
 `;
 
 export const CarInfoSection = styled.View`
- 
 `;
 
 export const Brand = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_medium};
   color: ${({ theme }) => theme.colors.text_light};
   font-size: ${RFValue(10)}px;
-
   text-transform: uppercase;
 `;
 
@@ -62,7 +58,6 @@ export const Name = styled.Text`
 `;
 
 export const RentInfoSection = styled.View`
- 
 `;
 
 export const Period = styled.Text`
@@ -70,7 +65,6 @@ export const Period = styled.Text`
   color: ${({ theme }) => theme.colors.text_light};
   font-size: ${RFValue(10)}px;
   text-transform: uppercase;
-
 `;
 
 export const Price = styled.Text`
@@ -81,7 +75,6 @@ export const Price = styled.Text`
 
 export const SpecificationSection = styled.View`
   width: 100%;
-
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
@@ -96,17 +89,18 @@ export const Footer = styled.View`
 `;
 
 export const ScheduleDateInfoSection = styled.View`
-  /* background-color: orange; */
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-top: ${RFValue(32)}px;
   margin-left: ${RFValue(7)}px;
-  padding-right: ${RFValue(23)}px;
+  padding-right: ${RFValue(23 + 7)}px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.colors.line};
   padding-bottom: ${RFValue(14)}px;
+  padding-left: ${RFValue(7)}px;
+
 `;
 
 export const CalendarIconSection = styled.View`
@@ -117,7 +111,8 @@ export const CalendarIconSection = styled.View`
   justify-content: center;
 `;
 
-export const PeriodSection = styled.View``;
+export const PeriodSection = styled.View`
+`;
 
 export const DateTitle = styled.Text`
   color: ${({ theme }) => theme.colors.text_light};
@@ -136,6 +131,7 @@ export const DateValue = styled.Text`
 export const PriceSection = styled.View`
   width: 100%;
   margin-top: ${RFValue(15)}px;
+  padding: 0 ${RFValue(7)}px;
 `;
 
 export const PriceLabel = styled.Text`

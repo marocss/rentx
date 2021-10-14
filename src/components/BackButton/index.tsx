@@ -1,11 +1,12 @@
 import React from 'react';
 import { PressableProps } from 'react-native';
-import { useTheme } from 'styled-components';
 import { MaterialIcons } from '@expo/vector-icons'
+import { useTheme } from 'styled-components';
 
 import {
   Container,
 } from './styles';
+
 import { useNavigation } from '@react-navigation/native';
 
 interface BackButtonProps extends PressableProps {

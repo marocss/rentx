@@ -11,12 +11,7 @@ interface ButtonProps extends PressableProps {
   color?: string;
 }
 
-export const Button = ({
-  title,
-  color,
-  ...rest
-}: ButtonProps) => {
-
+export const Button = ({ title, color, ...rest }: ButtonProps) => {
   return (
     <Container {...rest} color={color}>
       <Title>{title}</Title>

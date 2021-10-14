@@ -1,19 +1,16 @@
 import React from 'react';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Home } from '../screens/Home';
-import { Car } from '../screens/Car';
-import { Schedule } from '../screens/Schedule';
-import { ConfirmSchedule } from '../screens/ConfirmSchedule';
-import { CompletedSchedule } from '../screens/CompletedSchedule';
-// import {
-//   Container,
-// } from './styles';
 
-// interface routesProps {
-// }
+import { CarDTO } from '../dtos/CarDTO'
+import { Car } from '../screens/Car';
+import { CompletedSchedule } from '../screens/CompletedSchedule';
+import { ConfirmSchedule } from '../screens/ConfirmSchedule';
+import { Home } from '../screens/Home';
+import { Schedule } from '../screens/Schedule';
+
 type RootStackParamList = {
   Home: undefined;
-  Car: undefined;
+  Car: { car: CarDTO };
   Schedule: undefined;
   ConfirmSchedule: undefined;
   CompletedSchedule: undefined;
@@ -28,7 +25,6 @@ declare global {
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export const StackRoutes = () => {
-
   return (
     <Navigator
       screenOptions={{

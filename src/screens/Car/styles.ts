@@ -1,6 +1,5 @@
-import { Platform } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
   flex: 1;
@@ -11,7 +10,6 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
   margin-top: ${RFValue(44)}px;
   margin-left: ${RFValue(11)}px;
 `;
@@ -23,18 +21,16 @@ export const CarouselSection = styled.View`
 
 export const Main = styled.ScrollView.attrs({
   contentContainerStyle: {
-    paddingLeft: 24,
-    paddingRight: 24,
+    paddingLeft: 16,
+    paddingRight: 16,
     alignItems: 'center'
   },
   showsVerticalScrollIndicator: false
 })`
- 
 `;
 
 export const FirstSection = styled.View`
   width: 100%;
-
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -43,14 +39,12 @@ export const FirstSection = styled.View`
 `;
 
 export const CarInfoSection = styled.View`
- 
 `;
 
 export const Brand = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_medium};
   color: ${({ theme }) => theme.colors.text_light};
   font-size: ${RFValue(10)}px;
-
   text-transform: uppercase;
 `;
 
@@ -61,7 +55,6 @@ export const Name = styled.Text`
 `;
 
 export const RentInfoSection = styled.View`
- 
 `;
 
 export const Period = styled.Text`
@@ -69,7 +62,6 @@ export const Period = styled.Text`
   color: ${({ theme }) => theme.colors.text_light};
   font-size: ${RFValue(10)}px;
   text-transform: uppercase;
-
 `;
 
 export const Price = styled.Text`
@@ -80,7 +72,6 @@ export const Price = styled.Text`
 
 export const SpecificationSection = styled.View`
   width: 100%;
-
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
@@ -95,6 +86,7 @@ export const Description = styled.Text`
   margin-top: ${RFValue(17)}px;
   line-height: ${RFValue(23)}px;
   margin-bottom: ${RFValue(22)}px;
+  padding: 0 ${RFValue(7)}px;
 `;
 
 export const Footer = styled.View`

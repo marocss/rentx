@@ -1,7 +1,11 @@
 import React from 'react';
+import { StatusBar, useWindowDimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 import LogoSvg from '../../assets/logo_background_gray.svg'
 import DoneSvg from '../../assets/done.svg'
+import { SmallButton } from '../../components/SmallButton';
 
 import {
   Container,
@@ -9,13 +13,7 @@ import {
   Title,
   Body
 } from './styles';
-import { StatusBar, useWindowDimensions } from 'react-native';
-import { SmallButton } from '../../components/SmallButton';
-import { RFValue } from 'react-native-responsive-fontsize';
-import { useNavigation } from '@react-navigation/native';
 
-// interface CompletedScheduleProps {
-// }
 
 export const CompletedSchedule = () => {
   const { width } = useWindowDimensions()
@@ -25,9 +23,6 @@ export const CompletedSchedule = () => {
     navigate('Home')
   }
 
-
-
-
   return (
     <Container>
       <StatusBar 
@@ -35,10 +30,14 @@ export const CompletedSchedule = () => {
         translucent
         backgroundColor="transparent"
       />
+
       <LogoSvg width={width} height={RFValue(255)} />
+      
       <Main>
         <DoneSvg />
+        
         <Title>Successfully Rented!</Title>
+
         <Body>
           Now you just need to go 
           {'\n'}

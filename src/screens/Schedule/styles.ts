@@ -14,10 +14,6 @@ export const Header = styled.View`
   width: 100%;
   min-height: ${RFValue(300)}px;
   background-color: ${({ theme }) => theme.colors.header};
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
-  /* align-items: center; */
-
   padding-top: ${RFValue(44)}px;
   padding-left: ${RFValue(11)}px;
 `;
@@ -25,7 +21,6 @@ export const Header = styled.View`
 export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.secondary_bold};
-
   font-size: ${RFValue(30)}px;
   padding-left: ${RFValue(12)}px;
   margin-top: ${RFValue(21)}px;
@@ -79,11 +74,9 @@ export const Main = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false
 })`
   flex: 1;
-  /* background-color: orange; */
 `;
 
 export const Footer = styled.View`
-  /* padding: ${RFValue(21)}px; */
   width: 100%;
   background-color: ${({ theme }) => theme.colors.background_two};
   padding: ${RFValue(21)}px ${RFValue(21)}px ${RFValue(10 + 21)}px;
