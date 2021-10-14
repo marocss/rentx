@@ -11,7 +11,7 @@ export default {
     line: '#ebebf0',
     
     main: '#dc1627',
-    main_light: 'rgba(220, 22, 39, 0.5)',
+    main_light: '#FDEDEF',
 
     correct: '#03b252',
 

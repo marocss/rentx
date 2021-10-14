@@ -14,6 +14,36 @@ interface CalendarArrowProps {
   direction: string;
 }
 
+interface CalendarMarkedDatesProps { 
+  [date: string]: {
+    color?: string;
+    textColor?: string;
+    disabled?: boolean;
+    disableTouchEvent?: boolean;
+  }
+}
+
+// export declare type DateData = {
+//   year: number;
+//   month: number;
+//   day: number;
+//   timestamp: number;
+//   dateString: string;
+// };
+
+interface CalendarDayProps {
+  year: number;
+  month: number;
+  day: number;
+  timestamp: number;
+  dateString: string;
+}
+
+interface CalendarProps {
+  markedDates: CalendarMarkedDatesProps;
+  onDayPress: (date: CalendarDayProps) => void;
+}
+
 // LocaleConfig.locales['pt-br'] = {
 //   monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
 //   monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
@@ -28,7 +58,7 @@ interface CalendarArrowProps {
 
 // LocaleConfig.defaultLocale = 'pt-br'
 
-export const Calendar = () => {
+const Calendar = ({ markedDates, onDayPress }: CalendarProps) => {
   const theme = useTheme()
 
   return (
@@ -56,6 +86,9 @@ export const Calendar = () => {
         }}
         firstDay={1}
         minDate={new Date()}
+        markingType='period'
+        markedDates={markedDates}
+        onDayPress={onDayPress}
       />
     </Container>
   )
@@ -74,3 +107,5 @@ const CustomArrow = ({ direction }: CalendarArrowProps) => {
     />
   )
 }
+
+export { Calendar, CalendarMarkedDatesProps, CalendarDayProps }
