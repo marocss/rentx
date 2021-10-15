@@ -1,6 +1,6 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Alert, StatusBar } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Feather } from "@expo/vector-icons";
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
@@ -8,13 +8,12 @@ import { useTheme } from 'styled-components';
 import { BackButton } from '../../components/BackButton';
 import { Carousel } from '../../components/Carousel';
 import { SpecificationCard } from '../../components/SpecificationCard';
-import speedSvg from '../../assets/speed.svg'
-import accelerateSvg from '../../assets/acceleration.svg'
-import forceSvf from '../../assets/force.svg'
-import gasSvg from '../../assets/gasoline.svg'
-import exchangeSvg from '../../assets/exchange.svg'
-import peopleSvg from '../../assets/people.svg'
 import { Button } from '../../components/Button';
+import { CarDTO } from '../../dtos/CarDTO';
+import { getRelatedSvgIcon } from '../../utils/getRelatedSvgIcon';
+import { RentalPeriod } from '../Schedule';
+import { api } from '../../services/api';
+import { ScheduleByCarsDTO } from '../../dtos/ScheduleByCarsDTO';
 
 import {
   Container,
@@ -43,19 +42,42 @@ import {
 } from './styles';
 
 
+interface RouteParams {
+  car: CarDTO;
+  rentalPeriod: RentalPeriod;
+}
+
+
 export const ConfirmSchedule = () => {
   const theme = useTheme()
   const { navigate } = useNavigation()
 
-  const handleRentRequest = () => {
-    navigate('CompletedSchedule')
-  }
+  const route = useRoute();
+  const { car, rentalPeriod } = route.params as RouteParams
 
-  const images = [
-    'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
-    'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
-    'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b-700x465.png',
-  ]
+  console.log(car.id)
+  const { dates } = rentalPeriod
+
+  const handleRentRequest = async () => {
+    try {
+      const response = await api.get<ScheduleByCarsDTO>(`schedules_bycars/${car.id}`)
+      
+      const unavailable_dates = [
+        ...response.data.unavailable_dates,
+        ...dates
+      ]
+      
+      await api.put(`schedules_bycars/${car.id}`, {
+        id: car.id,
+        unavailable_dates
+      })
+
+      navigate('CompletedSchedule')
+    } catch (error) {
+      console.error(error)
+      Alert.alert('Sorry', 'An error occurred during confirmation. Please try again later.')
+    }
+  }
 
   return (
     <Container>
@@ -69,24 +91,31 @@ export const ConfirmSchedule = () => {
       </Header>
 
       <CarouselSection>
-        <Carousel imagesUrls={images} />
+        <Carousel imagesUrls={car.photos} />
       </CarouselSection>
 
       <Main>
         <FirstSection>
           <CarInfoSection>
-            <Brand>audi</Brand>
-            <Name>RS 5 Coupe</Name>
+            <Brand>{car.brand}</Brand>
+            <Name>{car.brand}</Name>
           </CarInfoSection>
 
           <RentInfoSection>
-            <Period>Daily</Period>
-            <Price>$ 35</Price>
+            <Period>{car.rent.period}</Period>
+            <Price>R$ {car.rent.price}</Price>
           </RentInfoSection>
         </FirstSection>
 
         <SpecificationSection>
-          <SpecificationCard 
+        {car.accessories.map(accessory => (
+            <SpecificationCard 
+              key={accessory.type}
+              name={accessory.name}
+              icon={getRelatedSvgIcon(accessory.type)}
+            />  
+          ))}
+          {/* <SpecificationCard 
             name="155 mph"
             icon={speedSvg}
           />
@@ -109,7 +138,7 @@ export const ConfirmSchedule = () => {
           <SpecificationCard 
             name="2 people"
             icon={peopleSvg}
-          />
+          /> */}
         </SpecificationSection>
 
         <ScheduleDateInfoSection>
@@ -123,7 +152,7 @@ export const ConfirmSchedule = () => {
 
           <PeriodSection>
             <DateTitle>FROM</DateTitle>
-            <DateValue>10/18/2021</DateValue>
+            <DateValue>{rentalPeriod.startDateFormatted}</DateValue>
           </PeriodSection>
           
           <Feather 
@@ -134,15 +163,15 @@ export const ConfirmSchedule = () => {
 
           <PeriodSection>
             <DateTitle>TO</DateTitle>
-            <DateValue>10/28/2021</DateValue>
+            <DateValue>{rentalPeriod.endDateFormatted}</DateValue>
           </PeriodSection>
         </ScheduleDateInfoSection>
 
         <PriceSection>
           <PriceLabel>TOTAL</PriceLabel>
           <PriceDetailsSection>
-            <Instalments>$ 35 x3 days</Instalments>
-            <Cost>$ {35 * 3}</Cost>
+            <Instalments>R$ {car.rent.price} x{rentalPeriod.totalNumberOfDays} days</Instalments>
+            <Cost>R$ {car.rent.price * rentalPeriod.totalNumberOfDays}</Cost>
           </PriceDetailsSection>
         </PriceSection>
       </Main>

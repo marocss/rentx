@@ -38,7 +38,9 @@ export const Car = () => {
   const { car } = route.params as RouteParams
 
   const handleSelectCar = () => {
-    navigate('Schedule')
+    navigate('Schedule', { 
+      car
+    })
   }
 
   return (

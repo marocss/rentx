@@ -6,13 +6,14 @@ import { Car } from '../screens/Car';
 import { CompletedSchedule } from '../screens/CompletedSchedule';
 import { ConfirmSchedule } from '../screens/ConfirmSchedule';
 import { Home } from '../screens/Home';
-import { Schedule } from '../screens/Schedule';
+import { RentalPeriod, Schedule } from '../screens/Schedule';
+import { CalendarMarkedDatesProps } from '../components/Calendar';
 
 type RootStackParamList = {
   Home: undefined;
   Car: { car: CarDTO };
-  Schedule: undefined;
-  ConfirmSchedule: undefined;
+  Schedule: { car: CarDTO };
+  ConfirmSchedule: { car: CarDTO, rentalPeriod: RentalPeriod };
   CompletedSchedule: undefined;
 };
 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Platform, StatusBar } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Platform, StatusBar } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { addDays, eachDayOfInterval, format } from 'date-fns'
 
@@ -8,6 +8,7 @@ import ArrowSvg from '../../assets/arrow.svg'
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { Calendar, CalendarDayProps, CalendarMarkedDatesProps } from '../../components/Calendar';
+import { CarDTO } from '../../dtos/CarDTO';
 
 import {
   Container,
@@ -22,16 +23,38 @@ import {
   Footer,
 } from './styles';
 
+interface RentalPeriod {
+  startDateFormatted: string;
+  endDateFormatted: string;
+  totalNumberOfDays: number;
+  dates: string[];
+}
 
-export const Schedule = () => {
-  const [lastSelectedDate, setLastSelectedDate] = useState<CalendarDayProps>({} as CalendarDayProps)
-  const [markedDates, setMarkedDates] = useState<CalendarMarkedDatesProps>({} as CalendarMarkedDatesProps)
+interface RouteParams {
+  car: CarDTO;
+}
+
+const Schedule = () => {
+  const [lastSelectedDate, setLastSelectedDate] = useState({} as CalendarDayProps)
+  const [markedDates, setMarkedDates] = useState({} as CalendarMarkedDatesProps)
+  const [rentalPeriod, setRentalPeriod] = useState({} as RentalPeriod)
+
   const theme = useTheme()
+  
+  const route = useRoute();
+  const { car } = route.params as RouteParams
   
   const { navigate } = useNavigation()
 
   const handleConfirmation = () => {
-    navigate('ConfirmSchedule')
+    if (rentalPeriod.endDateFormatted !== rentalPeriod.startDateFormatted) {
+      navigate('ConfirmSchedule', {
+        car,
+        rentalPeriod: rentalPeriod
+      })
+    } else {
+      Alert.alert('Period not selected', 'Please select a renting period')
+    }
   }
 
   const generateInterval = (start: CalendarDayProps, end: CalendarDayProps) => {
@@ -57,7 +80,6 @@ export const Schedule = () => {
   }
 
   const handleDayPress = (date: CalendarDayProps) => {
-    console.log('date: ', date)
     let startDate
     let endDate
 
@@ -77,13 +99,40 @@ export const Schedule = () => {
       endDate = startDate
     }
 
-    // console.log('startDate: ', startDate)
-    // console.log('endDate: ', endDate)
     setLastSelectedDate(endDate)
     const interval = generateInterval(startDate, endDate)
     setMarkedDates(interval)
+
+    // const firstDate = Object.keys(interval)[0]
+    // const lastDate = Object.keys(interval)[Object.keys(interval).length - 1]
+
+    // console.log(interval)
+    setRentalPeriod({
+      startDateFormatted: format(addDays(new Date(startDate.timestamp), 1), 'dd/MM/yyyy'),
+      endDateFormatted: format(addDays(new Date(endDate.timestamp), 1), 'dd/MM/yyyy'),
+      totalNumberOfDays: Object.keys(interval).length,
+      dates: Object.keys(interval)
+    })
   }
 
+  // console.log('====================================');
+  // console.log(rentalPeriod.endDateFormatted != undefined);
+  // console.log(rentalPeriod.endDateFormatted !== rentalPeriod.startDateFormatted);
+  // console.log(rentalPeriod.startDateFormatted);
+  // console.log(rentalPeriod.endDateFormatted);
+  // console.log('====================================');
+
+  useEffect(() => {
+    // const response = await api.get<ScheduleByCarsDTO>(`schedules_bycars/${car.id}`)
+      
+    //   const unavailable_dates = [
+    //     ...response.data.unavailable_dates,
+    //     ...dates
+    //   ]
+    // return () => {
+    // }
+  }, [])
+  
   return (
     <Container>
       <StatusBar 
@@ -105,30 +154,33 @@ export const Schedule = () => {
         </Title>
 
         <PeriodSection>
-          <StartDateSection selected={true}>
+          <StartDateSection selected={rentalPeriod.startDateFormatted != undefined}>
             <DateTitle>FROM</DateTitle>
-            <DateValue>10/18/2021</DateValue>
+            <DateValue>{rentalPeriod.startDateFormatted}</DateValue>
           </StartDateSection>
 
           <ArrowSvg />
 
-          <EndDateSection selected={false}>
+          <EndDateSection selected={rentalPeriod.endDateFormatted !== rentalPeriod.startDateFormatted}>
             <DateTitle>TO</DateTitle>
-            <DateValue></DateValue>
+            <DateValue>{rentalPeriod.endDateFormatted !== rentalPeriod.startDateFormatted && rentalPeriod.endDateFormatted}</DateValue>
           </EndDateSection>
         </PeriodSection>
       </Header>
 
       <Main>
         <Calendar 
+          // markedDates={{'2021-10-19': {disabled: true, disableTouchEvent: true} }} add disable, disableTouchEvent to disable dates already unavailable from api
           markedDates={markedDates}
           onDayPress={handleDayPress}
         />
       </Main>
 
       <Footer>
-        <Button title="Confirm" onPress={handleConfirmation} />
+        <Button disabled={false} title="Confirm" onPress={handleConfirmation} />
       </Footer>
     </Container>
   )
 }
+
+export { Schedule, RentalPeriod }

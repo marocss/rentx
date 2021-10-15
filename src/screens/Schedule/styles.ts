@@ -39,6 +39,9 @@ export const PeriodSection = styled.View`
 
 export const StartDateSection = styled.View<DateSectionProps>`
   width: 30%;
+  border-bottom-width: 1px;
+  border-bottom-color: ${({ theme }) => theme.colors.header};
+
   ${({ selected, theme }) => !selected && css`
       border-bottom-width: 1px;
       border-bottom-color: ${theme.colors.text};
@@ -56,11 +59,13 @@ export const DateValue = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_medium};
   font-size: ${RFValue(13)}px;
   margin-top: ${RFValue(5)}px;
-  height: ${RFValue(19)}px;
+  height: ${RFValue(20)}px;
 `;
 
 export const EndDateSection = styled.View<DateSectionProps>`
   width: 30%;
+  border-bottom-width: 1px;
+  border-bottom-color: ${({ theme }) => theme.colors.header};
   ${({ selected, theme }) => !selected && css`
       border-bottom-width: 1px;
       border-bottom-color: ${theme.colors.text};

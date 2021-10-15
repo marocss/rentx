@@ -83,4 +83,5 @@ export const Thumbnail = styled.View`
 
 export const Picture = styled.Image`
   height: 100%;
+  transform: scaleX(-1);
 `;

@@ -89,6 +89,7 @@ const Calendar = ({ markedDates, onDayPress }: CalendarProps) => {
         markingType='period'
         markedDates={markedDates}
         onDayPress={onDayPress}
+        disabledDaysIndexes={[15, 16, 17]}
       />
     </Container>
   )
