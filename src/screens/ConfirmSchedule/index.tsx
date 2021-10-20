@@ -66,6 +66,13 @@ export const ConfirmSchedule = () => {
         ...response.data.unavailable_dates,
         ...dates
       ]
+
+      await api.post('schedules_byuser', {
+        user_id: 1,
+        car,
+        startDate: rentalPeriod.startDateFormatted,
+        endDate: rentalPeriod.endDateFormatted,
+      })
       
       await api.put(`schedules_bycars/${car.id}`, {
         id: car.id,
