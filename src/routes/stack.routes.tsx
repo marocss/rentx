@@ -7,7 +7,8 @@ import { CompletedSchedule } from '../screens/CompletedSchedule';
 import { ConfirmSchedule } from '../screens/ConfirmSchedule';
 import { Home } from '../screens/Home';
 import { RentalPeriod, Schedule } from '../screens/Schedule';
-import { CalendarMarkedDatesProps } from '../components/Calendar';
+import { MyCars } from '../screens/MyCars';
+// import { CalendarMarkedDatesProps } from '../components/Calendar';
 
 type RootStackParamList = {
   Home: undefined;
@@ -15,6 +16,7 @@ type RootStackParamList = {
   Schedule: { car: CarDTO };
   ConfirmSchedule: { car: CarDTO, rentalPeriod: RentalPeriod };
   CompletedSchedule: undefined;
+  MyCars: undefined;
 };
 
 declare global {
@@ -52,6 +54,10 @@ export const StackRoutes = () => {
       <Screen 
         name="CompletedSchedule"
         component={CompletedSchedule}
+      />
+      <Screen 
+        name="MyCars"
+        component={MyCars}
       />
     </Navigator>
   )

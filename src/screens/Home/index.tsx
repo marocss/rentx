@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from "@expo/vector-icons";
 
 import Logo from '../../assets/logo.svg'
 import { CarCard } from '../../components/CarCard';
@@ -12,18 +13,26 @@ import {
   CarList,
   CarQuantity,
   Container,
-  Header
+  Header,
+  MyCarsButton
 } from './styles';
+import { useTheme } from 'styled-components';
 
 
 export const Home = () => {
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [isLoading, setIsLoading] = useState(true)
 
+  const theme = useTheme()
+
   const { navigate } = useNavigation()
 
   const handleCarCard = (car: CarDTO) => {
     navigate('Car', { car })
+  }
+
+  const handleOpenMyCars = () => {
+    navigate('MyCars')
   }
 
   useEffect(() => {
@@ -69,6 +78,10 @@ export const Home = () => {
           }
         />
       )}
+
+      <MyCarsButton onPress={handleOpenMyCars}>
+        <Ionicons name="ios-car-sport" size={32} color={theme.colors.white} />
+      </MyCarsButton>
     </Container>
   );
 };

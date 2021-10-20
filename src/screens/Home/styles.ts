@@ -36,3 +36,14 @@ export const CarList = styled(FlatList as new () => FlatList<CarDTO>).attrs({
   showsVerticalScrollIndicator: false
 })`
 `;
+export const MyCarsButton = styled.Pressable`
+  width: ${RFValue(53)}px;
+  height: ${RFValue(53)}px;
+  border-radius: ${RFValue(28)}px;
+  background-color: ${({ theme }) => theme.colors.main};
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  bottom: ${RFValue(27)}px;
+  right: ${RFValue(19)}px;
+`;
