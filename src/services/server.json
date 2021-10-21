@@ -320,7 +320,109 @@
         "2021-10-23",
         "2021-10-24",
         "2021-10-30",
-        "2021-10-31"
+        "2021-10-31",
+        "2021-10-21",
+        "2021-10-22",
+        "2021-10-23",
+        "2021-10-24",
+        "2021-10-25",
+        "2021-10-26",
+        "2021-10-27",
+        "2021-10-28",
+        "2021-10-29",
+        "2021-10-30",
+        "2021-10-31",
+        "2021-11-01",
+        "2021-11-02",
+        "2021-11-03",
+        "2021-11-04",
+        "2021-11-05",
+        "2021-11-06",
+        "2021-11-07",
+        "2021-11-08",
+        "2021-11-09",
+        "2021-11-10",
+        "2021-11-11",
+        "2021-11-12",
+        "2021-11-13",
+        "2021-11-14",
+        "2021-11-15",
+        "2021-11-16",
+        "2021-11-17",
+        "2021-11-18",
+        "2021-11-19",
+        "2021-11-20",
+        "2021-11-21",
+        "2021-11-22",
+        "2021-11-23",
+        "2021-11-24",
+        "2021-11-25",
+        "2021-11-26",
+        "2021-11-27",
+        "2021-11-28",
+        "2021-11-29",
+        "2021-11-30",
+        "2021-12-01",
+        "2021-12-02",
+        "2021-12-03",
+        "2021-12-04",
+        "2021-12-05",
+        "2021-12-06",
+        "2021-12-07",
+        "2021-12-08",
+        "2021-12-09",
+        "2021-12-10",
+        "2021-12-11",
+        "2021-12-12",
+        "2021-12-13",
+        "2021-12-14",
+        "2021-12-15",
+        "2021-12-16",
+        "2021-12-17",
+        "2021-12-18",
+        "2021-12-19",
+        "2021-12-20",
+        "2021-12-21",
+        "2021-12-22",
+        "2021-12-23",
+        "2021-12-24",
+        "2021-12-25",
+        "2021-12-26",
+        "2021-12-27",
+        "2021-12-28",
+        "2021-12-29",
+        "2021-12-30",
+        "2021-12-31",
+        "2022-01-01",
+        "2022-01-02",
+        "2022-01-03",
+        "2022-01-04",
+        "2022-01-05",
+        "2022-01-06",
+        "2022-01-07",
+        "2022-01-08",
+        "2022-01-09",
+        "2022-01-10",
+        "2022-01-11",
+        "2022-01-12",
+        "2022-01-13",
+        "2022-01-14",
+        "2022-01-15",
+        "2022-01-16",
+        "2022-01-17",
+        "2022-01-18",
+        "2022-01-19",
+        "2022-01-20",
+        "2022-01-21",
+        "2022-01-22",
+        "2022-01-23",
+        "2022-01-24",
+        "2022-01-25",
+        "2022-01-26",
+        "2022-01-27",
+        "2022-01-28",
+        "2022-01-29",
+        "2022-01-30"
       ]
     },
     {
@@ -364,7 +466,9 @@
         "2021-06-12",
         "2021-06-17",
         "2021-06-18",
-        "2021-06-19"
+        "2021-06-19",
+        "2021-10-28",
+        "2021-10-29"
       ]
     },
     {
@@ -1881,6 +1985,104 @@
       "startDate": "30/10/2021",
       "endDate": "31/10/2021",
       "id": 31
+    },
+    {
+      "user_id": 1,
+      "car": {
+        "id": "508e7193-0078-4615-9071-920b59038fda",
+        "brand": "volvo",
+        "name": "XC40",
+        "about": "A Poderosa Combinação de um Motor Elétrico de Alto Desempenho e um Motor a Combustão. Compacto e Inovador. Com Design Expressivo, Tecnologias Intuitivas e Estilo Urbano.",
+        "rent": {
+          "period": "Ao dia",
+          "price": 120
+        },
+        "fuel_type": "gasoline_motor",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/5.png",
+        "accessories": [
+          {
+            "type": "speed",
+            "name": "180km/h"
+          },
+          {
+            "type": "acceleration",
+            "name": "1.5s"
+          },
+          {
+            "type": "turning_diameter",
+            "name": "600 HP"
+          },
+          {
+            "type": "gasoline_motor",
+            "name": "Gasolina"
+          },
+          {
+            "type": "exchange",
+            "name": "Auto"
+          },
+          {
+            "type": "seats",
+            "name": "5 pessoas"
+          }
+        ],
+        "photos": [
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/12.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/13.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/14.png"
+        ]
+      },
+      "startDate": "28/10/2021",
+      "endDate": "29/10/2021",
+      "id": 32
+    },
+    {
+      "user_id": 1,
+      "car": {
+        "id": "52930821-cbea-4b05-9f45-7c02b1bb0d8c",
+        "brand": "Chevrolet",
+        "name": "Corvette Z06",
+        "about": "O Chevrolet Corvette Z06 inclui freios Brembo de alto desempenho com pinças maiores no conjunto dianteiro, itens aerodinâmicos com capô de fibra de carbono, suspensão para alto desempenho.",
+        "rent": {
+          "period": "Ao dia",
+          "price": 620
+        },
+        "fuel_type": "gasoline_motor",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/3.png",
+        "accessories": [
+          {
+            "type": "speed",
+            "name": "330km/h"
+          },
+          {
+            "type": "acceleration",
+            "name": "6.2s"
+          },
+          {
+            "type": "turning_diameter",
+            "name": "900 HP"
+          },
+          {
+            "type": "gasoline_motor",
+            "name": "Gasoline"
+          },
+          {
+            "type": "exchange",
+            "name": "Auto"
+          },
+          {
+            "type": "seats",
+            "name": "2 pessoas"
+          }
+        ],
+        "photos": [
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/6.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/7.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/8.png"
+        ]
+      },
+      "startDate": "21/10/2021",
+      "endDate": "30/01/2022",
+      "id": 33
     }
   ]
 }

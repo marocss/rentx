@@ -54,8 +54,6 @@ export const MyCars = () => {
     })()
   }, [])
 
-  if (isLoading) return <Loading />
-
   return (
     <Container>
       <StatusBar 
@@ -79,41 +77,45 @@ export const MyCars = () => {
         </Subtitle>
       </Header>
 
-      <Main>
-        <MainHeader>
-          <MainHeaderTitle>Schedules made</MainHeaderTitle>
-          <Quantity>{cars.length}</Quantity>
-        </MainHeader>
+      { isLoading ? (
+        <Loading />
+      ) : (
+        <Main>
+          <MainHeader>
+            <MainHeaderTitle>Schedules made</MainHeaderTitle>
+            <Quantity>{cars.length}</Quantity>
+          </MainHeader>
 
-        <Cars 
-          data={cars} 
-          keyExtractor={(item, index) => item.car.id + index}
-          renderItem={({ item }) => 
-            <>
-              <CarCard
-                brand={item.car.brand}
-                name={item.car.name}
-                period={item.car.rent.period}
-                price={item.car.rent.price}
-                thumbnail={item.car.thumbnail}
-                icon={item.car.fuel_type}
-              />
-              <PeriodSection>
-                <PeriodSectionTitle>Period</PeriodSectionTitle>
-                <PeriodDateSection>
-                  <PeriodDate>{item.startDate}</PeriodDate>
-                    <AntDesign 
-                      name='arrowright' 
-                      size={14}
-                      color={theme.colors.text_light}
-                    />
-                  <PeriodDate>{item.endDate}</PeriodDate>
-                </PeriodDateSection>
-              </PeriodSection>
-            </>
-          }
-        />
-      </Main>
+          <Cars 
+            data={cars} 
+            keyExtractor={(item, index) => item.car.id + index}
+            renderItem={({ item }) => 
+              <>
+                <CarCard
+                  brand={item.car.brand}
+                  name={item.car.name}
+                  period={item.car.rent.period}
+                  price={item.car.rent.price}
+                  thumbnail={item.car.thumbnail}
+                  icon={item.car.fuel_type}
+                />
+                <PeriodSection>
+                  <PeriodSectionTitle>Period</PeriodSectionTitle>
+                  <PeriodDateSection>
+                    <PeriodDate>{item.startDate}</PeriodDate>
+                      <AntDesign 
+                        name='arrowright' 
+                        size={14}
+                        color={theme.colors.text_light}
+                      />
+                    <PeriodDate>{item.endDate}</PeriodDate>
+                  </PeriodDateSection>
+                </PeriodSection>
+              </>
+            }
+          />
+        </Main>
+      ) }
     </Container>
   )
 }

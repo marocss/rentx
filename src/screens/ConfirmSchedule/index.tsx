@@ -57,7 +57,7 @@ export const ConfirmSchedule = () => {
   const route = useRoute();
   const { car, rentalPeriod } = route.params as RouteParams
 
-  console.log(car.id)
+  // console.log(car.id)
   const { dates } = rentalPeriod
 
   const handleRentRequest = async () => {
@@ -164,7 +164,13 @@ export const ConfirmSchedule = () => {
       </Main>
 
       <Footer>
-        <Button disabled={isLoading} title="Rent now" color={theme.colors.correct} onPress={handleRentRequest} />
+        <Button 
+          disabled={isLoading} 
+          isLoading={isLoading} 
+          title="Rent now" 
+          color={theme.colors.correct} 
+          onPress={handleRentRequest} 
+        />
       </Footer>
     </Container>
   )
