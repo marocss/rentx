@@ -115,13 +115,6 @@ const Schedule = () => {
     })
   }
 
-  // console.log('====================================');
-  // console.log(rentalPeriod.endDateFormatted != undefined);
-  // console.log(rentalPeriod.endDateFormatted !== rentalPeriod.startDateFormatted);
-  // console.log(rentalPeriod.startDateFormatted);
-  // console.log(rentalPeriod.endDateFormatted);
-  // console.log('====================================');
-
   useEffect(() => {
     // const response = await api.get<ScheduleByCarsDTO>(`schedules_bycars/${car.id}`)
       
