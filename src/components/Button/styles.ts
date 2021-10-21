@@ -14,6 +14,7 @@ export const Container = styled.Pressable<ButtonProps>`
   background-color: ${({ color, theme }) => color ? color : theme.colors.main};
   height: 56px;
   border-radius: 2px;
+  opacity: ${({ disabled }) => disabled ? 0.3 : 1};
 `;
 
 export const Title = styled.Text`

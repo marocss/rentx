@@ -126,6 +126,8 @@ const Schedule = () => {
     // }
   }, [])
   
+  const hasSelectedPeriod = rentalPeriod.endDateFormatted !== rentalPeriod.startDateFormatted
+
   return (
     <Container>
       <StatusBar 
@@ -154,9 +156,9 @@ const Schedule = () => {
 
           <ArrowSvg />
 
-          <EndDateSection selected={rentalPeriod.endDateFormatted !== rentalPeriod.startDateFormatted}>
+          <EndDateSection selected={hasSelectedPeriod}>
             <DateTitle>TO</DateTitle>
-            <DateValue>{rentalPeriod.endDateFormatted !== rentalPeriod.startDateFormatted && rentalPeriod.endDateFormatted}</DateValue>
+            <DateValue>{hasSelectedPeriod && rentalPeriod.endDateFormatted}</DateValue>
           </EndDateSection>
         </PeriodSection>
       </Header>
@@ -170,7 +172,7 @@ const Schedule = () => {
       </Main>
 
       <Footer>
-        <Button disabled={false} title="Confirm" onPress={handleConfirmation} />
+        <Button disabled={!hasSelectedPeriod} title="Confirm" onPress={handleConfirmation} />
       </Footer>
     </Container>
   )

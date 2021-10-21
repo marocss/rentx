@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Alert, StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Feather } from "@expo/vector-icons";
@@ -49,6 +49,8 @@ interface RouteParams {
 
 
 export const ConfirmSchedule = () => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const theme = useTheme()
   const { navigate } = useNavigation()
 
@@ -60,6 +62,7 @@ export const ConfirmSchedule = () => {
 
   const handleRentRequest = async () => {
     try {
+      setIsLoading(true)
       const response = await api.get<ScheduleByCarsDTO>(`schedules_bycars/${car.id}`)
       
       const unavailable_dates = [
@@ -82,6 +85,7 @@ export const ConfirmSchedule = () => {
       navigate('CompletedSchedule')
     } catch (error) {
       console.error(error)
+      setIsLoading(false)
       Alert.alert('Sorry', 'An error occurred during confirmation. Please try again later.')
     }
   }
@@ -122,30 +126,6 @@ export const ConfirmSchedule = () => {
               icon={getRelatedSvgIcon(accessory.type)}
             />  
           ))}
-          {/* <SpecificationCard 
-            name="155 mph"
-            icon={speedSvg}
-          />
-          <SpecificationCard 
-            name="3.7s"
-            icon={accelerateSvg}
-          />
-          <SpecificationCard 
-            name="444 HP"
-            icon={forceSvf}
-          />
-          <SpecificationCard 
-            name="Gas"
-            icon={gasSvg}
-          />
-          <SpecificationCard 
-            name="Automatic"
-            icon={exchangeSvg}
-          />
-          <SpecificationCard 
-            name="2 people"
-            icon={peopleSvg}
-          /> */}
         </SpecificationSection>
 
         <ScheduleDateInfoSection>
@@ -184,7 +164,7 @@ export const ConfirmSchedule = () => {
       </Main>
 
       <Footer>
-        <Button title="Rent now" color={theme.colors.correct} onPress={handleRentRequest} />
+        <Button disabled={isLoading} title="Rent now" color={theme.colors.correct} onPress={handleRentRequest} />
       </Footer>
     </Container>
   )

@@ -318,7 +318,9 @@
         "2021-10-21",
         "2021-10-22",
         "2021-10-23",
-        "2021-10-24"
+        "2021-10-24",
+        "2021-10-30",
+        "2021-10-31"
       ]
     },
     {
@@ -369,7 +371,11 @@
       "id": "59626707-88c5-4877-9350-07f372c0905a",
       "unavailable_dates": [
         "2021-06-28",
-        "2021-06-29"
+        "2021-06-29",
+        "2021-10-28",
+        "2021-10-29",
+        "2021-10-30",
+        "2021-10-31"
       ]
     }
   ],
@@ -1728,6 +1734,153 @@
       "startDate": "21/10/2021",
       "endDate": "31/10/2021",
       "id": 28
+    },
+    {
+      "user_id": 1,
+      "car": {
+        "id": "59626707-88c5-4877-9350-07f372c0905a",
+        "brand": "mitsubishi",
+        "name": "Lancer",
+        "about": "Mitsubishi Lancer é um belo e agressivo carro. Além do mais, ele encanta pelo conforto e pela eficiência. Bastante firme e estável para dirigir com tranquilidade e segurança.",
+        "rent": {
+          "period": "Ao dia",
+          "price": 220
+        },
+        "fuel_type": "hybrid_motor",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/6.png",
+        "accessories": [
+          {
+            "type": "speed",
+            "name": "180km/h"
+          },
+          {
+            "type": "acceleration",
+            "name": "2.0s"
+          },
+          {
+            "type": "turning_diameter",
+            "name": "600 HP"
+          },
+          {
+            "type": "hybrid_motor",
+            "name": "Híbrido"
+          },
+          {
+            "type": "exchange",
+            "name": "Auto"
+          },
+          {
+            "type": "seats",
+            "name": "5 pessoas"
+          }
+        ],
+        "photos": [
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/15.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/16.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/17.png"
+        ]
+      },
+      "startDate": "28/10/2021",
+      "endDate": "31/10/2021",
+      "id": 29
+    },
+    {
+      "user_id": 1,
+      "car": {
+        "id": "52930821-cbea-4b05-9f45-7c02b1bb0d8c",
+        "brand": "Chevrolet",
+        "name": "Corvette Z06",
+        "about": "O Chevrolet Corvette Z06 inclui freios Brembo de alto desempenho com pinças maiores no conjunto dianteiro, itens aerodinâmicos com capô de fibra de carbono, suspensão para alto desempenho.",
+        "rent": {
+          "period": "Ao dia",
+          "price": 620
+        },
+        "fuel_type": "gasoline_motor",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/3.png",
+        "accessories": [
+          {
+            "type": "speed",
+            "name": "330km/h"
+          },
+          {
+            "type": "acceleration",
+            "name": "6.2s"
+          },
+          {
+            "type": "turning_diameter",
+            "name": "900 HP"
+          },
+          {
+            "type": "gasoline_motor",
+            "name": "Gasoline"
+          },
+          {
+            "type": "exchange",
+            "name": "Auto"
+          },
+          {
+            "type": "seats",
+            "name": "2 pessoas"
+          }
+        ],
+        "photos": [
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/6.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/7.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/8.png"
+        ]
+      },
+      "startDate": "30/10/2021",
+      "endDate": "31/10/2021",
+      "id": 30
+    },
+    {
+      "user_id": 1,
+      "car": {
+        "id": "52930821-cbea-4b05-9f45-7c02b1bb0d8c",
+        "brand": "Chevrolet",
+        "name": "Corvette Z06",
+        "about": "O Chevrolet Corvette Z06 inclui freios Brembo de alto desempenho com pinças maiores no conjunto dianteiro, itens aerodinâmicos com capô de fibra de carbono, suspensão para alto desempenho.",
+        "rent": {
+          "period": "Ao dia",
+          "price": 620
+        },
+        "fuel_type": "gasoline_motor",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/3.png",
+        "accessories": [
+          {
+            "type": "speed",
+            "name": "330km/h"
+          },
+          {
+            "type": "acceleration",
+            "name": "6.2s"
+          },
+          {
+            "type": "turning_diameter",
+            "name": "900 HP"
+          },
+          {
+            "type": "gasoline_motor",
+            "name": "Gasoline"
+          },
+          {
+            "type": "exchange",
+            "name": "Auto"
+          },
+          {
+            "type": "seats",
+            "name": "2 pessoas"
+          }
+        ],
+        "photos": [
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/6.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/7.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/8.png"
+        ]
+      },
+      "startDate": "30/10/2021",
+      "endDate": "31/10/2021",
+      "id": 31
     }
   ]
 }
