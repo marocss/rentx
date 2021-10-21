@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
+import { AntDesign } from '@expo/vector-icons'
 import { BackButton } from '../../components/BackButton';
 import { CarCard } from '../../components/CarCard';
 import { Loading } from '../../components/Loading';
@@ -17,6 +18,10 @@ import {
   MainHeaderTitle,
   Quantity,
   Cars,
+  PeriodSection,
+  PeriodSectionTitle,
+  PeriodDateSection,
+  PeriodDate,
 } from './styles';
 
 interface CarProps {
@@ -77,32 +82,37 @@ export const MyCars = () => {
       <Main>
         <MainHeader>
           <MainHeaderTitle>Schedules made</MainHeaderTitle>
-          <Quantity>02</Quantity>
+          <Quantity>{cars.length}</Quantity>
         </MainHeader>
 
         <Cars 
           data={cars} 
           keyExtractor={(item, index) => item.car.id + index}
           renderItem={({ item }) => 
-            <CarCard
-              brand={item.car.brand}
-              name={item.car.name}
-              period={item.car.rent.period}
-              price={item.car.rent.price}
-              thumbnail={item.car.thumbnail}
-              icon={item.car.fuel_type}
-            />
+            <>
+              <CarCard
+                brand={item.car.brand}
+                name={item.car.name}
+                period={item.car.rent.period}
+                price={item.car.rent.price}
+                thumbnail={item.car.thumbnail}
+                icon={item.car.fuel_type}
+              />
+              <PeriodSection>
+                <PeriodSectionTitle>Period</PeriodSectionTitle>
+                <PeriodDateSection>
+                  <PeriodDate>{item.startDate}</PeriodDate>
+                    <AntDesign 
+                      name='arrowright' 
+                      size={14}
+                      color={theme.colors.text_light}
+                    />
+                  <PeriodDate>{item.endDate}</PeriodDate>
+                </PeriodDateSection>
+              </PeriodSection>
+            </>
           }
         />
-        {/* <CarCard
-          brand={""}
-          name={""}
-          period={""}
-          price={0}
-          thumbnail={""}
-          icon={""}
-        /> */}
-
       </Main>
     </Container>
   )

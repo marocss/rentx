@@ -74,3 +74,36 @@ export const Cars = styled(FlatList as new () => FlatList<CarProps>).attrs({
   },
   showsVerticalScrollIndicator: false
 })``;
+
+
+export const PeriodSection = styled.View`
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: ${RFValue(14)}px;
+  margin-top: -${RFValue(12)}px;
+  padding-left: ${RFValue(21)}px;
+  padding-right: ${RFValue(21)}px;
+  height: ${RFValue(35)}px;
+  background-color: ${({ theme }) => theme.colors.background_two};
+`;
+
+export const PeriodSectionTitle = styled.Text`
+  flex: 2;
+  color: ${({ theme }) => theme.colors.text_light};
+  font-family: ${({ theme }) => theme.fonts.secondary_medium};
+  font-size: ${RFValue(10)}px;
+  text-transform: uppercase;
+`;
+
+export const PeriodDateSection = styled.View`
+  flex: 3;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const PeriodDate = styled.Text`
+  color: ${({ theme }) => theme.colors.title};
+  font-family: ${({ theme }) => theme.fonts.primary_regular};
+  font-size: ${RFValue(12)}px;
+`;
