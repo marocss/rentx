@@ -15,12 +15,12 @@ interface CarouselProps {
 export const Carousel = ({ imagesUrls }: CarouselProps) => {
   return (
     <Container>
-      <Indexes>
+      {/* <Indexes>
         <ImageIndex active />
         <ImageIndex active={false} />
         <ImageIndex active={false} />
         <ImageIndex active={false} />
-      </Indexes>
+      </Indexes> */}
 
       <Thumbnail>
         <Picture source={{ uri: imagesUrls[0] }} resizeMode="contain" />

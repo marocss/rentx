@@ -39,6 +39,7 @@ export const FirstSection = styled.View`
   justify-content: space-between;
   margin-top: ${RFValue(19)}px;
   padding: 0 ${RFValue(7)}px;
+  margin-bottom: ${RFValue(16)}px;
 `;
 
 export const CarInfoSection = styled.View`
@@ -74,12 +75,8 @@ export const Price = styled.Text`
 `;
 
 export const SpecificationSection = styled.View`
-  width: 100%;
   flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: ${RFValue(16)}px;
+  margin: 0 -${RFValue(3)}px;
 `;
 
 export const Footer = styled.View`

@@ -43,6 +43,11 @@ export const Car = () => {
     })
   }
 
+  const halfWayIndex = Math.ceil(car.accessories.length / 2)
+
+  const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex)
+  const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex)
+
   return (
     <Container>
       <StatusBar 
@@ -72,7 +77,16 @@ export const Car = () => {
         </FirstSection>
 
         <SpecificationSection>
-          {car.accessories.map(accessory => (
+          {firstHalfOfCarAccessories.map(accessory => (
+            <SpecificationCard 
+              key={accessory.type}
+              name={accessory.name}
+              icon={getRelatedSvgIcon(accessory.type)}
+            />  
+          ))}
+        </SpecificationSection>
+        <SpecificationSection>
+          {secondHalfOfCarAccessories.map(accessory => (
             <SpecificationCard 
               key={accessory.type}
               name={accessory.name}
