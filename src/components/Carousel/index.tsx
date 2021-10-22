@@ -1,11 +1,13 @@
 import React from 'react';
+import { FlatList } from 'react-native';
 
 import {
   Container,
   Indexes,
   ImageIndex,
-  Thumbnail,
+  PictureSection,
   Picture,
+  PicturesList,
 } from './styles';
 
 interface CarouselProps {
@@ -15,16 +17,24 @@ interface CarouselProps {
 export const Carousel = ({ imagesUrls }: CarouselProps) => {
   return (
     <Container>
-      {/* <Indexes>
-        <ImageIndex active />
-        <ImageIndex active={false} />
-        <ImageIndex active={false} />
-        <ImageIndex active={false} />
-      </Indexes> */}
+      <Indexes>
+        {imagesUrls.map(image => (
+          <ImageIndex key={image} active />
+        ))}
+      </Indexes>
 
-      <Thumbnail>
-        <Picture source={{ uri: imagesUrls[0] }} resizeMode="contain" />
-      </Thumbnail>
+
+        <PicturesList 
+          data={imagesUrls}
+          keyExtractor={item => item}
+          renderItem={({ item }) => (
+            <PictureSection>
+              <Picture source={{ uri: item }} resizeMode="contain" />
+            </PictureSection>
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
     </Container>
   )
 }
