@@ -8,6 +8,7 @@ import { ConfirmSchedule } from '../screens/ConfirmSchedule';
 import { Home } from '../screens/Home';
 import { RentalPeriod, Schedule } from '../screens/Schedule';
 import { MyCars } from '../screens/MyCars';
+import { Splash } from '../screens/Splash';
 // import { CalendarMarkedDatesProps } from '../components/Calendar';
 
 type RootStackParamList = {
@@ -33,30 +34,35 @@ export const StackRoutes = () => {
       screenOptions={{
         headerShown: false
       }}
+      initialRouteName={"Splash"}
     >
       <Screen 
-        name="Home"
+        name={"Splash"}
+        component={Splash}
+      />
+      <Screen 
+        name={"Home"}
         component={Home}
       />
       <Screen 
-        name="Car"
+        name={"Car"}
         component={Car}
-        key="car"
+        key={"car"}
       />
       <Screen 
-        name="Schedule"
+        name={"Schedule"}
         component={Schedule}
       />
       <Screen 
-        name="ConfirmSchedule"
+        name={"ConfirmSchedule"}
         component={ConfirmSchedule}
       />
       <Screen 
-        name="CompletedSchedule"
+        name={"CompletedSchedule"}
         component={CompletedSchedule}
       />
       <Screen 
-        name="MyCars"
+        name={"MyCars"}
         component={MyCars}
       />
     </Navigator>
