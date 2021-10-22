@@ -6,7 +6,12 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "orientation": "portrait"
+    "orientation": "portrait",
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#1b1b1f",
+      "resizeMode": "cover"
+    }
   },
   "name": "rentx"
 }
