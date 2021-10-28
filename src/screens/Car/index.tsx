@@ -8,6 +8,7 @@ import { Carousel } from '../../components/Carousel';
 import { SpecificationCard } from '../../components/SpecificationCard';
 import { CarDTO } from '../../dtos/CarDTO';
 import { getRelatedSvgIcon } from '../../utils/getRelatedSvgIcon';
+import Animated, { useAnimatedScrollHandler, useSharedValue, useAnimatedStyle, interpolate, Extrapolate } from 'react-native-reanimated'
 
 import {
   Container,
@@ -48,6 +49,44 @@ export const Car = () => {
   const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex)
   const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex)
 
+  // animated
+  let scrollY = useSharedValue(0)
+
+  const headerStyleAnimated = useAnimatedStyle(() => {
+    return {
+      height: interpolate(
+        scrollY.value,
+        [0, 173],
+        [173, 0],
+        Extrapolate.CLAMP
+      ),
+      opacity: interpolate(
+        scrollY.value,
+        [0, 100],
+        [1, 0],
+        Extrapolate.CLAMP
+      )
+    }
+  })
+
+  // const carouselStyleAnimated = useAnimatedStyle(() => {
+  //   return {
+  //     opacity: interpolate(
+  //       scrollY.value,
+  //       [0, 125],
+  //       [1, 0],
+  //       Extrapolate.CLAMP
+  //     )
+  //   }
+  // })
+  
+  const scrollHandler = useAnimatedScrollHandler(event => {
+    // console.log(event.contentOffset.y); // user scroll position
+    scrollY.value = event.contentOffset.y
+  })
+
+
+
   return (
     <Container>
       <StatusBar 
@@ -59,11 +98,23 @@ export const Car = () => {
         <BackButton />
       </Header>
 
-      <CarouselSection>
-        <Carousel imagesUrls={car.photos} />
-      </CarouselSection>
+      {/* <Animated.View style={[headerStyleAnimated, carouselStyleAnimated, {zIndex: -1, backgroundColor: 'green'}]}> */}
+      <Animated.View style={[headerStyleAnimated, {zIndex: -1}]}>
+        <CarouselSection>
+          <Carousel imagesUrls={car.photos} />
+        </CarouselSection>
+      </Animated.View>
 
-      <Main>
+      <Animated.ScrollView
+        contentContainerStyle={{
+          paddingLeft: 16,
+          paddingRight: 16,
+          alignItems: 'center'
+        }}
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+      >
         <FirstSection>
           <CarInfoSection>
             <Brand>{car.brand}</Brand>
@@ -95,8 +146,14 @@ export const Car = () => {
           ))}
         </SpecificationSection>
 
-        <Description>{car.about}</Description >
-      </Main>
+        <Description>
+          {car.about}
+          {car.about}
+          {car.about}
+          {car.about}
+          {car.about}
+        </Description >
+      </Animated.ScrollView>
 
       <Footer>
         <Button title="Select" color="" onPress={handleSelectCar} />

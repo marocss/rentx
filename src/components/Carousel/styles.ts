@@ -46,7 +46,8 @@ export const PicturesList = styled(FlatList as new () => FlatList<string>).attrs
 
 export const PictureSection = styled.View`
   width: ${Dimensions.get('window').width}px;
-  height: ${RFValue(165)}px;
+  /* height: ${RFValue(165)}px; */
+  height: 186px;
   justify-content: center;
   align-items: center;
   margin-top: ${RFValue(4)}px;

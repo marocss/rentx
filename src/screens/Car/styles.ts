@@ -12,11 +12,16 @@ export const Header = styled.View`
   align-items: center;
   margin-top: ${RFValue(44)}px;
   margin-left: ${RFValue(11)}px;
-`;
+  /* background-color: orange; */
+  `;
 
 export const CarouselSection = styled.View`
   margin-top: -${RFValue(22)}px;
-  z-index: -1;
+  /* background-color: purple; */
+  /* min height to still see back button: 20 */
+  /* min-height: 25px;  */
+  /* to avoid being above back button */
+  z-index: -1; 
 `;
 
 export const Main = styled.ScrollView.attrs({
