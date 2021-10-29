@@ -4,7 +4,6 @@ import { useTheme } from 'styled-components';
 import { AntDesign } from '@expo/vector-icons'
 import { BackButton } from '../../components/BackButton';
 import { CarCard } from '../../components/CarCard';
-import { Loading } from '../../components/Loading';
 import { LoadingCarAnimation } from '../../components/LoadingCarAnimation';
 import { CarDTO } from '../../dtos/CarDTO';
 import { api } from '../../services/api';

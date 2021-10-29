@@ -6,7 +6,6 @@ import Animated, { useAnimatedStyle, useSharedValue, useAnimatedGestureHandler, 
 import { PanGestureHandler } from "react-native-gesture-handler";
 import Logo from '../../assets/logo.svg'
 import { CarCard } from '../../components/CarCard';
-import { Loading } from '../../components/Loading';
 import { LoadingCarAnimation } from '../../components/LoadingCarAnimation';
 import { CarDTO } from '../../dtos/CarDTO';
 import { api } from '../../services/api';
