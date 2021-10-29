@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Pressable, StatusBar } from 'react-native'
+import { Pressable, StatusBar, BackHandler } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from "@expo/vector-icons";
 import Animated, { useAnimatedStyle, useSharedValue, useAnimatedGestureHandler, withSpring } from 'react-native-reanimated'
@@ -78,6 +78,17 @@ export const Home = () => {
     })()
   }, [])
 
+  useEffect(() => {
+    // avoid going back to splash screen
+    let eventListener = BackHandler.addEventListener('hardwareBackPress', () => {
+      return true
+    })
+
+    return () => {
+      eventListener.remove() 
+    }
+  }, [])
+
   return (
     <Container>
       <StatusBar 
@@ -87,7 +98,9 @@ export const Home = () => {
       />
       <Header>
         <Logo />
-        <CarQuantity>{cars.length} cars available</CarQuantity>
+        { !isLoading && 
+          (<CarQuantity>{cars.length} cars available</CarQuantity>)
+        }        
       </Header>
 
       { isLoading ? (<Loading />) : (
