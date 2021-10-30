@@ -15,6 +15,8 @@
 
 ## Demo
 
+https://user-images.githubusercontent.com/34945925/139514557-506d8ed3-11a6-4208-a38f-a623d40f09ee.mp4
+
 ## Run locally
 * make sure you have expo installed 
   * [install expo](https://docs.expo.dev/get-started/installation/)
