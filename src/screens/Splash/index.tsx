@@ -1,14 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { Button, Dimensions, StyleSheet } from 'react-native';
-import Animated, { 
-  Easing, 
-  Extrapolate, 
-  interpolate, 
-  useAnimatedStyle, useSharedValue, withTiming, runOnJS } from 'react-native-reanimated';
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle, useSharedValue, withTiming, runOnJS,
+} from 'react-native-reanimated';
 
-import BrandSvg from '../../assets/brand.svg'
-import LogoSvg from '../../assets/logo.svg'
+import BrandSvg from '../../assets/brand.svg';
+import LogoSvg from '../../assets/logo.svg';
 
 import {
   Container,
@@ -18,9 +17,9 @@ import {
 // }
 
 export const Splash = () => {
-  const splashAnimation = useSharedValue(0)
+  const splashAnimation = useSharedValue(0);
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const brandStyle = useAnimatedStyle(() => {
     return {
@@ -28,13 +27,12 @@ export const Splash = () => {
       transform: [
         {
           translateX: interpolate(splashAnimation.value,
-            [0, 50], 
-            [0, -50]
-          )
-        }
-      ]
-    }
-  })
+            [0, 50],
+            [0, -50]),
+        },
+      ],
+    };
+  });
 
   const logoStyle = useAnimatedStyle(() => {
     return {
@@ -42,29 +40,29 @@ export const Splash = () => {
       transform: [
         {
           translateX: interpolate(splashAnimation.value,
-            [0, 50], 
-            [-50, 0], 
-            Extrapolate.CLAMP
-          )
-        }
-      ]
-    }
-  })
+            [0, 50],
+            [-50, 0],
+            Extrapolate.CLAMP),
+        },
+      ],
+    };
+  });
 
   const startApp = () => {
-    navigation.navigate('Home')
-  }
+    navigation.navigate('Home');
+  };
 
   useEffect(() => {
     splashAnimation.value = withTiming(
       50,
       { duration: 1000 },
       () => {
-        'worklet'
-        runOnJS(startApp)()
-      }
-    )
-  }, [])
+        'worklet';
+
+        runOnJS(startApp)();
+      },
+    );
+  }, []);
 
   return (
     <Container>
@@ -72,9 +70,9 @@ export const Splash = () => {
         <BrandSvg width={96} height={60} />
       </Animated.View>
 
-      <Animated.View style={[logoStyle, , { position: 'absolute' }]}>
+      <Animated.View style={[logoStyle, { position: 'absolute' }]}>
         <LogoSvg width={180} height={20} />
       </Animated.View>
     </Container>
-  )
-}
+  );
+};

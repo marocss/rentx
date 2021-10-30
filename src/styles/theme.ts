@@ -7,9 +7,9 @@ export default {
     text: '#7a7a80',
     text_light: '#aeaeb3',
     title: '#47474d',
-    
+
     line: '#ebebf0',
-    
+
     main: '#dc1627',
     main_light: '#FDEDEF',
 
@@ -19,7 +19,7 @@ export default {
     shape_dark: '#29292e',
 
     white: '#ffffff',
-    black: '#000000'
+    black: '#000000',
   },
   fonts: {
     primary_regular: 'Inter_400Regular',
@@ -27,5 +27,5 @@ export default {
     secondary_regular: 'Archivo_400Regular',
     secondary_medium: 'Archivo_500Medium',
     secondary_bold: 'Archivo_600SemiBold',
-  }
-}
+  },
+};

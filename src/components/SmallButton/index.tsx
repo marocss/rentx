@@ -1,9 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { PressableProps } from 'react-native';
 
 import {
   Container,
-  Title
+  Title,
 } from './styles';
 
 interface SmallButtonProps extends PressableProps {
@@ -12,8 +13,8 @@ interface SmallButtonProps extends PressableProps {
 
 export const SmallButton = ({ text, ...rest }: SmallButtonProps) => {
   return (
-    <Container {...rest} >
+    <Container {...rest}>
       <Title>{text}</Title>
     </Container>
-  )
-}
+  );
+};

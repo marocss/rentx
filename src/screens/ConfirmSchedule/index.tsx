@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Alert, StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Feather } from "@expo/vector-icons";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
 
@@ -37,67 +38,66 @@ import {
   PriceSection,
   PriceLabel,
   PriceDetailsSection,
-  Instalments,
+  Installments,
   Cost,
 } from './styles';
-
 
 interface RouteParams {
   car: CarDTO;
   rentalPeriod: RentalPeriod;
 }
 
-
 export const ConfirmSchedule = () => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
-  const theme = useTheme()
-  const { navigate } = useNavigation()
+  const theme = useTheme();
+  const { navigate } = useNavigation();
 
   const route = useRoute();
-  const { car, rentalPeriod } = route.params as RouteParams
+  const { car, rentalPeriod } = route.params as RouteParams;
 
   // console.log(car.id)
-  const { dates } = rentalPeriod
+  const { dates } = rentalPeriod;
 
   const handleRentRequest = async () => {
     try {
-      setIsLoading(true)
-      const response = await api.get<ScheduleByCarsDTO>(`schedules_bycars/${car.id}`)
-      
+      setIsLoading(true);
+      const response = await api.get<ScheduleByCarsDTO>(`schedules_bycars/${car.id}`);
+
       const unavailable_dates = [
         ...response.data.unavailable_dates,
-        ...dates
-      ]
+        ...dates,
+      ];
 
       await api.post('schedules_byuser', {
         user_id: 1,
         car,
         startDate: rentalPeriod.startDateFormatted,
         endDate: rentalPeriod.endDateFormatted,
-      })
-      
+      });
+
       await api.put(`schedules_bycars/${car.id}`, {
         id: car.id,
-        unavailable_dates
-      })
+        unavailable_dates,
+      });
 
-      navigate('CompletedSchedule')
+      navigate('CompletedSchedule');
     } catch (error) {
-      console.error(error)
-      setIsLoading(false)
-      Alert.alert('Sorry', 'An error occurred during confirmation. Please try again later.')
+      // eslint-disable-next-line no-console
+      console.log(error);
+      setIsLoading(false);
+      Alert.alert('Sorry', 'An error occurred during confirmation. Please try again later.');
     }
-  }
+  };
 
-  const halfWayIndex = Math.ceil(car.accessories.length / 2)
+  const halfWayIndex = Math.ceil(car.accessories.length / 2);
 
-  const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex)
-  const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex)
+  const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex);
+  const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex);
 
   return (
     <Container>
-      <StatusBar 
+      <StatusBar
         barStyle="dark-content"
         translucent
         backgroundColor="transparent"
@@ -119,42 +119,46 @@ export const ConfirmSchedule = () => {
 
           <RentInfoSection>
             <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Price>
+              R$
+              {' '}
+              {car.rent.price}
+            </Price>
           </RentInfoSection>
         </FirstSection>
 
         <SpecificationSection>
-          {firstHalfOfCarAccessories.map(accessory => (
-            <SpecificationCard 
+          {firstHalfOfCarAccessories.map((accessory) => (
+            <SpecificationCard
               key={accessory.type}
               name={accessory.name}
               icon={getRelatedSvgIcon(accessory.type)}
-            />  
+            />
           ))}
         </SpecificationSection>
         <SpecificationSection>
-          {secondHalfOfCarAccessories.map(accessory => (
-            <SpecificationCard 
+          {secondHalfOfCarAccessories.map((accessory) => (
+            <SpecificationCard
               key={accessory.type}
               name={accessory.name}
               icon={getRelatedSvgIcon(accessory.type)}
-            />  
+            />
           ))}
         </SpecificationSection>
 
         {/* <SpecificationSection>
         {car.accessories.map(accessory => (
-            <SpecificationCard 
+            <SpecificationCard
               key={accessory.type}
               name={accessory.name}
               icon={getRelatedSvgIcon(accessory.type)}
-            />  
+            />
           ))}
         </SpecificationSection> */}
 
         <ScheduleDateInfoSection>
           <CalendarIconSection>
-            <Feather 
+            <Feather
               name="calendar"
               size={RFValue(24)}
               color={theme.colors.white}
@@ -165,8 +169,8 @@ export const ConfirmSchedule = () => {
             <DateTitle>FROM</DateTitle>
             <DateValue>{rentalPeriod.startDateFormatted}</DateValue>
           </PeriodSection>
-          
-          <Feather 
+
+          <Feather
             name="chevron-right"
             size={RFValue(15)}
             color={theme.colors.text}
@@ -181,21 +185,34 @@ export const ConfirmSchedule = () => {
         <PriceSection>
           <PriceLabel>TOTAL</PriceLabel>
           <PriceDetailsSection>
-            <Instalments>R$ {car.rent.price} x{rentalPeriod.totalNumberOfDays} days</Instalments>
-            <Cost>R$ {car.rent.price * rentalPeriod.totalNumberOfDays}</Cost>
+            <Installments>
+              R$
+              {' '}
+              {car.rent.price}
+              {' '}
+              x
+              {rentalPeriod.totalNumberOfDays}
+              {' '}
+              days
+            </Installments>
+            <Cost>
+              R$
+              {' '}
+              {car.rent.price * rentalPeriod.totalNumberOfDays}
+            </Cost>
           </PriceDetailsSection>
         </PriceSection>
       </Main>
 
       <Footer>
-        <Button 
-          disabled={isLoading} 
-          isLoading={isLoading} 
-          title="Rent now" 
-          color={theme.colors.correct} 
-          onPress={handleRentRequest} 
+        <Button
+          disabled={isLoading}
+          isLoading={isLoading}
+          title="Rent now"
+          color={theme.colors.correct}
+          onPress={handleRentRequest}
         />
       </Footer>
     </Container>
-  )
-}
+  );
+};

@@ -76,7 +76,7 @@ export const Main = styled.ScrollView.attrs({
   contentContainerStyle: {
     paddingBottom: 24,
   },
-  showsVerticalScrollIndicator: false
+  showsVerticalScrollIndicator: false,
 })`
   flex: 1;
 `;

@@ -2,19 +2,20 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+import Animated, {
+  useAnimatedScrollHandler, useSharedValue, useAnimatedStyle, interpolate, Extrapolate,
+} from 'react-native-reanimated';
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { Carousel } from '../../components/Carousel';
 import { SpecificationCard } from '../../components/SpecificationCard';
 import { CarDTO } from '../../dtos/CarDTO';
 import { getRelatedSvgIcon } from '../../utils/getRelatedSvgIcon';
-import Animated, { useAnimatedScrollHandler, useSharedValue, useAnimatedStyle, interpolate, Extrapolate } from 'react-native-reanimated'
 
 import {
   Container,
   Header,
   CarouselSection,
-  Main,
   FirstSection,
   CarInfoSection,
   Brand,
@@ -24,33 +25,32 @@ import {
   Price,
   SpecificationSection,
   Description,
-  Footer
+  Footer,
 } from './styles';
 
 interface RouteParams {
   car: CarDTO;
 }
 
-
 export const Car = () => {
-  const { navigate } = useNavigation()
-  
-  const route = useRoute()
-  const { car } = route.params as RouteParams
+  const { navigate } = useNavigation();
+
+  const route = useRoute();
+  const { car } = route.params as RouteParams;
 
   const handleSelectCar = () => {
-    navigate('Schedule', { 
-      car
-    })
-  }
+    navigate('Schedule', {
+      car,
+    });
+  };
 
-  const halfWayIndex = Math.ceil(car.accessories.length / 2)
+  const halfWayIndex = Math.ceil(car.accessories.length / 2);
 
-  const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex)
-  const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex)
+  const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex);
+  const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex);
 
   // animated
-  let scrollY = useSharedValue(0)
+  const scrollY = useSharedValue(0);
 
   const headerStyleAnimated = useAnimatedStyle(() => {
     return {
@@ -58,16 +58,16 @@ export const Car = () => {
         scrollY.value,
         [0, 173],
         [173, 0],
-        Extrapolate.CLAMP
+        Extrapolate.CLAMP,
       ),
       opacity: interpolate(
         scrollY.value,
         [0, 100],
         [1, 0],
-        Extrapolate.CLAMP
-      )
-    }
-  })
+        Extrapolate.CLAMP,
+      ),
+    };
+  });
 
   // const carouselStyleAnimated = useAnimatedStyle(() => {
   //   return {
@@ -79,17 +79,15 @@ export const Car = () => {
   //     )
   //   }
   // })
-  
-  const scrollHandler = useAnimatedScrollHandler(event => {
+
+  const scrollHandler = useAnimatedScrollHandler((event) => {
     // console.log(event.contentOffset.y); // user scroll position
-    scrollY.value = event.contentOffset.y
-  })
-
-
+    scrollY.value = event.contentOffset.y;
+  });
 
   return (
     <Container>
-      <StatusBar 
+      <StatusBar
         barStyle="dark-content"
         translucent
         backgroundColor="transparent"
@@ -98,8 +96,7 @@ export const Car = () => {
         <BackButton />
       </Header>
 
-      {/* <Animated.View style={[headerStyleAnimated, carouselStyleAnimated, {zIndex: -1, backgroundColor: 'green'}]}> */}
-      <Animated.View style={[headerStyleAnimated, {zIndex: -1}]}>
+      <Animated.View style={[headerStyleAnimated, { zIndex: -1 }]}>
         <CarouselSection>
           <Carousel imagesUrls={car.photos} />
         </CarouselSection>
@@ -109,7 +106,7 @@ export const Car = () => {
         contentContainerStyle={{
           paddingLeft: 16,
           paddingRight: 16,
-          alignItems: 'center'
+          alignItems: 'center',
         }}
         showsVerticalScrollIndicator={false}
         onScroll={scrollHandler}
@@ -123,26 +120,30 @@ export const Car = () => {
 
           <RentInfoSection>
             <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Price>
+              R$
+              {' '}
+              {car.rent.price}
+            </Price>
           </RentInfoSection>
         </FirstSection>
 
         <SpecificationSection>
-          {firstHalfOfCarAccessories.map(accessory => (
-            <SpecificationCard 
+          {firstHalfOfCarAccessories.map((accessory) => (
+            <SpecificationCard
               key={accessory.type}
               name={accessory.name}
               icon={getRelatedSvgIcon(accessory.type)}
-            />  
+            />
           ))}
         </SpecificationSection>
         <SpecificationSection>
-          {secondHalfOfCarAccessories.map(accessory => (
-            <SpecificationCard 
+          {secondHalfOfCarAccessories.map((accessory) => (
+            <SpecificationCard
               key={accessory.type}
               name={accessory.name}
               icon={getRelatedSvgIcon(accessory.type)}
-            />  
+            />
           ))}
         </SpecificationSection>
 
@@ -152,12 +153,12 @@ export const Car = () => {
           {car.about}
           {car.about}
           {car.about}
-        </Description >
+        </Description>
       </Animated.ScrollView>
 
       <Footer>
         <Button title="Select" color="" onPress={handleSelectCar} />
       </Footer>
     </Container>
-  )
-}
+  );
+};

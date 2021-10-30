@@ -1,34 +1,34 @@
-import AccelerateSvg from '../assets/acceleration.svg'
-import CarSvg from '../assets/car.svg'
-import ElectricSvg from '../assets/energy.svg'
-import ExchangeSvg from '../assets/exchange.svg'
-import ForceSvg from '../assets/force.svg'
-import GasSvg from '../assets/gasoline.svg'
-import HybridSvg from '../assets/hybrid.svg'
-import PeopleSvg from '../assets/people.svg'
-import SpeedSvg from '../assets/speed.svg'
+import AccelerateSvg from '../assets/acceleration.svg';
+import CarSvg from '../assets/car.svg';
+import ElectricSvg from '../assets/energy.svg';
+import ExchangeSvg from '../assets/exchange.svg';
+import ForceSvg from '../assets/force.svg';
+import GasSvg from '../assets/gasoline.svg';
+import HybridSvg from '../assets/hybrid.svg';
+import PeopleSvg from '../assets/people.svg';
+import SpeedSvg from '../assets/speed.svg';
 
 export const getRelatedSvgIcon = (type: string) => {
   switch (type) {
     case 'acceleration':
-      return AccelerateSvg  
+      return AccelerateSvg;
     case 'electric':
-      return ElectricSvg 
+      return ElectricSvg;
     case 'electric_motor':
-      return ElectricSvg 
+      return ElectricSvg;
     case 'exchange':
-      return ExchangeSvg
+      return ExchangeSvg;
     case 'turning_diameter':
-      return ForceSvg
+      return ForceSvg;
     case 'gasoline_motor':
-      return GasSvg
+      return GasSvg;
     case 'hybrid_motor':
-      return HybridSvg
+      return HybridSvg;
     case 'seats':
-      return PeopleSvg
+      return PeopleSvg;
     case 'speed':
-      return SpeedSvg  
+      return SpeedSvg;
     default:
-      return CarSvg
+      return CarSvg;
   }
-}
+};

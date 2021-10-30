@@ -11,7 +11,6 @@ interface CarProps {
   endDate: string;
 }
 
-
 export const Container = styled.View`
   flex: 1;
 `;
@@ -54,7 +53,7 @@ export const MainHeader = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-`
+`;
 
 export const MainHeaderTitle = styled.Text`
   color: ${({ theme }) => theme.colors.text};
@@ -72,9 +71,8 @@ export const Cars = styled(FlatList as new () => FlatList<CarProps>).attrs({
   contentContainerStyle: {
     paddingBottom: 32,
   },
-  showsVerticalScrollIndicator: false
+  showsVerticalScrollIndicator: false,
 })``;
-
 
 export const PeriodSection = styled.View`
   align-items: center;

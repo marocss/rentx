@@ -1,9 +1,10 @@
 import React from 'react';
-import{ 
+import {
   Calendar as RNCalendar,
-  LocaleConfig
+  // LocaleConfig,
 } from 'react-native-calendars';
-import { Feather } from '@expo/vector-icons'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 
 import {
@@ -14,7 +15,7 @@ interface CalendarArrowProps {
   direction: string;
 }
 
-interface CalendarMarkedDatesProps { 
+interface CalendarMarkedDatesProps {
   [date: string]: {
     color?: string;
     textColor?: string;
@@ -41,12 +42,15 @@ interface CalendarDayProps {
 
 interface CalendarProps {
   markedDates: CalendarMarkedDatesProps;
+  // eslint-disable-next-line no-unused-vars
   onDayPress: (date: CalendarDayProps) => void;
 }
 
 // LocaleConfig.locales['pt-br'] = {
-//   monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-//   monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+//   monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril',
+// 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+//   monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr',
+// 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
 //   dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
 //   dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
 //   today: 'hoje',
@@ -59,18 +63,18 @@ interface CalendarProps {
 // LocaleConfig.defaultLocale = 'pt-br'
 
 const Calendar = ({ markedDates, onDayPress }: CalendarProps) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <Container>
       <RNCalendar
-        renderArrow={( direction ) => <CustomArrow direction={direction} />}
+        renderArrow={(direction) => <CustomArrow direction={direction} />}
         headerStyle={{
           backgroundColor: theme.colors.background_two,
           borderBottomWidth: 1,
           borderBottomColor: theme.colors.line,
           paddingBottom: 10,
-          marginBottom: 19
+          marginBottom: 19,
         }}
         theme={{
           textDayFontFamily: theme.fonts.primary_regular,
@@ -81,32 +85,31 @@ const Calendar = ({ markedDates, onDayPress }: CalendarProps) => {
           textMonthFontFamily: theme.fonts.secondary_bold,
           textMonthFontWeight: 'bold',
           arrowStyle: {
-            marginHorizontal: -15
+            marginHorizontal: -15,
           },
         }}
         firstDay={1}
         minDate={new Date()}
-        markingType='period'
+        markingType="period"
         markedDates={markedDates}
         onDayPress={onDayPress}
         disabledDaysIndexes={[15, 16, 17]}
       />
     </Container>
-  )
-}
-
+  );
+};
 
 const CustomArrow = ({ direction }: CalendarArrowProps) => {
-  const theme = useTheme()
-  const arrowColor = theme.colors.text
+  const theme = useTheme();
+  const arrowColor = theme.colors.text;
 
   return (
-    <Feather 
-      size={22} 
+    <Feather
+      size={22}
       color={arrowColor}
       name={direction === 'left' ? 'chevron-left' : 'chevron-right'}
     />
-  )
-}
+  );
+};
 
-export { Calendar, CalendarMarkedDatesProps, CalendarDayProps }
+export { Calendar, CalendarMarkedDatesProps, CalendarDayProps };

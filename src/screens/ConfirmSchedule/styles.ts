@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+// import { Platform } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
@@ -25,9 +25,9 @@ export const Main = styled.ScrollView.attrs({
     paddingLeft: 16,
     paddingRight: 16,
     paddingBottom: 14,
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  showsVerticalScrollIndicator: false
+  showsVerticalScrollIndicator: false,
 })`
  
 `;
@@ -143,7 +143,7 @@ export const PriceDetailsSection = styled.View`
   align-items: flex-end;
 `;
 
-export const Instalments = styled.Text`
+export const Installments = styled.Text`
   color: ${({ theme }) => theme.colors.title};
   font-family: ${({ theme }) => theme.fonts.primary_medium};
   font-size: ${RFValue(13)}px;

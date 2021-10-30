@@ -1,5 +1,7 @@
-import React, { useRef, useState } from 'react';
-import { Dimensions, FlatList, NativeScrollEvent, NativeSyntheticEvent, ViewToken } from 'react-native';
+import React, { useState } from 'react';
+import {
+  Dimensions, NativeScrollEvent, NativeSyntheticEvent,
+} from 'react-native';
 
 import {
   Container,
@@ -20,7 +22,7 @@ interface CarouselProps {
 // }
 
 export const Carousel = ({ imagesUrls }: CarouselProps) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // const handleOnViewableItemsChanged = useRef(((info: onViewableItemsChangedProps) => {
   //   // console.log(info);
@@ -32,11 +34,11 @@ export const Carousel = ({ imagesUrls }: CarouselProps) => {
   const handleOnScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     // use X offset with width to figure out which image is being displayed
     // console.log(event.nativeEvent.contentOffset);
-    const { width } = Dimensions.get('window')
-    const currentIndex = Math.round(event.nativeEvent.contentOffset.x / width)
+    const { width } = Dimensions.get('window');
+    const currentIndex = Math.round(event.nativeEvent.contentOffset.x / width);
 
-    setCurrentImageIndex(currentIndex)
-  }
+    setCurrentImageIndex(currentIndex);
+  };
 
   return (
     <Container>
@@ -45,10 +47,10 @@ export const Carousel = ({ imagesUrls }: CarouselProps) => {
           <ImageIndex key={image} active={index === currentImageIndex} />
         ))}
       </Indexes>
-      
-      <PicturesList 
+
+      <PicturesList
         data={imagesUrls}
-        keyExtractor={item => item}
+        keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <PictureSection>
             <Picture source={{ uri: item }} resizeMode="contain" />
@@ -57,8 +59,8 @@ export const Carousel = ({ imagesUrls }: CarouselProps) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         pagingEnabled
-        onScroll={e => handleOnScroll(e)}
+        onScroll={(e) => handleOnScroll(e)}
       />
     </Container>
-  )
-}
+  );
+};

@@ -9,6 +9,7 @@ import { Home } from '../screens/Home';
 import { RentalPeriod, Schedule } from '../screens/Schedule';
 import { MyCars } from '../screens/MyCars';
 import { Splash } from '../screens/Splash';
+import { Signin } from '../screens/Signin';
 // import { CalendarMarkedDatesProps } from '../components/Calendar';
 
 type RootStackParamList = {
@@ -34,12 +35,17 @@ export const StackRoutes = () => {
       screenOptions={{
         headerShown: false
       }}
-      initialRouteName={"Splash"}
+      initialRouteName={"Signin"}
     >
+      
       <Screen 
+        name={"Signin"}
+        component={Signin}
+      />
+      {/* <Screen 
         name={"Splash"}
         component={Splash}
-      />
+      /> */}
       <Screen 
         name={"Home"}
         component={Home}

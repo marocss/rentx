@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import Gasoline from '../../assets/gasoline.svg'
-import Energy from '../../assets/energy.svg'
+import Gasoline from '../../assets/gasoline.svg';
+import Energy from '../../assets/energy.svg';
 
 export const Container = styled.Pressable`
   width: 100%;

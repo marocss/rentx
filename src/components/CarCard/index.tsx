@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { PressableProps } from 'react-native';
 import { useTheme } from 'styled-components';
@@ -13,10 +14,8 @@ import {
   Period,
   Price,
   FuelType,
-  GasIcon,
-  ElectricIcon,
   Thumbnail,
-  Picture
+  Picture,
 } from './styles';
 
 interface CarCardProps extends PressableProps {
@@ -28,31 +27,36 @@ interface CarCardProps extends PressableProps {
   icon: string;
 }
 
-export const CarCard = ({ 
-  brand, 
-  name, 
-  period, 
-  price, 
-  thumbnail, 
-  icon, 
-  ...rest }: CarCardProps) => {
-  const theme = useTheme()
+export const CarCard = ({
+  brand,
+  name,
+  period,
+  price,
+  thumbnail,
+  icon,
+  ...rest
+}: CarCardProps) => {
+  const theme = useTheme();
 
-  const Icon = getRelatedSvgIcon(icon)
+  const Icon = getRelatedSvgIcon(icon);
 
   return (
-    <Container {...rest} >
+    <Container {...rest}>
       <InfoSection>
         <Brand>{brand}</Brand>
         <Name>{name}</Name>
         <About>
           <RentInfo>
             <Period>{period}</Period>
-            <Price>R$ {price}</Price>
+            <Price>
+              R$
+              {' '}
+              {price}
+            </Price>
           </RentInfo>
 
           <FuelType>
-            <Icon 
+            <Icon
               color={theme.colors.text_light}
             />
           </FuelType>
@@ -63,5 +67,5 @@ export const CarCard = ({
         <Picture source={{ uri: thumbnail }} resizeMode="contain" />
       </Thumbnail>
     </Container>
-  )
-}
+  );
+};

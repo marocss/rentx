@@ -31,9 +31,9 @@ export const CarQuantity = styled.Text`
 export const CarList = styled(FlatList as new () => FlatList<CarDTO>).attrs({
   contentContainerStyle: {
     padding: 24,
-    paddingTop: 16
+    paddingTop: 16,
   },
-  showsVerticalScrollIndicator: false
+  showsVerticalScrollIndicator: false,
 })`
 `;
 export const MyCarsButton = styled.Pressable`

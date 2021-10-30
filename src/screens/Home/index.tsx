@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Pressable, StatusBar, BackHandler } from 'react-native'
+import React, { useEffect, useState } from 'react';
+import { Pressable, StatusBar, BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from "@expo/vector-icons";
-import Animated, { useAnimatedStyle, useSharedValue, useAnimatedGestureHandler, withSpring } from 'react-native-reanimated'
-import { PanGestureHandler } from "react-native-gesture-handler";
-import Logo from '../../assets/logo.svg'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Ionicons } from '@expo/vector-icons';
+import Animated, {
+  useAnimatedStyle, useSharedValue, useAnimatedGestureHandler, withSpring,
+} from 'react-native-reanimated';
+import { PanGestureHandler } from 'react-native-gesture-handler';
+import { useTheme } from 'styled-components';
+import Logo from '../../assets/logo.svg';
 import { CarCard } from '../../components/CarCard';
 import { LoadingCarAnimation } from '../../components/LoadingCarAnimation';
 import { CarDTO } from '../../dtos/CarDTO';
@@ -15,36 +19,34 @@ import {
   CarQuantity,
   Container,
   Header,
-  MyCarsButton
 } from './styles';
-import { useTheme } from 'styled-components';
 
-const AnimatedButton = Animated.createAnimatedComponent(Pressable)
+const AnimatedButton = Animated.createAnimatedComponent(Pressable);
 
 export const Home = () => {
   const [cars, setCars] = useState<CarDTO[]>([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
-  const theme = useTheme()
+  const theme = useTheme();
 
-  const { navigate } = useNavigation()
+  const { navigate } = useNavigation();
 
-  const positionY = useSharedValue(0)
-  const positionX = useSharedValue(0)
+  const positionY = useSharedValue(0);
+  const positionX = useSharedValue(0);
 
   const myCarsButtonStyle = useAnimatedStyle(() => {
     return {
       transform: [
         { translateX: positionX.value },
-        { translateY: positionY.value }
-      ]
-    }
-  })
+        { translateY: positionY.value },
+      ],
+    };
+  });
 
   const onGestureEvent = useAnimatedGestureHandler({
     onStart(event, ctx: any) {
-      ctx.positionX = positionX.value
-      ctx.positionY = positionY.value
+      ctx.positionX = positionX.value;
+      ctx.positionY = positionY.value;
     },
     onActive(event, ctx) {
       positionX.value = ctx.positionX + event.translationX;
@@ -52,62 +54,68 @@ export const Home = () => {
     },
     onEnd() {
       // positionX.value = withSpring(0)
-      positionY.value = withSpring(0)
+      positionY.value = withSpring(0);
     },
-  })
+  });
 
   const handleCarCard = (car: CarDTO) => {
-    navigate('Car', { car })
-  }
+    navigate('Car', { car });
+  };
 
   const handleOpenMyCars = () => {
-    navigate('MyCars')
-  }
+    navigate('MyCars');
+  };
 
   useEffect(() => {
     (async () => {
       try {
-        const response = await api.get<CarDTO[]>('cars')
-        
-        setCars(response.data)
-        setIsLoading(false)
+        const response = await api.get<CarDTO[]>('cars');
+
+        setCars(response.data);
+        setIsLoading(false);
       } catch (error) {
-        console.error(error);
-        setIsLoading(false)
+        // eslint-disable-next-line no-console
+        console.log(error);
+        setIsLoading(false);
       }
-    })()
-  }, [])
+    })();
+  }, []);
 
   useEffect(() => {
     // avoid going back to splash screen
-    let eventListener = BackHandler.addEventListener('hardwareBackPress', () => {
-      return true
-    })
+    const eventListener = BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
 
     return () => {
-      eventListener.remove() 
-    }
-  }, [])
+      eventListener.remove();
+    };
+  }, []);
 
   return (
     <Container>
-      <StatusBar 
+      <StatusBar
         barStyle="light-content"
         translucent
         backgroundColor="transparent"
       />
       <Header>
         <Logo />
-        { !isLoading && 
-          (<CarQuantity>{cars.length} cars available</CarQuantity>)
-        }        
+        { !isLoading
+          && (
+          <CarQuantity>
+            {cars.length}
+            {' '}
+            cars available
+          </CarQuantity>
+          )}
       </Header>
 
       { isLoading ? (<LoadingCarAnimation />) : (
         <CarList
           data={cars}
-          keyExtractor={ item => item.id}
-          renderItem={({ item }) => 
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
             <CarCard
               brand={item.brand}
               name={item.name}
@@ -117,7 +125,7 @@ export const Home = () => {
               icon={item.fuel_type}
               onPress={() => handleCarCard(item)}
             />
-          }
+          )}
         />
       )}
 
@@ -128,11 +136,12 @@ export const Home = () => {
             {
               position: 'absolute',
               bottom: 27,
-              right:19,
-            }
+              right: 19,
+            },
           ]}
         >
-          <AnimatedButton style={
+          <AnimatedButton
+            style={
             {
               width: 58,
               height: 58,
@@ -141,7 +150,9 @@ export const Home = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }
-          } onPress={handleOpenMyCars}>
+          }
+            onPress={handleOpenMyCars}
+          >
             <Ionicons name="ios-car-sport" size={32} color={theme.colors.white} />
           </AnimatedButton>
         </Animated.View>
