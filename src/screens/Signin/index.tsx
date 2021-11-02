@@ -33,8 +33,15 @@ export const Signin = () => {
       </Header>
 
       <InputSection>
-        <Input iconName="mail" />
-        <Input iconName="lock" />
+        <Input iconName="mail" placeholder="Email" keyboardType="email-address" />
+
+        <Input
+          iconName="lock"
+          placeholder="Password"
+          keyboardType="visible-password"
+          secureTextEntry
+          isPassword
+        />
       </InputSection>
 
       <Footer>

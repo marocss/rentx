@@ -28,7 +28,7 @@ export const Subtitle = styled.Text`
 
 export const InputSection = styled.View`
   width: 100%;
-  margin: ${RFValue(57)}px 0px;
+  margin: ${RFValue(60)}px 0px;
 `;
 
 export const Footer = styled.View`
