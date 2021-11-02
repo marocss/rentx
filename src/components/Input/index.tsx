@@ -14,16 +14,21 @@ interface InputProps extends TextInputProps {
 }
 
 const Input = ({
-  iconName, placeholder, keyboardType, secureTextEntry, isPassword = false,
+  iconName, placeholder, keyboardType, secureTextEntry, isPassword = false, value, ...rest
 }: InputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(secureTextEntry);
+  const [isFocused, setIsFocused] = useState(false);
 
   const theme = useTheme();
 
   return (
-    <Container>
+    <Container isFocused={isFocused}>
       <IconSection>
-        <Feather name={iconName} size={24} color={theme.colors.text_light} />
+        <Feather
+          name={iconName}
+          size={24}
+          color={isFocused || value ? theme.colors.main : theme.colors.text_light}
+        />
       </IconSection>
 
       <TextInput
@@ -33,6 +38,10 @@ const Input = ({
         secureTextEntry={isPassword ? isPasswordVisible : false}
         autoCapitalize="none"
         autoCorrect={false}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
       />
 
       { isPassword && (

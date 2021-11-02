@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   KeyboardAvoidingView, StatusBar, Pressable, Keyboard,
 } from 'react-native';
@@ -11,6 +11,9 @@ import {
 } from './styles';
 
 export const Signin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const theme = useTheme();
 
   return (
@@ -37,12 +40,14 @@ export const Signin = () => {
           </Header>
 
           <InputSection>
-            <Input iconName="mail" placeholder="Email" keyboardType="email-address" />
+            <Input iconName="mail" placeholder="Email" keyboardType="email-address" onChangeText={setEmail} value={email} />
 
             <Input
               iconName="lock"
               placeholder="Password"
               keyboardType="visible-password"
+              onChangeText={setPassword}
+              value={password}
               secureTextEntry
               isPassword
             />
