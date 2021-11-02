@@ -11,15 +11,28 @@ import {
 interface InputProps extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>['name']
   isPassword?: boolean;
+  setIsLoginIn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Input = ({
-  iconName, placeholder, keyboardType, secureTextEntry, isPassword = false, value, ...rest
+  iconName,
+  placeholder,
+  keyboardType,
+  secureTextEntry,
+  isPassword = false,
+  value,
+  setIsLoginIn,
+  ...rest
 }: InputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(secureTextEntry);
   const [isFocused, setIsFocused] = useState(false);
 
   const theme = useTheme();
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    setIsLoginIn(true);
+  };
 
   return (
     <Container isFocused={isFocused}>
@@ -38,8 +51,9 @@ const Input = ({
         secureTextEntry={isPassword ? isPasswordVisible : false}
         autoCapitalize="none"
         autoCorrect={false}
-        onFocus={() => setIsFocused(true)}
+        onFocus={handleFocus}
         onBlur={() => setIsFocused(false)}
+        value={value}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       />
