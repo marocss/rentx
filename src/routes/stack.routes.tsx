@@ -1,7 +1,7 @@
 import React from 'react';
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { CarDTO } from '../dtos/CarDTO'
+import { CarDTO } from '../dtos/CarDTO';
 import { Car } from '../screens/Car';
 import { CompletedSchedule } from '../screens/CompletedSchedule';
 import { ConfirmSchedule } from '../screens/ConfirmSchedule';
@@ -22,58 +22,60 @@ type RootStackParamList = {
 };
 
 declare global {
+  // eslint-disable-next-line no-unused-vars
   namespace ReactNavigation {
+    // eslint-disable-next-line no-unused-vars
     interface RootParamList extends RootStackParamList {}
   }
 }
 
-const { Navigator, Screen } = createNativeStackNavigator()
+const { Navigator, Screen } = createNativeStackNavigator();
 
 export const StackRoutes = () => {
   return (
     <Navigator
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
-      initialRouteName={"Signin"}
+      initialRouteName="Signin"
     >
-      
-      <Screen 
-        name={"Signin"}
+
+      <Screen
+        name="Signin"
         component={Signin}
       />
-      {/* <Screen 
-        name={"Splash"}
+      <Screen
+        name="Splash"
         component={Splash}
-      /> */}
-      <Screen 
-        name={"Home"}
+      />
+      <Screen
+        name="Home"
         component={Home}
         options={{
-          gestureEnabled: false
+          gestureEnabled: false,
         }}
       />
-      <Screen 
-        name={"Car"}
+      <Screen
+        name="Car"
         component={Car}
-        key={"car"}
+        key="car"
       />
-      <Screen 
-        name={"Schedule"}
+      <Screen
+        name="Schedule"
         component={Schedule}
       />
-      <Screen 
-        name={"ConfirmSchedule"}
+      <Screen
+        name="ConfirmSchedule"
         component={ConfirmSchedule}
       />
-      <Screen 
-        name={"CompletedSchedule"}
+      <Screen
+        name="CompletedSchedule"
         component={CompletedSchedule}
       />
-      <Screen 
-        name={"MyCars"}
+      <Screen
+        name="MyCars"
         component={MyCars}
       />
     </Navigator>
-  )
-}
+  );
+};

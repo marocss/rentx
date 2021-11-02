@@ -2,9 +2,10 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 import { Button } from '../../components/Button';
+import Input from '../../components/Input';
 
 import {
-  Container, Header, Title, Subtitle, Footer,
+  Container, Header, Title, Subtitle, InputSection, Footer,
 } from './styles';
 
 export const Signin = () => {
@@ -30,6 +31,11 @@ export const Signin = () => {
           an amazing experience.
         </Subtitle>
       </Header>
+
+      <InputSection>
+        <Input iconName="mail" />
+        <Input iconName="lock" />
+      </InputSection>
 
       <Footer>
         <Button title="Login" onPress={() => {}} disabled isLoading={false} />
