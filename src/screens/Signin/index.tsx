@@ -45,7 +45,7 @@ export const Signin = () => {
             <Input
               iconName="lock"
               placeholder="Password"
-              keyboardType="visible-password"
+              keyboardType="default"
               onChangeText={setPassword}
               value={password}
               secureTextEntry

@@ -1,8 +1,7 @@
 import styled from 'styled-components/native';
-import { PressableProps } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-interface ButtonProps extends PressableProps {
+interface ButtonProps {
   color?: string;
 }
 
