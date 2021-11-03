@@ -27,6 +27,8 @@
       "arrow-body-style": "off",
       "import/prefer-default-export": "off",
       "import/extensions": "off",
-      "camelcase": "off"
+      "camelcase": "off",
+      "indent": "off",
+      "@typescript-eslint/indent": ["error", 2] // 2 spaces === 1 tab
   }
 }

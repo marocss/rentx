@@ -8,6 +8,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import * as Yup from 'yup';
 
+import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../components/Button';
 import Input from '../../components/Input';
 
@@ -31,9 +32,10 @@ const schema = Yup.object().shape({
 export const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoginIn, setIsLoginIn] = useState<boolean>(false);
+  const [wasActivated, setWasActivated] = useState(false);
 
   const theme = useTheme();
+  const { navigate } = useNavigation();
 
   const iconColor = theme.colors.text;
 
@@ -55,12 +57,16 @@ export const Signin = () => {
     Keyboard.dismiss();
     setEmail('');
     setPassword('');
-    setIsLoginIn(false);
+    setWasActivated(false);
+  };
+
+  const handleSignUp = () => {
+    navigate('SignUpStepOne');
   };
 
   return (
     <>
-      { isLoginIn && (
+      { wasActivated && (
       <CancelSignInButton onPress={handleCancelSignIn}>
         <MaterialIcons
           name="chevron-left"
@@ -89,7 +95,7 @@ export const Signin = () => {
           ) } */}
 
             <Header>
-              { !isLoginIn && (
+              { !wasActivated && (
               <>
                 <Title>
                   Almost
@@ -105,8 +111,15 @@ export const Signin = () => {
               </Subtitle>
             </Header>
 
-            <InputSection isLoginIn={isLoginIn}>
-              <Input iconName="mail" placeholder="Email" keyboardType="email-address" onChangeText={setEmail} value={email} setIsLoginIn={setIsLoginIn} />
+            <InputSection isLoginIn={wasActivated}>
+              <Input
+                iconName="mail"
+                placeholder="Email"
+                keyboardType="email-address"
+                onChangeText={setEmail}
+                value={email}
+                setWasActivated={setWasActivated}
+              />
 
               <Input
                 iconName="lock"
@@ -116,9 +129,9 @@ export const Signin = () => {
                 value={password}
                 secureTextEntry
                 isPassword
-                setIsLoginIn={setIsLoginIn}
+                setWasActivated={setWasActivated}
               />
-              { isLoginIn && (
+              { wasActivated && (
               <ForgotPassword onPress={() => {}}>
                 <ForgotPasswordText>
                   Forgot my password
@@ -130,10 +143,10 @@ export const Signin = () => {
             <Footer>
               <Button title="Login" onPress={handleSignIn} disabled={!(email !== '' && password !== '')} isLoading={false} />
 
-              { !isLoginIn && (
+              { !wasActivated && (
               <Button
                 title="Create an account"
-                onPress={() => {}}
+                onPress={handleSignUp}
                 isLoading={false}
                 color={theme.colors.background_two}
                 isLightBackground

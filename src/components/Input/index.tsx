@@ -11,7 +11,7 @@ import {
 interface InputProps extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>['name']
   isPassword?: boolean;
-  setIsLoginIn: React.Dispatch<React.SetStateAction<boolean>>
+  setWasActivated: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Input = ({
@@ -21,7 +21,7 @@ const Input = ({
   secureTextEntry,
   isPassword = false,
   value,
-  setIsLoginIn,
+  setWasActivated: setIsLoginIn,
   ...rest
 }: InputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(secureTextEntry);
@@ -49,7 +49,6 @@ const Input = ({
         placeholderTextColor={theme.colors.text_light}
         keyboardType={keyboardType}
         secureTextEntry={isPassword ? isPasswordVisible : false}
-        autoCapitalize="none"
         autoCorrect={false}
         onFocus={handleFocus}
         onBlur={() => setIsFocused(false)}

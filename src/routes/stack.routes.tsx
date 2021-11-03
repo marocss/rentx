@@ -11,6 +11,8 @@ import { MyCars } from '../screens/MyCars';
 import { Splash } from '../screens/Splash';
 import { Signin } from '../screens/Signin';
 // import { CalendarMarkedDatesProps } from '../components/Calendar';
+import SignUpStepOne from '../screens/SignUp/SignUpStepOne';
+import SignUpStepTwo from '../screens/SignUp/SignUpStepTwo';
 
 type RootStackParamList = {
   Home: undefined;
@@ -19,6 +21,9 @@ type RootStackParamList = {
   ConfirmSchedule: { car: CarDTO, rentalPeriod: RentalPeriod };
   CompletedSchedule: undefined;
   MyCars: undefined;
+  SignIn: undefined;
+  SignUpStepOne: undefined;
+  SignUpStepTwo: undefined;
 };
 
 declare global {
@@ -43,6 +48,14 @@ export const StackRoutes = () => {
       <Screen
         name="Signin"
         component={Signin}
+      />
+      <Screen
+        name="SignUpStepOne"
+        component={SignUpStepOne}
+      />
+      <Screen
+        name="SignUpStepTwo"
+        component={SignUpStepTwo}
       />
       <Screen
         name="Splash"
