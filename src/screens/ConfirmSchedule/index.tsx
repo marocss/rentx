@@ -81,7 +81,11 @@ export const ConfirmSchedule = () => {
         unavailable_dates,
       });
 
-      navigate('CompletedSchedule');
+      navigate('Success', {
+        title: 'Successfully Rented!',
+        message: ' Now you just need to go\nto the RENTX dealership and\nget your vehicle.',
+        nextScreenRoute: 'Home',
+      });
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

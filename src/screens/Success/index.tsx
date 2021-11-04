@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar, useWindowDimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import LogoSvg from '../../assets/logo_background_gray.svg';
@@ -14,12 +14,22 @@ import {
   Body,
 } from './styles';
 
-export const CompletedSchedule = () => {
+interface SuccessRouteParams {
+  title: string;
+  message: string;
+  nextScreenRoute: 'Home' | 'SignIn';
+}
+
+export const Success = () => {
   const { width } = useWindowDimensions();
   const { navigate } = useNavigation();
 
+  const route = useRoute();
+  const { title, message, nextScreenRoute } = route.params as SuccessRouteParams;
+
   const handleOkButton = () => {
-    navigate('Home');
+    // navigate('Home');
+    navigate(nextScreenRoute);
   };
 
   return (
@@ -35,15 +45,17 @@ export const CompletedSchedule = () => {
       <Main>
         <DoneSvg />
 
-        <Title>Successfully Rented!</Title>
+        {/* <Title>Successfully Rented!</Title> */}
+        <Title>{title}</Title>
 
-        <Body>
+        {/* <Body>
           Now you just need to go
           {'\n'}
           to the RENTX dealership and
           {'\n'}
           get your vehicle.
-        </Body>
+        </Body> */}
+        <Body>{message}</Body>
 
         <SmallButton text="Ok" onPress={handleOkButton} />
       </Main>

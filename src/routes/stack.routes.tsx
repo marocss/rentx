@@ -3,13 +3,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { CarDTO } from '../dtos/CarDTO';
 import { Car } from '../screens/Car';
-import { CompletedSchedule } from '../screens/CompletedSchedule';
+import { Success } from '../screens/Success';
 import { ConfirmSchedule } from '../screens/ConfirmSchedule';
 import { Home } from '../screens/Home';
 import { RentalPeriod, Schedule } from '../screens/Schedule';
 import { MyCars } from '../screens/MyCars';
 import { Splash } from '../screens/Splash';
-import { Signin } from '../screens/Signin';
+import { SignIn } from '../screens/SignIn';
 // import { CalendarMarkedDatesProps } from '../components/Calendar';
 import SignUpStepOne from '../screens/SignUp/SignUpStepOne';
 import SignUpStepTwo from '../screens/SignUp/SignUpStepTwo';
@@ -20,12 +20,18 @@ interface SignUpStepTwoUserData {
   driversLicense: string;
 }
 
+interface SuccessData {
+  title: string;
+  message: string;
+  nextScreenRoute: 'Home' | 'SignIn';
+}
+
 type RootStackParamList = {
   Home: undefined;
   Car: { car: CarDTO };
   Schedule: { car: CarDTO };
   ConfirmSchedule: { car: CarDTO, rentalPeriod: RentalPeriod };
-  CompletedSchedule: undefined;
+  Success: SuccessData;
   MyCars: undefined;
   SignIn: undefined;
   SignUpStepOne: undefined;
@@ -48,12 +54,12 @@ export const StackRoutes = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Signin"
+      initialRouteName="SignIn"
     >
 
       <Screen
-        name="Signin"
-        component={Signin}
+        name="SignIn"
+        component={SignIn}
       />
       <Screen
         name="SignUpStepOne"
@@ -88,8 +94,8 @@ export const StackRoutes = () => {
         component={ConfirmSchedule}
       />
       <Screen
-        name="CompletedSchedule"
-        component={CompletedSchedule}
+        name="Success"
+        component={Success}
       />
       <Screen
         name="MyCars"

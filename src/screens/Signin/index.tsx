@@ -29,7 +29,7 @@ const schema = Yup.object().shape({
   email: Yup.string().required('Email is required').email('Invalid email'),
 });
 
-export const Signin = () => {
+export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [wasActivated, setWasActivated] = useState(false);

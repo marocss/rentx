@@ -1,4 +1,5 @@
-import { useRoute } from '@react-navigation/native';
+// import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Alert, Keyboard, Pressable } from 'react-native';
 import { useTheme } from 'styled-components';
@@ -17,11 +18,11 @@ import {
   InputSection,
 } from './styles';
 
-interface SignUpStepTwoRouteParams {
-  name: string;
-  email: string;
-  driversLicense: string;
-}
+// interface SignUpStepTwoRouteParams {
+//   name: string;
+//   email: string;
+//   driversLicense: string;
+// }
 
 const SignUpStepTwo = () => {
   // eslint-disable-next-line no-unused-vars
@@ -29,12 +30,14 @@ const SignUpStepTwo = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
-  const route = useRoute();
-  const { user } = route.params as SignUpStepTwoRouteParams;
-  console.log(user);
+  const { navigate } = useNavigation();
+  // const route = useRoute();
+  // const { user } = route.params as SignUpStepTwoRouteParams;
+  // console.log(user);
 
   const theme = useTheme();
 
+  // eslint-disable-next-line consistent-return
   const handleSignUp = () => {
     if (!password || !passwordConfirmation) {
       return Alert.alert('Password is required');
@@ -44,6 +47,11 @@ const SignUpStepTwo = () => {
     }
 
     // sign up the user
+    navigate('Success', {
+      title: 'Success!',
+      message: 'Now you just need\nto log in',
+      nextScreenRoute: 'SignIn',
+    });
   };
 
   return (
