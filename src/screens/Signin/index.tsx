@@ -67,13 +67,13 @@ export const Signin = () => {
   return (
     <>
       { wasActivated && (
-      <CancelSignInButton onPress={handleCancelSignIn}>
-        <MaterialIcons
-          name="chevron-left"
-          size={24}
-          color={iconColor}
-        />
-      </CancelSignInButton>
+        <CancelSignInButton onPress={handleCancelSignIn}>
+          <MaterialIcons
+            name="chevron-left"
+            size={24}
+            color={iconColor}
+          />
+        </CancelSignInButton>
       ) }
       <KeyboardAvoidingView behavior="position" enabled={Platform.OS === 'ios'}>
         <Pressable onPress={Keyboard.dismiss}>
@@ -96,13 +96,13 @@ export const Signin = () => {
 
             <Header>
               { !wasActivated && (
-              <>
-                <Title>
-                  Almost
-                  {'\n'}
-                  there.
-                </Title>
-              </>
+                <>
+                  <Title>
+                    Almost
+                    {'\n'}
+                    there.
+                  </Title>
+                </>
               )}
               <Subtitle>
                 Log in to start having
@@ -116,6 +116,7 @@ export const Signin = () => {
                 iconName="mail"
                 placeholder="Email"
                 keyboardType="email-address"
+                autoCapitalize="none"
                 onChangeText={setEmail}
                 value={email}
                 setWasActivated={setWasActivated}
@@ -124,6 +125,7 @@ export const Signin = () => {
               <Input
                 iconName="lock"
                 placeholder="Password"
+                autoCapitalize="none"
                 keyboardType="default"
                 onChangeText={setPassword}
                 value={password}
@@ -132,11 +134,11 @@ export const Signin = () => {
                 setWasActivated={setWasActivated}
               />
               { wasActivated && (
-              <ForgotPassword onPress={() => {}}>
-                <ForgotPasswordText>
-                  Forgot my password
-                </ForgotPasswordText>
-              </ForgotPassword>
+                <ForgotPassword onPress={() => {}}>
+                  <ForgotPasswordText>
+                    Forgot my password
+                  </ForgotPasswordText>
+                </ForgotPassword>
               )}
             </InputSection>
 
@@ -144,13 +146,13 @@ export const Signin = () => {
               <Button title="Login" onPress={handleSignIn} disabled={!(email !== '' && password !== '')} isLoading={false} />
 
               { !wasActivated && (
-              <Button
-                title="Create an account"
-                onPress={handleSignUp}
-                isLoading={false}
-                color={theme.colors.background_two}
-                isLightBackground
-              />
+                <Button
+                  title="Create an account"
+                  onPress={handleSignUp}
+                  isLoading={false}
+                  color={theme.colors.background_two}
+                  isLightBackground
+                />
               )}
             </Footer>
           </Container>

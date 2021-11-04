@@ -14,6 +14,12 @@ import { Signin } from '../screens/Signin';
 import SignUpStepOne from '../screens/SignUp/SignUpStepOne';
 import SignUpStepTwo from '../screens/SignUp/SignUpStepTwo';
 
+interface SignUpStepTwoUserData {
+  name: string;
+  email: string;
+  driversLicense: string;
+}
+
 type RootStackParamList = {
   Home: undefined;
   Car: { car: CarDTO };
@@ -23,7 +29,7 @@ type RootStackParamList = {
   MyCars: undefined;
   SignIn: undefined;
   SignUpStepOne: undefined;
-  SignUpStepTwo: undefined;
+  SignUpStepTwo: { user: SignUpStepTwoUserData };
 };
 
 declare global {

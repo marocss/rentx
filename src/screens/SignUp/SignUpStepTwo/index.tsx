@@ -1,5 +1,6 @@
+import { useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Keyboard, Pressable } from 'react-native';
+import { Alert, Keyboard, Pressable } from 'react-native';
 import { useTheme } from 'styled-components';
 import { BackButton } from '../../../components/BackButton';
 import BulletIndicator from '../../../components/BulletIndicator';
@@ -16,17 +17,41 @@ import {
   InputSection,
 } from './styles';
 
+interface SignUpStepTwoRouteParams {
+  name: string;
+  email: string;
+  driversLicense: string;
+}
+
 const SignUpStepTwo = () => {
   // eslint-disable-next-line no-unused-vars
   const [_, setWasActivated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+
+  const route = useRoute();
+  const { user } = route.params as SignUpStepTwoRouteParams;
+  console.log(user);
 
   const theme = useTheme();
+
+  const handleSignUp = () => {
+    if (!password || !passwordConfirmation) {
+      return Alert.alert('Password is required');
+    }
+    if (password !== passwordConfirmation) {
+      return Alert.alert('Passwords do not match');
+    }
+
+    // sign up the user
+  };
 
   return (
     <Pressable onPress={Keyboard.dismiss}>
       <Container>
         <Header>
           <BackButton />
+
           <BulletIndicatorSection>
             <BulletIndicator />
             <BulletIndicator active />
@@ -42,8 +67,8 @@ const SignUpStepTwo = () => {
                 iconName="lock"
                 placeholder="Password"
                 keyboardType="default"
-                // onChangeText={setPassword}
-                // value={password}
+                onChangeText={setPassword}
+                value={password}
                 secureTextEntry
                 isPassword
                 setWasActivated={setWasActivated}
@@ -52,15 +77,20 @@ const SignUpStepTwo = () => {
                 iconName="lock"
                 placeholder="Repeat password"
                 keyboardType="default"
-                // onChangeText={setPassword}
-                // value={password}
+                onChangeText={setPasswordConfirmation}
+                value={passwordConfirmation}
                 secureTextEntry
                 isPassword
                 setWasActivated={setWasActivated}
               />
             </InputSection>
 
-            <Button color={theme.colors.correct} title="Sign up" />
+            <Button
+              color={theme.colors.correct}
+              title="Sign up"
+              onPress={handleSignUp}
+              disabled={!(password !== '' && passwordConfirmation !== '')}
+            />
           </Form>
         </Main>
       </Container>
