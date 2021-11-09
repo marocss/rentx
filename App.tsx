@@ -12,6 +12,8 @@ import {
   Inter_500Medium,
 } from '@expo-google-fonts/inter';
 
+import AppProvider from './src/hooks';
+
 import theme from './src/styles/theme';
 import { Routes } from './src/routes';
 
@@ -30,7 +32,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
     </ThemeProvider>
   );
 }

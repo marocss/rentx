@@ -5,10 +5,9 @@ import {
 import { useTheme } from 'styled-components';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { MaterialIcons } from '@expo/vector-icons';
-
 import * as Yup from 'yup';
-
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../hooks/auth';
 import { Button } from '../../components/Button';
 import Input from '../../components/Input';
 
@@ -35,15 +34,17 @@ export const SignIn = () => {
   const [wasActivated, setWasActivated] = useState(false);
 
   const theme = useTheme();
+  const iconColor = theme.colors.text;
+
   const { navigate } = useNavigation();
 
-  const iconColor = theme.colors.text;
+  const { signIn } = useAuth();
 
   const handleSignIn = async () => {
     try {
       await schema.validate({ email, password });
 
-      // log user in
+      signIn({ email, password });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         Alert.alert(error.message);
@@ -84,31 +85,11 @@ export const SignIn = () => {
               backgroundColor="transparent"
             />
 
-            {/* { isLoginIn && (
-            <CancelSignInButton onPress={handleCancelSignIn}>
-              <MaterialIcons
-                name="chevron-left"
-                size={24}
-                color={iconColor}
-              />
-            </CancelSignInButton>
-          ) } */}
-
             <Header>
               { !wasActivated && (
-                <>
-                  <Title>
-                    Almost
-                    {'\n'}
-                    there.
-                  </Title>
-                </>
+                <Title>{'Almost\nthere.'}</Title>
               )}
-              <Subtitle>
-                Log in to start having
-                {'\n'}
-                an amazing experience.
-              </Subtitle>
+              <Subtitle>{'Log in to start having\nan amazing experience.'}</Subtitle>
             </Header>
 
             <InputSection isLoginIn={wasActivated}>
