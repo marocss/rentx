@@ -8,11 +8,11 @@ import { ConfirmSchedule } from '../screens/ConfirmSchedule';
 import { Home } from '../screens/Home';
 import { RentalPeriod, Schedule } from '../screens/Schedule';
 import { MyCars } from '../screens/MyCars';
-import { Splash } from '../screens/Splash';
-import { SignIn } from '../screens/SignIn';
+// import { Splash } from '../screens/Splash';
+// import { SignIn } from '../screens/SignIn';
 // import { CalendarMarkedDatesProps } from '../components/Calendar';
-import SignUpStepOne from '../screens/SignUp/SignUpStepOne';
-import SignUpStepTwo from '../screens/SignUp/SignUpStepTwo';
+// import SignUpStepOne from '../screens/SignUp/SignUpStepOne';
+// import SignUpStepTwo from '../screens/SignUp/SignUpStepTwo';
 
 interface SignUpStepTwoUserData {
   name: string;
@@ -48,31 +48,18 @@ declare global {
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-export const StackRoutes = () => {
+export const AppStackRoutes = () => {
   return (
     <Navigator
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="SignIn"
+      initialRouteName="Home"
     >
-
-      <Screen
-        name="SignIn"
-        component={SignIn}
-      />
-      <Screen
-        name="SignUpStepOne"
-        component={SignUpStepOne}
-      />
-      <Screen
-        name="SignUpStepTwo"
-        component={SignUpStepTwo}
-      />
-      <Screen
+      {/* <Screen
         name="Splash"
         component={Splash}
-      />
+      /> */}
       <Screen
         name="Home"
         component={Home}
