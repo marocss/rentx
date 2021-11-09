@@ -119,11 +119,11 @@ export const Car = () => {
           </CarInfoSection>
 
           <RentInfoSection>
-            <Period>{car.rent.period}</Period>
+            <Period>{car.period}</Period>
             <Price>
               R$
               {' '}
-              {car.rent.price}
+              {car.price}
             </Price>
           </RentInfoSection>
         </FirstSection>

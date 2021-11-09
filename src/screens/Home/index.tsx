@@ -103,11 +103,11 @@ export const Home = () => {
         <Logo />
         { !isLoading
           && (
-          <CarQuantity>
-            {cars.length}
-            {' '}
-            cars available
-          </CarQuantity>
+            <CarQuantity>
+              {cars.length}
+              {' '}
+              cars available
+            </CarQuantity>
           )}
       </Header>
 
@@ -119,8 +119,8 @@ export const Home = () => {
             <CarCard
               brand={item.brand}
               name={item.name}
-              period={item.rent.period}
-              price={item.rent.price}
+              period={item.period}
+              price={item.price}
               thumbnail={item.thumbnail}
               icon={item.fuel_type}
               onPress={() => handleCarCard(item)}
@@ -142,15 +142,15 @@ export const Home = () => {
         >
           <AnimatedButton
             style={
-            {
-              width: 58,
-              height: 58,
-              borderRadius: 29,
-              backgroundColor: theme.colors.main,
-              justifyContent: 'center',
-              alignItems: 'center',
+              {
+                width: 58,
+                height: 58,
+                borderRadius: 29,
+                backgroundColor: theme.colors.main,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }
             }
-          }
             onPress={handleOpenMyCars}
           >
             <Ionicons name="ios-car-sport" size={32} color={theme.colors.white} />

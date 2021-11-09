@@ -6,6 +6,10 @@ interface ImageIndexProps {
   active: boolean;
 }
 
+interface CarPhotos {
+  id: string;
+  photo: string;
+}
 // interface CarouselProps {
 //   imagesUrls: string[];
 // }
@@ -29,7 +33,7 @@ export const ImageIndex = styled.View<ImageIndexProps>`
 };
 `;
 
-export const PicturesList = styled(FlatList as new () => FlatList<string>).attrs({
+export const PicturesList = styled(FlatList as new () => FlatList<CarPhotos>).attrs({
   contentContainerStyle: {
     // padding: 24,
     // paddingTop: 16

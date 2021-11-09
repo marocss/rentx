@@ -12,8 +12,13 @@ import {
   PicturesList,
 } from './styles';
 
+interface CarPhotos {
+  id: string;
+  photo: string;
+}
+
 interface CarouselProps {
-  imagesUrls: string[];
+  imagesUrls: CarPhotos[];
 }
 
 // interface onViewableItemsChangedProps {
@@ -43,17 +48,17 @@ export const Carousel = ({ imagesUrls }: CarouselProps) => {
   return (
     <Container>
       <Indexes>
-        {imagesUrls.map((image, index) => (
-          <ImageIndex key={image} active={index === currentImageIndex} />
+        {imagesUrls.map((item, index) => (
+          <ImageIndex key={item.id} active={index === currentImageIndex} />
         ))}
       </Indexes>
 
       <PicturesList
         data={imagesUrls}
-        keyExtractor={(item) => item}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <PictureSection>
-            <Picture source={{ uri: item }} resizeMode="contain" />
+            <Picture source={{ uri: item.photo }} resizeMode="contain" />
           </PictureSection>
         )}
         horizontal
