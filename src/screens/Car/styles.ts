@@ -90,5 +90,5 @@ export const Description = styled.Text`
 export const Footer = styled.View`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.background_one};
-  padding: ${RFValue(21)}px ${RFValue(21)}px ${RFValue(8 + 21)}px;
+  padding: ${RFValue(21)}px ${RFValue(21)}px ${RFValue(15)}px;
 `;

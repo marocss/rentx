@@ -122,11 +122,11 @@ export const ConfirmSchedule = () => {
           </CarInfoSection>
 
           <RentInfoSection>
-            <Period>{car.rent.period}</Period>
+            <Period>{car.period}</Period>
             <Price>
               R$
               {' '}
-              {car.rent.price}
+              {car.price}
             </Price>
           </RentInfoSection>
         </FirstSection>
@@ -192,7 +192,7 @@ export const ConfirmSchedule = () => {
             <Installments>
               R$
               {' '}
-              {car.rent.price}
+              {car.price}
               {' '}
               x
               {rentalPeriod.totalNumberOfDays}
@@ -202,7 +202,7 @@ export const ConfirmSchedule = () => {
             <Cost>
               R$
               {' '}
-              {car.rent.price * rentalPeriod.totalNumberOfDays}
+              {car.price * rentalPeriod.totalNumberOfDays}
             </Cost>
           </PriceDetailsSection>
         </PriceSection>

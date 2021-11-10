@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -52,6 +52,8 @@ export const Car = () => {
   // animated
   const scrollY = useSharedValue(0);
 
+  // TODO: fix bug: when scrolling up if content is not big enough to fill whole screen
+  // the animated ScrollView flickers | fixed: bug was cause because of ScrollView bounce
   const headerStyleAnimated = useAnimatedStyle(() => {
     return {
       height: interpolate(
@@ -111,6 +113,7 @@ export const Car = () => {
         showsVerticalScrollIndicator={false}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
+        bounces={false}
       >
         <FirstSection>
           <CarInfoSection>
@@ -148,10 +151,6 @@ export const Car = () => {
         </SpecificationSection>
 
         <Description>
-          {car.about}
-          {car.about}
-          {car.about}
-          {car.about}
           {car.about}
         </Description>
       </Animated.ScrollView>
