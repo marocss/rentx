@@ -67,30 +67,29 @@ export const Home = () => {
   // };
 
   useEffect(() => {
+    let isMounted = true;
+
     (async () => {
       try {
         const response = await api.get<CarDTO[]>('cars');
 
-        setCars(response.data);
-        setIsLoading(false);
+        if (isMounted) {
+          setCars(response.data);
+          setIsLoading(false);
+        }
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error);
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     })();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
-
-  // useEffect(() => {
-  //   // avoid going back to splash screen
-  //   const eventListener = BackHandler.addEventListener('hardwareBackPress', () => {
-  //     return true;
-  //   });
-
-  //   return () => {
-  //     eventListener.remove();
-  //   };
-  // }, []);
 
   return (
     <Container>
