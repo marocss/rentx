@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   KeyboardAvoidingView, StatusBar, Pressable, Keyboard, Alert, Platform,
 } from 'react-native';
@@ -10,8 +10,6 @@ import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../hooks/auth';
 import { Button } from '../../components/Button';
 import Input from '../../components/Input';
-
-import { database } from '../../database';
 
 import {
   Container,
@@ -66,16 +64,6 @@ export const SignIn = () => {
   const handleSignUp = () => {
     navigate('SignUpStepOne');
   };
-
-  useEffect(() => {
-    (async () => {
-      const userCollection = database.get('users');
-      const users = await userCollection.query().fetch();
-
-      // eslint-disable-next-line no-console
-      console.log('users', users);
-    })();
-  }, []);
 
   return (
     <>

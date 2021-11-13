@@ -45,7 +45,7 @@ export const Routes = () => {
 
   return (
     <NavigationContainer>
-      { user ? (
+      { user.id ? (
         <AppTabRoutes />
       ) : (
         <AuthRoutes />

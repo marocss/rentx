@@ -1,16 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React, { createContext, useState, useContext } from 'react';
+import React, {
+  createContext, useState, useContext, useEffect,
+} from 'react';
+import { database } from '../database';
+import { User as UserModel } from '../database/model/User';
 import { api } from '../services/api';
 
 interface User {
   id: string;
+  user_id: string;
   email: string;
   name: string;
   driver_license: string;
   avatar: string;
+  token: string;
 }
 
-interface Auth {
+interface AuthResponse {
   token: string;
   user: User;
 }
@@ -37,20 +43,60 @@ const useAuth = (): AuthContextData => {
 };
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [data, setData] = useState<Auth>({} as Auth);
+  const [data, setData] = useState<User>({} as User);
 
   const signIn = async ({ email, password }: SignInCredentials) => {
-    const response = await api.post('sessions', { email, password });
+    try {
+      const response = await api.post('sessions', { email, password });
 
-    const { token, user } = response.data as Auth;
+      const { token, user } = response.data as AuthResponse;
 
-    api.defaults.headers.common.Authorization = `Bearer ${token}`;
+      // eslint-disable-next-line dot-notation
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-    setData({ token, user });
+      const userCollection = database.get<UserModel>('users');
+      await database.write(async () => {
+        await userCollection.create((newUser) => {
+          // eslint-disable-next-line no-param-reassign
+          newUser.id = user.id;
+          // eslint-disable-next-line no-param-reassign
+          newUser.name = user.name;
+          // eslint-disable-next-line no-param-reassign
+          newUser.email = user.email;
+          // eslint-disable-next-line no-param-reassign
+          newUser.driver_license = user.driver_license;
+          // eslint-disable-next-line no-param-reassign
+          newUser.token = token;
+        });
+      });
+
+      setData({ ...user, token });
+    } catch (error: any) {
+      throw new Error(error);
+    }
   };
 
+  useEffect(() => {
+    (async () => {
+      const userCollection = database.get<UserModel>('users');
+      const response = await userCollection.query().fetch();
+      // eslint-disable-next-line no-console
+      console.log('watermelondb response: ', response);
+
+      if (response.length > 0) {
+        // has user
+        // eslint-disable-next-line no-underscore-dangle
+        const userData = response[0]._raw as unknown as UserModel;
+        // eslint-disable-next-line dot-notation
+        api.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`;
+
+        setData(userData);
+      }
+    })();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn }}>
+    <AuthContext.Provider value={{ user: data, signIn }}>
       {children}
     </AuthContext.Provider>
   );
