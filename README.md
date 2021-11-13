@@ -7,6 +7,7 @@
 * [expo](https://expo.dev)
 * [typescript](https://www.typescriptlang.org)
 * [styled components](https://styled-components.com)
+* [watermelon db](https://nozbe.github.io/WatermelonDB/)
 * [react navigation](https://reactnavigation.org)
 * [axios](https://axios-http.com)
 * [react native reanimated](https://docs.swmansion.com/react-native-reanimated/)
@@ -24,10 +25,15 @@ https://user-images.githubusercontent.com/34945925/139514557-506d8ed3-11a6-4208-
   * `git clone https://github.com/marocss/rentx.git`
 * install dependencies
   * `yarn` or `npm install`
-* run the fake api
-  * `yarn api`
-* run project
-  * `expo start`
+* run the api
+  * clone  
+    * `git clone https://github.com/rodrigorgtic/rentx-api-ignite.git`
+  * install dependencies  
+    * `yarn`
+  * run  
+    * `yarn start`
+* run project using react-native cli (watermelonDB not compatible with expo)
+  * `yarn ios` or `yarn android`
 
 ## Acknowledgments
 > This project was developed at Rocketseat's Bootcamp Ignite - Chapter 03.
