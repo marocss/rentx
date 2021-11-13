@@ -1,51 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Platform } from 'react-native';
 
 import { useTheme } from 'styled-components';
 import { AppStackRoutes } from './app.stack.routes';
 
-// import { CarDTO } from '../dtos/CarDTO';
-import { Home } from '../screens/Home';
-// import { RentalPeriod } from '../screens/Schedule';
 import { MyCars } from '../screens/MyCars';
 
 import HomeSvg from '../assets/home.svg';
 import CarSvg from '../assets/car.svg';
 import PeopleSvg from '../assets/people.svg';
 import Profile from '../screens/Profile';
-
-// interface SignUpStepTwoUserData {
-//   name: string;
-//   email: string;
-//   driversLicense: string;
-// }
-
-// interface SuccessData {
-//   title: string;
-//   message: string;
-//   nextScreenRoute: 'Home' | 'SignIn';
-// }
-
-// type RootStackParamList = {
-//   Home: undefined;
-//   Car: { car: CarDTO };
-//   Schedule: { car: CarDTO };
-//   ConfirmSchedule: { car: CarDTO, rentalPeriod: RentalPeriod };
-//   Success: SuccessData;
-//   MyCars: undefined;
-//   SignIn: undefined;
-//   SignUpStepOne: undefined;
-//   SignUpStepTwo: { user: SignUpStepTwoUserData };
-// };
-
-// declare global {
-//   // eslint-disable-next-line no-unused-vars
-//   namespace ReactNavigation {
-//     // eslint-disable-next-line no-unused-vars
-//     interface RootParamList extends RootStackParamList {}
-//   }
-// }
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
