@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Feather } from '@expo/vector-icons';
@@ -14,9 +14,15 @@ import {
   Avatar,
   AddAvatarButton,
   Main,
+  Menu,
+  Option,
+  OptionTitle,
+
 } from './styles';
 
 const Profile = () => {
+  const [option, setOption] = useState<'info' | 'password'>('info');
+
   const theme = useTheme();
 
   const handleSignOut = () => {
@@ -41,6 +47,14 @@ const Profile = () => {
         </AvatarContainer>
       </Header>
       <Main>
+        <Menu>
+          <Option active={option === 'info'} style={{ marginRight: 24 }} onPress={() => setOption('info')}>
+            <OptionTitle active={option === 'info'}>Info</OptionTitle>
+          </Option>
+          <Option active={option === 'password'} onPress={() => setOption('password')}>
+            <OptionTitle active={option === 'password'}>Update password</OptionTitle>
+          </Option>
+        </Menu>
 
       </Main>
     </Container>

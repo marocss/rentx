@@ -1,5 +1,10 @@
+import { View, Text, Pressable } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
+
+interface OptionsProps {
+  active: boolean;
+}
 
 export const Container = styled.View`
   flex: 1;
@@ -8,7 +13,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   width: 100%;
-  /* flex: 1; */
+  /* flex: 2; */
   height: 227px;
   padding: 50px 12px;
   background-color: ${({ theme }) => theme.colors.header};
@@ -58,5 +63,28 @@ export const AddAvatarButton = styled.Pressable`
 `;
 
 export const Main = styled.View`
-  /* flex: 5; */
+  flex: 1;
+  /* flex: 6; */
+  margin-top: 122px;
+  padding: 0px 24px;
+  /* background-color: orange; */
+`;
+
+export const Menu = styled.View`
+  border-bottom-width: 1px;
+  border-bottom-color: ${({ theme }) => theme.colors.line};
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const Option = styled(Pressable)<OptionsProps>`
+  border-bottom-width: 2px;
+  border-bottom-color: ${({ theme, active }) => (active ? theme.colors.main : 'transparent')};
+  padding-bottom: 14px;
+`;
+
+export const OptionTitle = styled(Text)<OptionsProps>`
+  font-size: ${RFValue(18)}px;
+  font-family: ${({ theme, active }) => (active ? theme.fonts.secondary_bold : theme.fonts.secondary_regular)};
+  color: ${({ theme, active }) => (active ? theme.colors.title : theme.colors.text_light)};
 `;
