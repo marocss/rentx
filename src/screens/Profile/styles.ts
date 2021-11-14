@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native';
+import { Text, Pressable } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
@@ -6,8 +6,8 @@ interface OptionsProps {
   active: boolean;
 }
 
-export const Container = styled.View`
-  flex: 1;
+export const Container = styled.ScrollView`
+  /* flex: 1; */
   background-color: ${({ theme }) => theme.colors.background_one};
 `;
 
@@ -63,7 +63,7 @@ export const AddAvatarButton = styled.Pressable`
 `;
 
 export const Main = styled.View`
-  flex: 1;
+  /* flex: 1; */
   /* flex: 6; */
   margin-top: 122px;
   padding: 0px 24px;
@@ -74,7 +74,9 @@ export const Menu = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.colors.line};
   flex-direction: row;
+  /* background-color: ${({ theme }) => theme.colors.background_one}; */
   justify-content: center;
+  margin-bottom: 24px;
 `;
 
 export const Option = styled(Pressable)<OptionsProps>`
@@ -87,4 +89,7 @@ export const OptionTitle = styled(Text)<OptionsProps>`
   font-size: ${RFValue(18)}px;
   font-family: ${({ theme, active }) => (active ? theme.fonts.secondary_bold : theme.fonts.secondary_regular)};
   color: ${({ theme, active }) => (active ? theme.colors.title : theme.colors.text_light)};
+`;
+
+export const InputSection = styled.View`
 `;
