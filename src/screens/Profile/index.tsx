@@ -25,7 +25,7 @@ import {
 } from './styles';
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   const [option, setOption] = useState<'info' | 'password'>('info');
   const [name, setName] = useState(user.name);
@@ -40,7 +40,7 @@ const Profile = () => {
   const theme = useTheme();
 
   const handleSignOut = () => {
-
+    signOut();
   };
 
   const handleAvatarUpdate = async () => {
