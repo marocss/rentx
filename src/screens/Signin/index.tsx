@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import {
-  KeyboardAvoidingView, StatusBar, Pressable, Keyboard, Alert, Platform,
+  KeyboardAvoidingView,
+  StatusBar,
+  Pressable,
+  Keyboard,
+  Alert,
+  Platform,
 } from 'react-native';
 import { useTheme } from 'styled-components';
 // eslint-disable-next-line import/no-extraneous-dependencies

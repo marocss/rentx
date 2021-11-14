@@ -7,7 +7,6 @@ interface OptionsProps {
 }
 
 export const Container = styled.ScrollView`
-  /* flex: 1; */
   background-color: ${({ theme }) => theme.colors.background_one};
 `;
 
@@ -63,18 +62,14 @@ export const AddAvatarButton = styled.Pressable`
 `;
 
 export const Main = styled.View`
-  /* flex: 1; */
-  /* flex: 6; */
   margin-top: 122px;
   padding: 0px 24px;
-  /* background-color: orange; */
 `;
 
 export const Menu = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.colors.line};
   flex-direction: row;
-  /* background-color: ${({ theme }) => theme.colors.background_one}; */
   justify-content: center;
   margin-bottom: 24px;
 `;

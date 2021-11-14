@@ -48,17 +48,11 @@ export const CarCard = ({
         <About>
           <RentInfo>
             <Period>{period}</Period>
-            <Price>
-              R$
-              {' '}
-              {price}
-            </Price>
+            <Price>{`R$ ${price}`}</Price>
           </RentInfo>
 
           <FuelType>
-            <Icon
-              color={theme.colors.text_light}
-            />
+            <Icon color={theme.colors.text_light} />
           </FuelType>
         </About>
       </InfoSection>

@@ -24,7 +24,6 @@ export const AppTabRoutes = () => {
         tabBarShowLabel: false,
         tabBarStyle: {
           height: 78,
-          // paddingVertical: Platform.OS === 'ios' ? 20 : 0,
           backgroundColor: theme.colors.background_one,
           alignContent: 'center',
         },
@@ -52,7 +51,7 @@ export const AppTabRoutes = () => {
       />
       <Screen
         name="Profile"
-        component={Profile} // update component later
+        component={Profile}
         options={{
           tabBarIcon: ({ color }) => (
             <PeopleSvg width={24} height={24} color={color} />

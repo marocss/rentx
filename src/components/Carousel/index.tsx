@@ -21,24 +21,11 @@ interface CarouselProps {
   imagesUrls: CarPhotos[];
 }
 
-// interface onViewableItemsChangedProps {
-//   viewableItems: ViewToken[];
-//   changed: ViewToken[]
-// }
-
 export const Carousel = ({ imagesUrls }: CarouselProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // const handleOnViewableItemsChanged = useRef(((info: onViewableItemsChangedProps) => {
-  //   // console.log(info);
-  //   const index = info.viewableItems[0].index!
-  //   setCurrentImageIndex(index)
-  // }))
-
-  // my way: using onScroll
   const handleOnScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     // use X offset with width to figure out which image is being displayed
-    // console.log(event.nativeEvent.contentOffset);
     const { width } = Dimensions.get('window');
     const currentIndex = Math.round(event.nativeEvent.contentOffset.x / width);
 

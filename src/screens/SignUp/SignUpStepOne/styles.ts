@@ -48,7 +48,6 @@ export const Subtitle = styled.Text`
 `;
 
 export const Form = styled.View<FormProps>`
-  /* margin-top: ${RFValue(65)}; */
   margin-top: ${({ wasActivated }) => (wasActivated ? RFValue(30) : RFValue(65))}px;
 `;
 
@@ -61,7 +60,6 @@ export const FormTitle = styled.Text`
 
 export const InputSection = styled.View<FormProps>`
   margin-top: 24px;
-  /* margin-bottom: 8px; */
   margin-bottom: ${({ wasActivated }) => (wasActivated ? 16 : 8)}px;
 
 `;

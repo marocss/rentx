@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Calendar as RNCalendar,
-  // LocaleConfig,
-} from 'react-native-calendars';
+import { Calendar as RNCalendar } from 'react-native-calendars';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
@@ -23,14 +20,6 @@ interface CalendarMarkedDatesProps {
     disableTouchEvent?: boolean;
   }
 }
-
-// export declare type DateData = {
-//   year: number;
-//   month: number;
-//   day: number;
-//   timestamp: number;
-//   dateString: string;
-// };
 
 interface CalendarDayProps {
   year: number;

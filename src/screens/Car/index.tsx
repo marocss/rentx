@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -49,11 +49,10 @@ export const Car = () => {
   const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex);
   const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex);
 
-  // animated
   const scrollY = useSharedValue(0);
 
   // TODO: fix bug: when scrolling up if content is not big enough to fill whole screen
-  // the animated ScrollView flickers | fixed: bug was cause because of ScrollView bounce
+  // the app crashes
   const headerStyleAnimated = useAnimatedStyle(() => {
     return {
       height: interpolate(
@@ -71,19 +70,7 @@ export const Car = () => {
     };
   });
 
-  // const carouselStyleAnimated = useAnimatedStyle(() => {
-  //   return {
-  //     opacity: interpolate(
-  //       scrollY.value,
-  //       [0, 125],
-  //       [1, 0],
-  //       Extrapolate.CLAMP
-  //     )
-  //   }
-  // })
-
   const scrollHandler = useAnimatedScrollHandler((event) => {
-    // console.log(event.contentOffset.y); // user scroll position
     scrollY.value = event.contentOffset.y;
   });
 
@@ -123,11 +110,7 @@ export const Car = () => {
 
           <RentInfoSection>
             <Period>{car.period}</Period>
-            <Price>
-              R$
-              {' '}
-              {car.price}
-            </Price>
+            <Price>{`R$ ${car.price}`}</Price>
           </RentInfoSection>
         </FirstSection>
 

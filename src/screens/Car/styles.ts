@@ -12,7 +12,6 @@ export const Header = styled.View`
   align-items: center;
   margin-top: ${RFValue(44)}px;
   margin-left: ${RFValue(11)}px;
-  /* background-color: orange; */
   `;
 
 export const CarouselSection = styled.View`

@@ -6,7 +6,6 @@ interface InputSectionProps {
 }
 
 export const Container = styled.View`
-  /* flex: 1; */
   padding: 0 24px;
   background-color: ${({ theme }) => theme.colors.background_one};
 `;
@@ -45,7 +44,6 @@ export const InputSection = styled.View<InputSectionProps>`
   width: 100%;
 
   ${({ isLoginIn }) => (isLoginIn ? css`
-    /* margin-bottom: ${RFValue(20)}px; */
     margin-top: ${RFValue(20)}px;
   ` : css`
     margin: ${RFValue(60)}px 0px;

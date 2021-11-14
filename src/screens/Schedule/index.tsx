@@ -103,10 +103,6 @@ const Schedule = () => {
     const interval = generateInterval(startDate, endDate);
     setMarkedDates(interval);
 
-    // const firstDate = Object.keys(interval)[0]
-    // const lastDate = Object.keys(interval)[Object.keys(interval).length - 1]
-
-    // console.log(interval)
     setRentalPeriod({
       startDateFormatted: format(addDays(new Date(startDate.timestamp), 1), 'dd/MM/yyyy'),
       endDateFormatted: format(addDays(new Date(endDate.timestamp), 1), 'dd/MM/yyyy'),
@@ -116,6 +112,7 @@ const Schedule = () => {
   };
 
   useEffect(() => {
+    // TODO: get dates already unavailable from api
     // const response = await api.get<ScheduleByCarsDTO>(`schedules_bycars/${car.id}`)
 
     //   const unavailable_dates = [
@@ -141,11 +138,7 @@ const Schedule = () => {
         />
 
         <Title>
-          Choose the
-          {'\n'}
-          period you would
-          {'\n'}
-          like to rent
+          {'Choose the\nperiod you would\nlike to rent'}
         </Title>
 
         <PeriodSection>

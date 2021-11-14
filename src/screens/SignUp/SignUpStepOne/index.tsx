@@ -45,8 +45,6 @@ const SignUpStepOne = () => {
       if (error instanceof yup.ValidationError) {
         return Alert.alert(error.message);
       }
-      // eslint-disable-next-line no-console
-      console.log(error);
     }
   };
 
@@ -67,17 +65,8 @@ const SignUpStepOne = () => {
         <Main>
           { !wasActivated && (
             <MainHeader>
-              <Title>
-                Create your
-                {'\n'}
-                account
-              </Title>
-
-              <Subtitle>
-                Sign up in a
-                {'\n'}
-                fast and easy way
-              </Subtitle>
+              <Title>{'Create your\naccount'}</Title>
+              <Subtitle>{'Sign up in a\nfast and easy way'}</Subtitle>
             </MainHeader>
           )}
 
@@ -102,7 +91,6 @@ const SignUpStepOne = () => {
                 value={email}
                 onChangeText={setEmail}
               />
-              {/* cnh */}
               <Input
                 iconName="credit-card"
                 placeholder="DL"

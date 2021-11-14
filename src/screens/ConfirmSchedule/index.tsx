@@ -56,7 +56,6 @@ export const ConfirmSchedule = () => {
   const route = useRoute();
   const { car, rentalPeriod } = route.params as RouteParams;
 
-  // console.log(car.id)
   const { dates } = rentalPeriod;
 
   const handleRentRequest = async () => {
@@ -87,8 +86,6 @@ export const ConfirmSchedule = () => {
         nextScreenRoute: 'Home',
       });
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
       setIsLoading(false);
       Alert.alert('Sorry', 'An error occurred during confirmation. Please try again later.');
     }
@@ -123,11 +120,7 @@ export const ConfirmSchedule = () => {
 
           <RentInfoSection>
             <Period>{car.period}</Period>
-            <Price>
-              R$
-              {' '}
-              {car.price}
-            </Price>
+            <Price>{`R$ ${car.price}`}</Price>
           </RentInfoSection>
         </FirstSection>
 
@@ -149,16 +142,6 @@ export const ConfirmSchedule = () => {
             />
           ))}
         </SpecificationSection>
-
-        {/* <SpecificationSection>
-        {car.accessories.map(accessory => (
-            <SpecificationCard
-              key={accessory.type}
-              name={accessory.name}
-              icon={getRelatedSvgIcon(accessory.type)}
-            />
-          ))}
-        </SpecificationSection> */}
 
         <ScheduleDateInfoSection>
           <CalendarIconSection>
@@ -190,19 +173,10 @@ export const ConfirmSchedule = () => {
           <PriceLabel>TOTAL</PriceLabel>
           <PriceDetailsSection>
             <Installments>
-              R$
-              {' '}
-              {car.price}
-              {' '}
-              x
-              {rentalPeriod.totalNumberOfDays}
-              {' '}
-              days
+              {`R$ ${car.price} x ${rentalPeriod.totalNumberOfDays} days`}
             </Installments>
             <Cost>
-              R$
-              {' '}
-              {car.price * rentalPeriod.totalNumberOfDays}
+              {`R$ ${car.price * rentalPeriod.totalNumberOfDays}`}
             </Cost>
           </PriceDetailsSection>
         </PriceSection>

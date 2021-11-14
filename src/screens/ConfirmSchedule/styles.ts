@@ -1,4 +1,3 @@
-// import { Platform } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
@@ -29,7 +28,6 @@ export const Main = styled.ScrollView.attrs({
   },
   showsVerticalScrollIndicator: false,
 })`
- 
 `;
 
 export const FirstSection = styled.View`

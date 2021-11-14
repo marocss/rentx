@@ -96,8 +96,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     (async () => {
       const userCollection = database.get<UserModel>('users');
       const response = await userCollection.query().fetch();
-      // eslint-disable-next-line no-console
-      // console.log('watermelondb response: ', response);
 
       if (response.length > 0) {
         // has user

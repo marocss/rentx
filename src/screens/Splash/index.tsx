@@ -3,18 +3,16 @@ import React, { useEffect } from 'react';
 import Animated, {
   Extrapolate,
   interpolate,
-  useAnimatedStyle, useSharedValue, withTiming, runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  runOnJS,
 } from 'react-native-reanimated';
 
 import BrandSvg from '../../assets/brand.svg';
 import LogoSvg from '../../assets/logo.svg';
 
-import {
-  Container,
-} from './styles';
-
-// interface SplashProps {
-// }
+import { Container } from './styles';
 
 export const Splash = () => {
   const splashAnimation = useSharedValue(0);

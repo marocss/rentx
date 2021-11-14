@@ -96,7 +96,6 @@ const Profile = () => {
                   autoCapitalize="words"
                   value={name}
                   onChangeText={setName}
-                  // defaultValue={user.name}
                 />
                 <Input
                   iconName="mail"

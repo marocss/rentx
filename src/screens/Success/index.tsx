@@ -28,7 +28,6 @@ export const Success = () => {
   const { title, message, nextScreenRoute } = route.params as SuccessRouteParams;
 
   const handleOkButton = () => {
-    // navigate('Home');
     navigate(nextScreenRoute);
   };
 
@@ -45,16 +44,7 @@ export const Success = () => {
       <Main>
         <DoneSvg />
 
-        {/* <Title>Successfully Rented!</Title> */}
         <Title>{title}</Title>
-
-        {/* <Body>
-          Now you just need to go
-          {'\n'}
-          to the RENTX dealership and
-          {'\n'}
-          get your vehicle.
-        </Body> */}
         <Body>{message}</Body>
 
         <SmallButton text="Ok" onPress={handleOkButton} />

@@ -48,7 +48,7 @@ export const MyCars = () => {
         setCars(response.data);
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.log(error);
+        // console.log(error);
       } finally {
         setIsLoading(false);
       }
@@ -67,15 +67,9 @@ export const MyCars = () => {
           color={theme.colors.white}
         />
 
-        <Title>
-          Your scheduled cars
-          {'\n'}
-          are here.
-        </Title>
+        <Title>{'Your scheduled cars\nare here.'}</Title>
 
-        <Subtitle>
-          Practical. Comfortable. Safe.
-        </Subtitle>
+        <Subtitle>Practical. Comfortable. Safe.</Subtitle>
       </Header>
 
       { isLoading ? (
@@ -95,8 +89,8 @@ export const MyCars = () => {
                 <CarCard
                   brand={item.car.brand}
                   name={item.car.name}
-                  period={item.car.rent.period}
-                  price={item.car.rent.price}
+                  period={item.car.period}
+                  price={item.car.price}
                   thumbnail={item.car.thumbnail}
                   icon={item.car.fuel_type}
                 />

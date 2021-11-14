@@ -10,9 +10,6 @@ interface CarPhotos {
   id: string;
   photo: string;
 }
-// interface CarouselProps {
-//   imagesUrls: string[];
-// }
 
 export const Container = styled.View`
   width: 100%;
@@ -35,21 +32,13 @@ export const ImageIndex = styled.View<ImageIndexProps>`
 
 export const PicturesList = styled(FlatList as new () => FlatList<CarPhotos>).attrs({
   contentContainerStyle: {
-    // padding: 24,
-    // paddingTop: 16
   },
   showsHorizontalScrollIndicator: false,
 })`
-  /* width: ${Dimensions.get('window').width}px;
-  height: ${RFValue(165)}px;
-  justify-content: center;
-  align-items: center;
-  margin-top: ${RFValue(4)}px; */
 `;
 
 export const PictureSection = styled.View`
   width: ${Dimensions.get('window').width}px;
-  /* height: ${RFValue(165)}px; */
   height: 186px;
   justify-content: center;
   align-items: center;
