@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, Pressable, Keyboard } from 'react-native';
 import { useTheme } from 'styled-components';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Feather } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 import { BackButton } from '../../components/BackButton';
 import Input from '../../components/Input';
 import { useAuth } from '../../hooks/auth';
@@ -34,12 +35,27 @@ const Profile = () => {
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [avatar, setAvatar] = useState(user.avatar ? user.avatar : 'https://images.apilist.fun/adorable_avatars_api.png');
 
   const theme = useTheme();
 
   const handleSignOut = () => {
 
   };
+
+  const handleAvatarUpdate = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setAvatar(result.uri);
+    }
+  };
+
   return (
     <KeyboardAvoidingView behavior="position" enabled>
       <Pressable onPress={Keyboard.dismiss}>
@@ -54,8 +70,8 @@ const Profile = () => {
             </HeaderTop>
 
             <AvatarContainer>
-              <Avatar source={{ uri: 'https://github.com/marocss.png' }} />
-              <AddAvatarButton onPress={() => {}}>
+              <Avatar source={{ uri: avatar }} />
+              <AddAvatarButton onPress={handleAvatarUpdate}>
                 <Feather name="camera" size={24} color={theme.colors.white} />
               </AddAvatarButton>
             </AvatarContainer>
