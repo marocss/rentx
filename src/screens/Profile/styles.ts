@@ -87,4 +87,5 @@ export const OptionTitle = styled(Text)<OptionsProps>`
 `;
 
 export const InputSection = styled.View`
+  margin-bottom: 8px;
 `;

@@ -30,6 +30,7 @@ interface AuthContextData {
   user: User;
   signIn: (credentials: SignInCredentials) => Promise<void>;
   signOut: () => Promise<void>;
+  updateUser: (user: User) => Promise<void>;
 }
 
 interface AuthProviderProps {
@@ -92,6 +93,28 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  // TODO: move to a new hook to handle user data. not really related to auth
+  const updateUser = async (user: User) => {
+    try {
+      const userCollection = database.get<UserModel>('users');
+      await database.write(async () => {
+        const userSelected = await userCollection.find(user.id);
+        await userSelected.update((userData) => {
+          // eslint-disable-next-line no-param-reassign
+          userData.name = user.name;
+          // eslint-disable-next-line no-param-reassign
+          userData.driver_license = user.driver_license;
+          // eslint-disable-next-line no-param-reassign
+          userData.avatar = user.avatar;
+        });
+      });
+
+      setData(user);
+    } catch (error: any) {
+      throw new Error(error);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       const userCollection = database.get<UserModel>('users');
@@ -110,7 +133,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data, signIn, signOut }}>
+    <AuthContext.Provider value={{
+      user: data, signIn, signOut, updateUser,
+    }}
+    >
       {children}
     </AuthContext.Provider>
   );

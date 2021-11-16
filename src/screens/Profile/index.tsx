@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Pressable, Keyboard } from 'react-native';
+import {
+  KeyboardAvoidingView, Pressable, Keyboard, Alert,
+} from 'react-native';
 import { useTheme } from 'styled-components';
+import * as yup from 'yup';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
@@ -23,9 +26,15 @@ import {
   OptionTitle,
   InputSection,
 } from './styles';
+import { Button } from '../../components/Button';
+
+const schema = yup.object().shape({
+  driversLicense: yup.string().required('DL is required.'),
+  name: yup.string().required('Name is required.'),
+});
 
 const Profile = () => {
-  const { user, signOut } = useAuth();
+  const { user, signOut, updateUser } = useAuth();
 
   const [option, setOption] = useState<'info' | 'password'>('info');
   const [name, setName] = useState(user.name);
@@ -35,7 +44,7 @@ const Profile = () => {
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [avatar, setAvatar] = useState(user.avatar ? user.avatar : 'https://images.apilist.fun/adorable_avatars_api.png');
+  const [avatar, setAvatar] = useState(user.avatar);
 
   const theme = useTheme();
 
@@ -56,6 +65,34 @@ const Profile = () => {
     }
   };
 
+  const handleUserUpdate = async () => {
+    try {
+      const newData = { name, driversLicense };
+      await schema.validate(newData);
+
+      updateUser({
+        id: user.id,
+        user_id: user.user_id,
+        email: user.email,
+        name,
+        driver_license: driversLicense,
+        avatar,
+        token: user.token,
+      });
+
+      Alert.alert('Updated successfully');
+    } catch (error: any) {
+      if (error instanceof yup.ValidationError) {
+        Alert.alert(error.message);
+      }
+      Alert.alert('An error occurred. Please try again later.');
+    }
+  };
+
+  const isUpdateUserButtonDisabled = (name === user.name
+  && driversLicense === user.driver_license
+  && avatar === user.avatar);
+
   return (
     <KeyboardAvoidingView behavior="position" enabled>
       <Pressable onPress={Keyboard.dismiss}>
@@ -70,7 +107,7 @@ const Profile = () => {
             </HeaderTop>
 
             <AvatarContainer>
-              <Avatar source={{ uri: avatar }} />
+              {avatar !== '' && <Avatar source={{ uri: avatar }} />}
               <AddAvatarButton onPress={handleAvatarUpdate}>
                 <Feather name="camera" size={24} color={theme.colors.white} />
               </AddAvatarButton>
@@ -88,35 +125,38 @@ const Profile = () => {
 
             {option === 'info'
             && (
-              <InputSection>
-                <Input
-                  iconName="user"
-                  placeholder="Name"
-                  setWasActivated={() => {}}
-                  autoCapitalize="words"
-                  value={name}
-                  onChangeText={setName}
-                />
-                <Input
-                  iconName="mail"
-                  placeholder="Email"
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  onChangeText={() => {}}
-                  value={email}
-                  setWasActivated={() => {}}
-                  editable={false}
-                />
-                <Input
-                  iconName="credit-card"
-                  placeholder="DL"
-                  setWasActivated={() => {}}
-                  autoCapitalize="none"
-                  keyboardType="numeric"
-                  value={driversLicense}
-                  onChangeText={setDriversLicense}
-                />
-              </InputSection>
+              <>
+                <InputSection>
+                  <Input
+                    iconName="user"
+                    placeholder="Name"
+                    setWasActivated={() => {}}
+                    autoCapitalize="words"
+                    value={name}
+                    onChangeText={setName}
+                  />
+                  <Input
+                    iconName="mail"
+                    placeholder="Email"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    onChangeText={() => {}}
+                    value={email}
+                    setWasActivated={() => {}}
+                    editable={false}
+                  />
+                  <Input
+                    iconName="credit-card"
+                    placeholder="DL"
+                    setWasActivated={() => {}}
+                    autoCapitalize="none"
+                    keyboardType="numeric"
+                    value={driversLicense}
+                    onChangeText={setDriversLicense}
+                  />
+                </InputSection>
+                <Button disabled={isUpdateUserButtonDisabled} title="Save changes" onPress={handleUserUpdate} />
+              </>
             )}
 
             {option === 'password'
@@ -156,7 +196,6 @@ const Profile = () => {
                 />
               </InputSection>
             )}
-
           </Main>
         </Container>
       </Pressable>
