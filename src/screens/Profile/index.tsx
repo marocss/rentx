@@ -97,8 +97,6 @@ const Profile = () => {
 
       Alert.alert('Updated successfully');
     } catch (error: any) {
-      console.log(error);
-
       if (error instanceof yup.ValidationError) {
         Alert.alert(error.message);
       }

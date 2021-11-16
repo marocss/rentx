@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+// eslint-disable-next-line no-unused-vars
+import NetInfo, { useNetInfo } from '@react-native-community/netinfo';
 import Logo from '../../assets/logo.svg';
 import { CarCard } from '../../components/CarCard';
 import { LoadingCarAnimation } from '../../components/LoadingCarAnimation';
@@ -19,6 +21,7 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { navigate } = useNavigation();
+  // const netInfo = useNetInfo();
 
   const handleCarCard = (car: CarDTO) => {
     navigate('Car', { car });
@@ -44,6 +47,36 @@ export const Home = () => {
 
     return () => {
       isMounted = false;
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   if (netInfo.isConnected) {
+  //     Alert.alert('has connection');
+  //   } else {
+  //     Alert.alert('no connection');
+  //   }
+
+  //   // return () => {
+  //   // };
+  // }, [netInfo.isConnected]);
+
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      // eslint-disable-next-line no-console
+      // console.log('Connection type', state.type);
+      // eslint-disable-next-line no-console
+      // console.log('Is connected?', state.isConnected);
+      if (state.isConnected) {
+        Alert.alert('has connection');
+      } else {
+        Alert.alert('no connection');
+      }
+    });
+
+    return () => {
+      // To unsubscribe to these update, just use:
+      unsubscribe();
     };
   }, []);
 
