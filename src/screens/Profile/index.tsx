@@ -49,10 +49,25 @@ const Profile = () => {
   const theme = useTheme();
 
   const handleSignOut = () => {
-    signOut();
+    Alert.alert(
+      'Log out',
+      'Are you sure you want to log out?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {},
+          style: 'destructive',
+        },
+        {
+          text: 'Yes',
+          onPress: () => signOut(),
+          style: 'default',
+        },
+      ],
+    );
   };
 
-  const handleAvatarUpdate = async () => {
+  const handleAvatarSelection = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -108,7 +123,7 @@ const Profile = () => {
 
             <AvatarContainer>
               {avatar !== '' && <Avatar source={{ uri: avatar }} />}
-              <AddAvatarButton onPress={handleAvatarUpdate}>
+              <AddAvatarButton onPress={handleAvatarSelection}>
                 <Feather name="camera" size={24} color={theme.colors.white} />
               </AddAvatarButton>
             </AvatarContainer>
