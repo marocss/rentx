@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import React, {
   createContext, useState, useContext, useEffect,
 } from 'react';
 import { database } from '../database';
 import { User as UserModel } from '../database/model/User';
+import { Car as CarModel } from '../database/model/Car';
 import { api } from '../services/api';
 
 interface User {
@@ -52,15 +54,14 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       const response = await api.post('sessions', { email, password });
 
       const { token, user } = response.data as AuthResponse;
-
       // eslint-disable-next-line dot-notation
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      const userCollection = database.get<UserModel>('users');
       await database.write(async () => {
+        const userCollection = database.get<UserModel>('users');
         await userCollection.create((newUser) => {
           // eslint-disable-next-line no-param-reassign
-          newUser.id = user.id;
+          newUser.user_id = user.id;
           // eslint-disable-next-line no-param-reassign
           newUser.name = user.name;
           // eslint-disable-next-line no-param-reassign
@@ -72,6 +73,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         });
       });
 
+      console.log('====================================');
+      console.log('user (signin): ', user);
+      console.log('====================================');
+
       setData({ ...user, token });
     } catch (error: any) {
       throw new Error(error);
@@ -80,10 +85,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signOut = async () => {
     try {
-      const userCollection = database.get<UserModel>('users');
       await database.write(async () => {
+        const userCollection = database.get<UserModel>('users');
         const userSelected = await userCollection.find(data.id);
-
         await userSelected.destroyPermanently();
 
         setData({} as User);
@@ -96,8 +100,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   // TODO: move to a new hook to handle user data. not really related to auth
   const updateUser = async (user: User) => {
     try {
-      const userCollection = database.get<UserModel>('users');
+      console.log('====================================');
+      console.log('user (updateUser() hook): ', user);
+      console.log('user from state(updateUser() hook): ', data);
+      console.log('====================================');
       await database.write(async () => {
+        const userCollection = database.get<UserModel>('users');
         const userSelected = await userCollection.find(user.id);
         await userSelected.update((userData) => {
           // eslint-disable-next-line no-param-reassign
@@ -116,6 +124,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   useEffect(() => {
+    // persist user if user already logged in before
     (async () => {
       const userCollection = database.get<UserModel>('users');
       const response = await userCollection.query().fetch();
@@ -130,7 +139,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         setData(userData);
       }
     })();
-  }, []);
+  });
 
   return (
     <AuthContext.Provider value={{

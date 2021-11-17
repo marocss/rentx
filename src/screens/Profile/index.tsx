@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import {
   KeyboardAvoidingView, Pressable, Keyboard, Alert,
@@ -56,12 +57,11 @@ const Profile = () => {
         {
           text: 'Cancel',
           onPress: () => {},
-          style: 'destructive',
         },
         {
-          text: 'Yes',
+          text: 'Log out',
           onPress: () => signOut(),
-          style: 'default',
+          style: 'destructive',
         },
       ],
     );
@@ -85,7 +85,7 @@ const Profile = () => {
       const newData = { name, driversLicense };
       await schema.validate(newData);
 
-      updateUser({
+      await updateUser({
         id: user.id,
         user_id: user.user_id,
         email: user.email,
@@ -95,11 +95,21 @@ const Profile = () => {
         token: user.token,
       });
 
+      // console.log('====================================');
+      // console.log('after update');
+      // console.log('user.id: ', user.id);
+      // console.log('user.user_id: ', user.user_id);
+      // console.log('user: ', user);
+      // console.log('====================================');
+
       Alert.alert('Updated successfully');
     } catch (error: any) {
       if (error instanceof yup.ValidationError) {
         Alert.alert(error.message);
       }
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
       Alert.alert('An error occurred. Please try again later.');
     }
   };

@@ -5,6 +5,7 @@ import { AppTabRoutes } from './app.tab.routes';
 import { AuthRoutes } from './auth.routes';
 import { CarDTO } from '../dtos/CarDTO';
 import { RentalPeriod } from '../screens/Schedule';
+import { Car as CarModel } from '../database/model/Car';
 
 interface SignUpStepTwoUserData {
   name: string;
@@ -21,7 +22,7 @@ interface SuccessData {
 type RootStackParamList = {
   Home: undefined;
   HomeAppStack: undefined;
-  Car: { car: CarDTO };
+  Car: { car: CarModel };
   Schedule: { car: CarDTO };
   ConfirmSchedule: { car: CarDTO, rentalPeriod: RentalPeriod };
   Success: SuccessData;
