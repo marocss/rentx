@@ -32,7 +32,6 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { navigate } = useNavigation();
-  // const netInfo = useNetInfo();
 
   const handleCarCard = (car: CarModel) => {
     navigate('Car', { car });
@@ -46,10 +45,6 @@ export const Home = () => {
           .get<PullChangesData>(`cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`);
 
         const { changes, latestVersion } = data;
-
-        // console.log('====================================');
-        // console.log('backend to app (pullChanges): ', changes);
-        // console.log('====================================');
 
         return { changes, timestamp: latestVersion };
       },
@@ -72,22 +67,6 @@ export const Home = () => {
   useEffect(() => {
     let isMounted = true;
 
-    // (async () => {
-    //   try {
-    //     const response = await api.get<CarDTO[]>('cars');
-
-    //     if (isMounted) {
-    //       setCars(response.data);
-    //       setIsLoading(false);
-    //     }
-    //   } catch (error) {
-    //     if (isMounted) {
-    //       setIsLoading(false);
-    //     }
-    //   }
-    // })();
-
-    // debug uncomment
     (async () => {
       try {
         const carsCollection = database.get<CarModel>('cars');
@@ -129,12 +108,6 @@ export const Home = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (netInfo.isConnected === true) {
-  //     offlineSynchronize();
-  //   }
-  // }, [netInfo.isConnected]);
-
   const clearDB = async () => {
     // offlineSynchronize();
 
@@ -157,9 +130,6 @@ export const Home = () => {
             <CarQuantity>{`${cars.length} cars available`}</CarQuantity>
           )}
       </Header>
-
-      {/* debug */}
-      {/* <Button title="clear" onPress={clearDB} /> */}
 
       { isLoading ? (<LoadingCarAnimation />) : (
         <CarList
