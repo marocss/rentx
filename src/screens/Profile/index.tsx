@@ -95,13 +95,6 @@ const Profile = () => {
         token: user.token,
       });
 
-      // console.log('====================================');
-      // console.log('after update');
-      // console.log('user.id: ', user.id);
-      // console.log('user.user_id: ', user.user_id);
-      // console.log('user: ', user);
-      // console.log('====================================');
-
       Alert.alert('Updated successfully');
     } catch (error: any) {
       if (error instanceof yup.ValidationError) {

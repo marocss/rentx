@@ -1,8 +1,6 @@
 import { FlatList } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
-
-// import { CarDTO } from '../../dtos/CarDTO';
 import { Car as CarModel } from '../../database/model/Car';
 
 export const Container = styled.View`

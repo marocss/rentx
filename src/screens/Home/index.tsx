@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
-// eslint-disable-next-line no-unused-vars
-import { Alert, Button, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-// eslint-disable-next-line no-unused-vars
-import NetInfo, { useNetInfo } from '@react-native-community/netinfo';
+import NetInfo from '@react-native-community/netinfo';
 import { SyncDatabaseChangeSet, synchronize } from '@nozbe/watermelondb/sync';
 import Logo from '../../assets/logo.svg';
 import { CarCard } from '../../components/CarCard';
 import { LoadingCarAnimation } from '../../components/LoadingCarAnimation';
-// import { CarDTO } from '../../dtos/CarDTO';
 import { api } from '../../services/api';
 import { database } from '../../database';
 import { Car as CarModel } from '../../database/model/Car';
@@ -90,12 +86,7 @@ export const Home = () => {
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state) => {
-      // eslint-disable-next-line no-console
-      // console.log('Connection type', state.type);
-      // eslint-disable-next-line no-console
-      // console.log('Is connected?', state.isConnected);
       if (state.isConnected === true) {
-        // Alert.alert('has connection');
         offlineSynchronize();
       } else {
         // Alert.alert('no connection');
@@ -108,13 +99,13 @@ export const Home = () => {
     };
   }, []);
 
-  const clearDB = async () => {
-    // offlineSynchronize();
+  // const clearDB = async () => {
+  //   // offlineSynchronize();
 
-    await database.write(async () => {
-      await database.unsafeResetDatabase();
-    });
-  };
+  //   await database.write(async () => {
+  //     await database.unsafeResetDatabase();
+  //   });
+  // };
 
   return (
     <Container>
