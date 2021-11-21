@@ -24,7 +24,7 @@ type RootStackParamList = {
   Home: undefined;
   HomeAppStack: undefined;
   Car: { car: CarModel };
-  Schedule: { car: CarDTO };
+  Schedule: { car: CarModel };
   ConfirmSchedule: { car: CarDTO, rentalPeriod: RentalPeriod };
   Success: SuccessData;
   MyCars: undefined;
@@ -44,6 +44,15 @@ declare global {
 export const Routes = () => {
   const { user, isLoading } = useAuth();
 
+  // return (
+  //   <NavigationContainer>
+  //     { user.id ? (
+  //       <AppTabRoutes />
+  //     ) : (
+  //       <AuthRoutes />
+  //     )}
+  //   </NavigationContainer>
+  // );
   return (
     isLoading ? <Loading />
       : (

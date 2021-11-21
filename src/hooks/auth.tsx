@@ -141,6 +141,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         setData(userData);
         setIsLoading(false);
       }
+      setIsLoading(false);
     })();
   });
 

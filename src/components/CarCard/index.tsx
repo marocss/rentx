@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useNetInfo } from '@react-native-community/netinfo';
 import React from 'react';
 import { PressableProps } from 'react-native';
 import { useTheme } from 'styled-components';
@@ -38,6 +39,8 @@ export const CarCard = ({
 }: CarCardProps) => {
   const theme = useTheme();
 
+  const netInfo = useNetInfo();
+
   const Icon = getRelatedSvgIcon(icon);
 
   return (
@@ -48,7 +51,8 @@ export const CarCard = ({
         <About>
           <RentInfo>
             <Period>{period}</Period>
-            <Price>{`R$ ${price}`}</Price>
+            {/* <Price>{`R$ ${price}`}</Price> */}
+            <Price>{`R$ ${netInfo.isConnected === true ? price : '...'}`}</Price>
           </RentInfo>
 
           <FuelType>

@@ -8,6 +8,7 @@ import * as yup from 'yup';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { BackButton } from '../../components/BackButton';
 import Input from '../../components/Input';
 import { useAuth } from '../../hooks/auth';
@@ -48,6 +49,8 @@ const Profile = () => {
   const [avatar, setAvatar] = useState(user.avatar);
 
   const theme = useTheme();
+
+  const netInfo = useNetInfo();
 
   const handleSignOut = () => {
     Alert.alert(
@@ -107,6 +110,14 @@ const Profile = () => {
     }
   };
 
+  const handleOptionChange = (desiredOption: 'info' | 'password') => {
+    if (netInfo.isConnected === false && desiredOption === 'password') {
+      Alert.alert('No internet', 'You need an internet connection to update your password');
+    } else {
+      setOption(desiredOption);
+    }
+  };
+
   const isUpdateUserButtonDisabled = (name === user.name
   && driversLicense === user.driver_license
   && avatar === user.avatar);
@@ -133,10 +144,14 @@ const Profile = () => {
           </Header>
           <Main>
             <Menu>
-              <Option active={option === 'info'} style={{ marginRight: 24 }} onPress={() => setOption('info')}>
+              <Option
+                active={option === 'info'}
+                style={{ marginRight: 24 }}
+                onPress={() => handleOptionChange('info')}
+              >
                 <OptionTitle active={option === 'info'}>Info</OptionTitle>
               </Option>
-              <Option active={option === 'password'} onPress={() => setOption('password')}>
+              <Option active={option === 'password'} onPress={() => handleOptionChange('password')}>
                 <OptionTitle active={option === 'password'}>Update password</OptionTitle>
               </Option>
             </Menu>

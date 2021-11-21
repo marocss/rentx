@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+// eslint-disable-next-line no-unused-vars
+import NetInfo, { useNetInfo } from '@react-native-community/netinfo';
 
 import Animated, {
-  useAnimatedScrollHandler, useSharedValue, useAnimatedStyle, interpolate, Extrapolate,
+  useAnimatedScrollHandler, useSharedValue, useAnimatedStyle, interpolate, Extrapolate, withTiming,
 } from 'react-native-reanimated';
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
-// import { Carousel } from '../../components/Carousel';
-// import { SpecificationCard } from '../../components/SpecificationCard';
+import { Carousel } from '../../components/Carousel';
+import { SpecificationCard } from '../../components/SpecificationCard';
 import { CarDTO } from '../../dtos/CarDTO';
-// import { getRelatedSvgIcon } from '../../utils/getRelatedSvgIcon';
+import { Car as CarModel } from '../../database/model/Car';
+import { getRelatedSvgIcon } from '../../utils/getRelatedSvgIcon';
 
 import {
   Container,
@@ -23,55 +26,83 @@ import {
   RentInfoSection,
   Period,
   Price,
-  // SpecificationSection,
+  SpecificationSection,
   Description,
   Footer,
+  OfflineCard,
 } from './styles';
+import { api } from '../../services/api';
 
 interface RouteParams {
-  car: CarDTO;
+  car: CarModel;
 }
 
 export const Car = () => {
+  const [carUpdated, setCarUpdated] = useState<CarDTO>({} as CarDTO);
+  const [hasInternet, setHasInternet] = useState(false);
+
   const { navigate } = useNavigation();
 
   const route = useRoute();
   const { car } = route.params as RouteParams;
+  // const netInfo = useNetInfo();
 
   const handleSelectCar = () => {
-    navigate('Schedule', {
-      car,
-    });
+    navigate('Schedule', { car });
   };
 
-  // const halfWayIndex = Math.ceil(car.accessories.length / 2);
-  // const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex);
-  // const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex);
+  let halfWayIndex;
+  let firstHalfOfCarAccessories;
+  let secondHalfOfCarAccessories;
+
+  if (carUpdated.accessories) {
+    halfWayIndex = Math.ceil(carUpdated.accessories.length / 2);
+    firstHalfOfCarAccessories = carUpdated.accessories.slice(0, halfWayIndex);
+    secondHalfOfCarAccessories = carUpdated.accessories.slice(halfWayIndex);
+  }
 
   const scrollY = useSharedValue(0);
 
-  // TODO: fix bug: when scrolling up if content is not big enough to fill whole screen
-  // the app crashes
+  // fixed bug: added withTiming() around interpolate function (https://github.com/software-mansion/react-native-reanimated/issues/1947)
   const headerStyleAnimated = useAnimatedStyle(() => {
     return {
-      height: interpolate(
+      height: withTiming(interpolate(
         scrollY.value,
         [0, 173],
         [173, 0],
         Extrapolate.CLAMP,
-      ),
-      opacity: interpolate(
+      )),
+      opacity: withTiming(interpolate(
         scrollY.value,
         [0, 100],
         [1, 0],
         Extrapolate.CLAMP,
-      ),
+      )),
     };
   });
 
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
   });
+
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      if (state.isConnected === true) {
+        setHasInternet(true);
+
+        (async () => {
+          const response = await api.get<CarDTO>(`cars/${car.id}`);
+          setCarUpdated(response.data);
+        })();
+      } else if (state.isConnected === false) {
+        setHasInternet(false);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <Container>
@@ -86,7 +117,12 @@ export const Car = () => {
 
       <Animated.View style={[headerStyleAnimated, { zIndex: -1 }]}>
         <CarouselSection>
-          {/* <Carousel imagesUrls={car.photos} /> */}
+          <Carousel imagesUrls={
+            // eslint-disable-next-line no-extra-boolean-cast
+            !!carUpdated.photos
+              ? carUpdated.photos : [{ id: car.thumbnail, photo: car.thumbnail }]
+          }
+          />
         </CarouselSection>
       </Animated.View>
 
@@ -109,28 +145,32 @@ export const Car = () => {
 
           <RentInfoSection>
             <Period>{car.period}</Period>
-            <Price>{`R$ ${car.price}`}</Price>
+            <Price>{`R$ ${hasInternet ? car.price : '...'}`}</Price>
           </RentInfoSection>
         </FirstSection>
 
-        {/* <SpecificationSection>
-          {firstHalfOfCarAccessories.map((accessory) => (
-            <SpecificationCard
-              key={accessory.type}
-              name={accessory.name}
-              icon={getRelatedSvgIcon(accessory.type)}
-            />
-          ))}
-        </SpecificationSection>
-        <SpecificationSection>
-          {secondHalfOfCarAccessories.map((accessory) => (
-            <SpecificationCard
-              key={accessory.type}
-              name={accessory.name}
-              icon={getRelatedSvgIcon(accessory.type)}
-            />
-          ))}
-        </SpecificationSection> */}
+        { (firstHalfOfCarAccessories && secondHalfOfCarAccessories) && (
+          <>
+            <SpecificationSection>
+              {firstHalfOfCarAccessories.map((accessory) => (
+                <SpecificationCard
+                  key={accessory.type}
+                  name={accessory.name}
+                  icon={getRelatedSvgIcon(accessory.type)}
+                />
+              ))}
+            </SpecificationSection>
+            <SpecificationSection>
+              {secondHalfOfCarAccessories.map((accessory) => (
+                <SpecificationCard
+                  key={accessory.type}
+                  name={accessory.name}
+                  icon={getRelatedSvgIcon(accessory.type)}
+                />
+              ))}
+            </SpecificationSection>
+          </>
+        )}
 
         <Description>
           {car.about}
@@ -138,7 +178,16 @@ export const Car = () => {
       </Animated.ScrollView>
 
       <Footer>
-        <Button title="Select" color="" onPress={handleSelectCar} />
+        <Button
+          title="Select"
+          onPress={handleSelectCar}
+          disabled={!hasInternet}
+        />
+        { !hasInternet && (
+          <OfflineCard>
+            You need a internet connection to rent a car.
+          </OfflineCard>
+        )}
       </Footer>
     </Container>
   );

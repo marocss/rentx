@@ -91,3 +91,10 @@ export const Footer = styled.View`
   background-color: ${({ theme }) => theme.colors.background_one};
   padding: ${RFValue(21)}px ${RFValue(21)}px ${RFValue(15)}px;
 `;
+
+export const OfflineCard = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary_regular};
+  color: ${({ theme }) => theme.colors.main};
+  font-size: ${RFValue(13)}px;
+  text-align: center;
+`;
