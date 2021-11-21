@@ -30,6 +30,9 @@ export const Home = () => {
   const { navigate } = useNavigation();
 
   const handleCarCard = (car: CarModel) => {
+    console.log('====================================');
+    console.log('car: ', car);
+    console.log('====================================');
     navigate('Car', { car });
   };
 

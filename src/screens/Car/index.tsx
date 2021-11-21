@@ -7,10 +7,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
-import { Carousel } from '../../components/Carousel';
-import { SpecificationCard } from '../../components/SpecificationCard';
+// import { Carousel } from '../../components/Carousel';
+// import { SpecificationCard } from '../../components/SpecificationCard';
 import { CarDTO } from '../../dtos/CarDTO';
-import { getRelatedSvgIcon } from '../../utils/getRelatedSvgIcon';
+// import { getRelatedSvgIcon } from '../../utils/getRelatedSvgIcon';
 
 import {
   Container,
@@ -23,7 +23,7 @@ import {
   RentInfoSection,
   Period,
   Price,
-  SpecificationSection,
+  // SpecificationSection,
   Description,
   Footer,
 } from './styles';
@@ -44,10 +44,9 @@ export const Car = () => {
     });
   };
 
-  const halfWayIndex = Math.ceil(car.accessories.length / 2);
-
-  const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex);
-  const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex);
+  // const halfWayIndex = Math.ceil(car.accessories.length / 2);
+  // const firstHalfOfCarAccessories = car.accessories.slice(0, halfWayIndex);
+  // const secondHalfOfCarAccessories = car.accessories.slice(halfWayIndex);
 
   const scrollY = useSharedValue(0);
 
@@ -87,7 +86,7 @@ export const Car = () => {
 
       <Animated.View style={[headerStyleAnimated, { zIndex: -1 }]}>
         <CarouselSection>
-          <Carousel imagesUrls={car.photos} />
+          {/* <Carousel imagesUrls={car.photos} /> */}
         </CarouselSection>
       </Animated.View>
 
@@ -114,7 +113,7 @@ export const Car = () => {
           </RentInfoSection>
         </FirstSection>
 
-        <SpecificationSection>
+        {/* <SpecificationSection>
           {firstHalfOfCarAccessories.map((accessory) => (
             <SpecificationCard
               key={accessory.type}
@@ -131,7 +130,7 @@ export const Car = () => {
               icon={getRelatedSvgIcon(accessory.type)}
             />
           ))}
-        </SpecificationSection>
+        </SpecificationSection> */}
 
         <Description>
           {car.about}

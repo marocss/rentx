@@ -6,6 +6,7 @@ import { AuthRoutes } from './auth.routes';
 import { CarDTO } from '../dtos/CarDTO';
 import { RentalPeriod } from '../screens/Schedule';
 import { Car as CarModel } from '../database/model/Car';
+import { Loading } from '../components/Loading';
 
 interface SignUpStepTwoUserData {
   name: string;
@@ -41,15 +42,18 @@ declare global {
 }
 
 export const Routes = () => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
 
   return (
-    <NavigationContainer>
-      { user.id ? (
-        <AppTabRoutes />
-      ) : (
-        <AuthRoutes />
-      )}
-    </NavigationContainer>
+    isLoading ? <Loading />
+      : (
+        <NavigationContainer>
+          { user.id ? (
+            <AppTabRoutes />
+          ) : (
+            <AuthRoutes />
+          )}
+        </NavigationContainer>
+      )
   );
 };
