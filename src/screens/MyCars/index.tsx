@@ -3,6 +3,7 @@ import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AntDesign } from '@expo/vector-icons';
+import { format, parseISO, addDays } from 'date-fns';
 import { BackButton } from '../../components/BackButton';
 import { CarCard } from '../../components/CarCard';
 import { LoadingCarAnimation } from '../../components/LoadingCarAnimation';
@@ -29,8 +30,8 @@ interface CarProps {
   car: CarDTO;
   id: number;
   user_id: number;
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  end_date: string;
 }
 
 export const MyCars = () => {
@@ -39,11 +40,20 @@ export const MyCars = () => {
 
   const theme = useTheme();
 
+  const formatDate = (date: string) => {
+    // console.log('====================================');
+    // console.log('date: ', date);
+    // console.log('format(parseISO(date): ', format(addDays(new Date(date), 1), 'dd/MM/yyyy'));
+    // console.log('====================================');
+    return format(addDays(new Date(date), 1), 'dd/MM/yyyy');
+  };
+
   useEffect(() => {
     (async () => {
       try {
-        const userId = 1;
-        const response = await api.get<CarProps[]>(`schedules_byuser?user_id=${userId}`);
+        // const userId = 1;
+        // const response = await api.get<CarProps[]>(`schedules_byuser?user_id=${userId}`);
+        const response = await api.get<CarProps[]>('rentals');
 
         setCars(response.data);
       } catch (error) {
@@ -97,13 +107,13 @@ export const MyCars = () => {
                 <PeriodSection>
                   <PeriodSectionTitle>Period</PeriodSectionTitle>
                   <PeriodDateSection>
-                    <PeriodDate>{item.startDate}</PeriodDate>
+                    <PeriodDate>{formatDate(item.start_date)}</PeriodDate>
                     <AntDesign
                       name="arrowright"
                       size={14}
                       color={theme.colors.text_light}
                     />
-                    <PeriodDate>{item.endDate}</PeriodDate>
+                    <PeriodDate>{formatDate(item.end_date)}</PeriodDate>
                   </PeriodDateSection>
                 </PeriodSection>
               </>

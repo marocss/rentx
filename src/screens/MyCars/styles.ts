@@ -7,8 +7,8 @@ interface CarProps {
   car: CarDTO;
   id: number;
   user_id: number;
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  end_date: string;
 }
 
 export const Container = styled.View`
