@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 // eslint-disable-next-line no-unused-vars
-import NetInfo, { useNetInfo } from '@react-native-community/netinfo';
+import NetInfo from '@react-native-community/netinfo';
 
 import Animated, {
   useAnimatedScrollHandler, useSharedValue, useAnimatedStyle, interpolate, Extrapolate, withTiming,
