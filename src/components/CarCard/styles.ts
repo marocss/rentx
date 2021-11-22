@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import FastImage from 'react-native-fast-image';
 
 import Gasoline from '../../assets/gasoline.svg';
 import Energy from '../../assets/energy.svg';
@@ -81,7 +82,7 @@ export const Thumbnail = styled.View`
   width: 60%;
 `;
 
-export const Picture = styled.Image`
+export const Picture = styled(FastImage)`
   height: 100%;
   transform: scaleX(-1);
 `;

@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { Dimensions, FlatList } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import FastImage from 'react-native-fast-image';
 
 interface ImageIndexProps {
   active: boolean;
@@ -45,7 +46,7 @@ export const PictureSection = styled.View`
   margin-top: ${RFValue(4)}px;
 `;
 
-export const Picture = styled.Image`
+export const Picture = styled(FastImage)`
   height: 100%;
   width: 100%;
 `;
