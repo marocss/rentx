@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
+import { useIsFocused } from '@react-navigation/native';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AntDesign } from '@expo/vector-icons';
-import { format, parseISO, addDays } from 'date-fns';
+import { format, addDays } from 'date-fns';
 import { BackButton } from '../../components/BackButton';
 import { CarCard } from '../../components/CarCard';
 import { LoadingCarAnimation } from '../../components/LoadingCarAnimation';
@@ -37,6 +38,7 @@ interface CarProps {
 export const MyCars = () => {
   const [cars, setCars] = useState<CarProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const isScreenFocused = useIsFocused();
 
   const theme = useTheme();
 
@@ -63,7 +65,7 @@ export const MyCars = () => {
         setIsLoading(false);
       }
     })();
-  }, []);
+  }, [isScreenFocused]);
 
   return (
     <Container>
